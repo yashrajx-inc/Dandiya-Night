@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chhoti Ballia Dandiya Nights 2026 | Dance Vibes Studio</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Rozha+One&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- html2canvas for Ticket Download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
@@ -44,203 +48,173 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .pink-gradient-bg { background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%); }
-        .gold-border-glow { border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: 0 0 25px rgba(255, 0, 127, 0.25); }
-        .card-hover { transition: all 0.35s ease; }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25); border-color: #FFD700; }
-        @keyframes pulse-slow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        .animate-pulse-slow { animation: pulse-slow 3s infinite ease-in-out; }
+        .pink-gradient-bg {
+            background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
+        }
+        .gold-border-glow {
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.25);
+        }
+        .card-hover {
+            transition: all 0.35s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25);
+            border-color: #FFD700;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
 
-        /* =================================================================== */
-        /* CREDIT-CARD TICKET  (85.6mm × 54mm) — EXACT PIXEL MATCH @ 300 DPI   */
-        /* 85.6mm = 3.3701in × 300 = 1011px                                    */
-        /* 54mm   = 2.1260in × 300 =  638px                                    */
-        /* =================================================================== */
-
-        .cc-viewport {
+        /* ============================================================ */
+        /* CREDIT-CARD SIZE TICKET (85.6mm x 54mm) - ISO/IEC 7810 ID-1  */
+        /* ============================================================ */
+        .cc-ticket-wrap {
             display: flex;
             flex-direction: column;
+            gap: 14px;
             align-items: center;
-            gap: 40px;
-            padding: 20px 0;
+            justify-content: center;
+            width: 100%;
+            padding: 4px;
         }
 
-        /* Screen preview wrapper: scaled to fit responsive */
-        .cc-scaler {
-            width: 1011px;
-            height: 638px;
-            transform-origin: top center;
-            flex-shrink: 0;
-        }
-
-        /* The actual card - fixed pixel size = exact credit card at 300 DPI */
-        .cc-card {
-            width: 1011px;
-            height: 638px;
-            box-sizing: border-box;
-            border-radius: 42px;
-            padding: 42px 48px 34px 48px;
-            background: linear-gradient(135deg, #1e0538 0%, #130324 55%, #0a0114 100%);
-            border: 3px solid #FFD700;
-            box-shadow: 0 10px 50px rgba(255, 215, 0, 0.35);
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+        /* Each ticket face is exactly 85.6mm x 54mm */
+        .cc-ticket {
+            width: 85.6mm;
+            height: 54mm;
+            border-radius: 3.5mm;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #1e0538 0%, #130324 55%, #0a0114 100%);
+            border: 0.5mm solid #FFD700;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            padding: 3mm 3.5mm;
             display: flex;
             flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            box-sizing: border-box;
         }
 
-        /* Subtle decorative ring */
-        .cc-card::before {
-            content: "";
-            position: absolute;
-            width: 500px; height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 0, 127, 0.15) 0%, transparent 70%);
-            top: -250px; right: -200px;
-            pointer-events: none;
-        }
-        .cc-card::after {
-            content: "";
-            position: absolute;
-            width: 400px; height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.10) 0%, transparent 70%);
-            bottom: -200px; left: -150px;
-            pointer-events: none;
-        }
-
-        /* ---------- FRONT LAYOUT ---------- */
-        .cc-front-header {
+        /* Front: Header row */
+        .cc-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding-bottom: 16px;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.45);
-            position: relative;
-            z-index: 2;
+            border-bottom: 0.3mm solid rgba(255, 215, 0, 0.45);
+            padding-bottom: 1mm;
+            margin-bottom: 1.2mm;
         }
-        .cc-brand-studio {
-            font-size: 15px;
-            letter-spacing: 3px;
+        .cc-brand-title {
+            font-family: 'Rozha One', serif;
+            font-size: 5.2mm;
+            line-height: 1;
+            color: #FFD700;
+            letter-spacing: 0.2px;
+        }
+        .cc-brand-sub {
+            font-family: 'Kaushan Script', cursive;
+            font-size: 2.6mm;
+            color: #FF6EC7;
+            line-height: 1;
+            margin-top: 0.3mm;
+        }
+        .cc-brand-tag {
+            font-size: 1.5mm;
+            letter-spacing: 0.4px;
             color: #FFD700;
             font-weight: 700;
             text-transform: uppercase;
             line-height: 1;
         }
-        .cc-brand-main {
-            font-family: 'Rozha One', serif;
-            font-size: 52px;
-            color: #FFD700;
-            line-height: 1;
-            margin-top: 8px;
-            letter-spacing: 1px;
-        }
-        .cc-brand-sub {
-            font-family: 'Kaushan Script', cursive;
-            font-size: 24px;
-            color: #FF6EC7;
-            line-height: 1;
-            margin-top: 4px;
-        }
-        .cc-header-right {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-        .cc-paid-badge {
+        .cc-status-badge {
             background: linear-gradient(90deg, #10b981, #059669);
             color: #fff;
-            font-size: 16px;
+            font-size: 1.7mm;
             font-weight: 800;
-            padding: 8px 18px;
-            border-radius: 20px;
-            letter-spacing: 1.5px;
-        }
-        .cc-ticket-id-large {
-            font-family: 'Courier New', monospace;
-            font-size: 20px;
-            font-weight: 800;
-            color: #FFD700;
-            letter-spacing: 1px;
+            padding: 0.6mm 1.5mm;
+            border-radius: 1mm;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
 
-        .cc-front-body {
-            flex: 1;
+        /* Body layout */
+        .cc-body {
             display: flex;
-            gap: 30px;
-            padding-top: 22px;
-            position: relative;
-            z-index: 2;
+            flex: 1;
+            gap: 2mm;
             min-height: 0;
         }
-
-        .cc-info-col {
+        .cc-left {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-width: 0;
-            padding-right: 10px;
         }
-
-        .cc-info-row {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 16px;
-        }
-        .cc-info-item {
-            flex: 1;
-            min-width: 0;
-        }
-        .cc-info-label {
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: #b8a8d0;
-            text-transform: uppercase;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-        .cc-info-value {
-            font-size: 22px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.15;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .cc-info-value.gold { color: #FFD700; }
-        .cc-info-value.pink { color: #FF6EC7; }
-        .cc-info-value.green { color: #34d399; }
-
-        /* QR side */
-        .cc-qr-col {
-            width: 230px;
+        .cc-right {
+            width: 24mm;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            border-left: 2px dashed rgba(255, 215, 0, 0.5);
-            padding-left: 24px;
-            flex-shrink: 0;
+            justify-content: center;
+            border-left: 0.3mm dashed rgba(255, 215, 0, 0.5);
+            padding-left: 1.5mm;
         }
+
+        .cc-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.8mm;
+        }
+        .cc-field-label {
+            font-size: 1.5mm;
+            letter-spacing: 0.3px;
+            color: #b8a8d0;
+            text-transform: uppercase;
+            font-weight: 600;
+            line-height: 1;
+        }
+        .cc-field-value {
+            font-size: 2.4mm;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        .cc-field-value.gold { color: #FFD700; }
+        .cc-field-value.pink { color: #FF6EC7; }
+        .cc-field-value.green { color: #34d399; }
+
+        .cc-row-2 {
+            display: flex;
+            gap: 2.5mm;
+        }
+        .cc-row-2 > .cc-field {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* QR Box */
         .cc-qr-box {
-            width: 200px;
-            height: 200px;
+            width: 21mm;
+            height: 21mm;
             background: #ffffff;
-            border-radius: 16px;
-            padding: 8px;
+            border-radius: 1.2mm;
+            padding: 0.8mm;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 3mm rgba(255, 215, 0, 0.35);
         }
         .cc-qr-box img {
             width: 100%;
@@ -253,154 +227,123 @@
             -ms-interpolation-mode: nearest-neighbor;
         }
         .cc-qr-label {
-            font-size: 14px;
+            font-size: 1.4mm;
             color: #FFD700;
             text-align: center;
-            margin-top: 12px;
-            font-weight: 800;
+            margin-top: 0.7mm;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
+            letter-spacing: 0.2px;
+            line-height: 1.1;
+        }
+        .cc-ticket-id {
+            font-size: 1.7mm;
+            color: #ffffff;
+            font-family: monospace;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 0.5mm;
+            letter-spacing: 0.2px;
         }
 
-        .cc-front-footer {
-            border-top: 2px solid rgba(255, 215, 0, 0.4);
-            margin-top: 14px;
-            padding-top: 12px;
+        /* FOOTER STRIP */
+        .cc-footer {
+            border-top: 0.3mm solid rgba(255, 215, 0, 0.4);
+            margin-top: 1mm;
+            padding-top: 0.8mm;
             display: flex;
             justify-content: space-between;
-            font-size: 16px;
-            color: #d4c4e8;
-            line-height: 1.2;
-            position: relative;
-            z-index: 2;
-            font-weight: 600;
+            font-size: 1.4mm;
+            color: #cfc0e0;
+            line-height: 1;
         }
-        .cc-front-footer strong { color: #FFD700; }
+        .cc-footer strong { color: #FFD700; }
 
-        /* ---------- BACK LAYOUT ---------- */
-        .cc-back-topstrip {
+        /* ============ BACK SIDE STYLES ============ */
+        .cc-back-header {
             background: linear-gradient(90deg, #FF007F 0%, #FF5E00 100%);
-            margin: -42px -48px 22px -48px;
-            padding: 16px 48px;
+            margin: -3mm -3.5mm 1.5mm -3.5mm;
+            padding: 1.2mm 3.5mm;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            z-index: 2;
         }
-        .cc-back-topstrip-title {
-            font-size: 20px;
+        .cc-back-header-title {
+            font-size: 2.4mm;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
             color: #ffffff;
         }
-        .cc-back-topstrip i {
-            font-size: 26px;
+        .cc-back-header-icon {
+            font-size: 2.8mm;
             color: #FFD700;
         }
-
         .cc-back-rules-title {
-            font-size: 18px;
+            font-size: 1.8mm;
             font-weight: 800;
             color: #FFD700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 2;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.6mm;
         }
         .cc-back-rules {
-            font-size: 15px;
-            line-height: 1.55;
+            font-size: 1.55mm;
+            line-height: 1.35;
             color: #e0d4f0;
-            padding-left: 22px;
+            padding-left: 2.4mm;
             list-style: none;
             margin: 0;
-            flex: 1;
-            position: relative;
-            z-index: 2;
         }
         .cc-back-rules li {
             position: relative;
-            margin-bottom: 7px;
+            margin-bottom: 0.35mm;
         }
         .cc-back-rules li::before {
-            content: "▸";
+            content: "•";
             position: absolute;
-            left: -20px;
+            left: -2mm;
             color: #FF007F;
             font-weight: 900;
-            font-size: 16px;
         }
-
-        .cc-back-footer {
-            border-top: 2px dashed rgba(255, 215, 0, 0.5);
-            padding-top: 14px;
-            margin-top: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 15px;
-            color: #d4c4e8;
-            position: relative;
-            z-index: 2;
-            font-weight: 600;
-        }
-        .cc-back-footer-row {
+        .cc-back-bottom {
+            margin-top: auto;
+            border-top: 0.3mm dashed rgba(255, 215, 0, 0.5);
+            padding-top: 1mm;
             display: flex;
             justify-content: space-between;
-            gap: 15px;
-            flex-wrap: nowrap;
+            font-size: 1.45mm;
+            color: #cfc0e0;
         }
-        .cc-back-footer-row span {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .cc-back-footer strong { color: #FFD700; }
+        .cc-back-bottom strong { color: #FFD700; }
 
-        /* Responsive preview scaling (screen only, does not affect capture) */
-        @media screen and (max-width: 1080px) {
-            .cc-scaler { transform: scale(0.88); height: 562px; }
-        }
-        @media screen and (max-width: 950px) {
-            .cc-scaler { transform: scale(0.75); height: 479px; }
-        }
-        @media screen and (max-width: 800px) {
-            .cc-scaler { transform: scale(0.62); height: 396px; }
-        }
-        @media screen and (max-width: 660px) {
-            .cc-scaler { transform: scale(0.5); height: 319px; }
-        }
-        @media screen and (max-width: 540px) {
-            .cc-scaler { transform: scale(0.42); height: 268px; }
-        }
-        @media screen and (max-width: 440px) {
-            .cc-scaler { transform: scale(0.35); height: 223px; }
-        }
-        @media screen and (max-width: 380px) {
-            .cc-scaler { transform: scale(0.30); height: 191px; }
+        /* Screen preview scale on small devices */
+        @media screen and (max-width: 420px) {
+            .cc-ticket {
+                transform: scale(0.92);
+                transform-origin: top center;
+            }
         }
 
-        /* Print: exact credit-card size */
+        /* Print styles for exact credit-card output */
         @media print {
             body * { visibility: hidden; }
             #ticketViewSection, #ticketViewSection * { visibility: visible; }
-            #ticketViewSection { position: absolute; left: 0; top: 0; width: 100%; padding: 0; background: #0d021a; }
+            #ticketViewSection {
+                position: absolute;
+                left: 0; top: 0;
+                width: 100%;
+                padding: 0;
+                background: #0d021a;
+            }
             .no-print { display: none !important; }
-            .cc-viewport { gap: 20mm; }
-            .cc-scaler { transform: none !important; height: auto !important; }
+            .cc-ticket-wrap { gap: 8mm; }
         }
-
-        /* html2canvas override to prevent clipping */
-        .html2canvas-container { overflow: visible !important; }
     </style>
 </head>
 <body class="font-poppins antialiased selection:bg-festivePink selection:text-white">
 
-    <!-- Top Announcement -->
+    <!-- Top Announcement Bar -->
     <div class="bg-gradient-to-r from-festivePink via-purple-700 to-festiveOrange text-white text-xs sm:text-sm py-2 px-4 text-center font-semibold tracking-wide">
         🎉 BIGGEST GARBA CELEBRATIONS IN CHHOTI BALLIA (1st EDITION) • 13th OCT 2026 🎉
     </div>
@@ -417,12 +360,14 @@
                     <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-white">Dandiya Nights 2026</h1>
                 </div>
             </a>
+
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-200">
                 <a href="#highlights" class="hover:text-gold transition">Highlights</a>
                 <a href="#tickets" class="hover:text-gold transition">Book Passes</a>
                 <a href="#venue" class="hover:text-gold transition">Venue & Info</a>
                 <a href="#contact" class="hover:text-gold transition">Contact</a>
             </nav>
+
             <div class="flex items-center gap-2">
                 <button id="myTicketBtn" onclick="showSavedTicket()" class="hidden bg-white/10 border border-gold/50 text-gold font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full hover:bg-white/20 transition">
                     <i class="fa-solid fa-qrcode mr-1"></i> My Ticket
@@ -434,34 +379,68 @@
         </div>
     </header>
 
-    <!-- Gate Scanner -->
+    <!-- ========================================================== -->
+    <!-- ORGANISER GATE SCANNER & ANTI-DUPLICATE ENTRY SECTION      -->
+    <!-- ========================================================== -->
     <section id="gateScannerSection" class="hidden py-10 px-4 sm:px-6 max-w-lg mx-auto">
         <div id="scanStatusBox" class="rounded-3xl border-2 p-6 sm:p-8 text-center shadow-2xl">
             <div id="scanIcon" class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4"></div>
-            <span class="text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/10 text-gold">Gate Entry Verification System</span>
+            <span class="text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/10 text-gold">
+                Gate Entry Verification System
+            </span>
             <h2 id="scanHeading" class="text-2xl sm:text-3xl font-extrabold mt-3 mb-1">Checking Ticket...</h2>
             <p id="scanSubtext" class="text-xs sm:text-sm text-gray-200 mb-6"></p>
+
             <div class="bg-black/50 border border-white/15 rounded-2xl p-4 text-left space-y-2.5 text-xs sm:text-sm mb-6">
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Ticket ID:</span><strong id="scanTktId" class="text-gold font-mono">—</strong></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Razorpay Sync ID:</span><strong id="scanRzpSync" class="text-cyan-300 font-mono text-xs break-all">—</strong></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Payment Ref / Hash:</span><strong id="scanPayRef" class="text-green-400 font-mono text-xs">—</strong></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Guest Name:</span><strong id="scanName" class="text-white">—</strong></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Mobile:</span><strong id="scanMobile" class="text-gold">—</strong></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Pass & Qty:</span><strong id="scanPass" class="text-pink-400 font-bold">—</strong></div>
-                <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Allowed Entry:</span><strong id="scanPersons" class="text-green-400 font-extrabold text-base">—</strong></div>
-                <div class="flex justify-between"><span class="text-gray-400">Expected Paid Amount:</span><strong id="scanAmount" class="text-gold font-extrabold text-base">—</strong></div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Ticket ID:</span>
+                    <strong id="scanTktId" class="text-gold font-mono">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Razorpay Sync ID:</span>
+                    <strong id="scanRzpSync" class="text-cyan-300 font-mono text-xs break-all">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Payment Ref / Hash:</span>
+                    <strong id="scanPayRef" class="text-green-400 font-mono text-xs">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Guest Name:</span>
+                    <strong id="scanName" class="text-white">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Mobile:</span>
+                    <strong id="scanMobile" class="text-gold">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Pass & Qty:</span>
+                    <strong id="scanPass" class="text-pink-400 font-bold">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Allowed Entry:</span>
+                    <strong id="scanPersons" class="text-green-400 font-extrabold text-base">—</strong>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Expected Paid Amount:</span>
+                    <strong id="scanAmount" class="text-gold font-extrabold text-base">—</strong>
+                </div>
             </div>
+
             <div id="gateActionControls" class="space-y-3">
                 <div class="bg-white/5 border border-gold/30 rounded-xl p-3 text-left">
-                    <label class="block text-[11px] uppercase text-gold font-bold mb-1"><i class="fa-solid fa-user-shield mr-1"></i> Organiser Gate PIN (Rahul / Sahil Only):</label>
+                    <label class="block text-[11px] uppercase text-gold font-bold mb-1">
+                        <i class="fa-solid fa-user-shield mr-1"></i> Organiser Gate PIN (Rahul / Sahil Only):
+                    </label>
                     <input type="password" id="gateAdminPin" inputmode="numeric" placeholder="Enter 4-digit Gate PIN (2026)"
                         class="w-full px-3 py-2.5 rounded-lg bg-black/60 border border-white/20 text-white text-center font-mono tracking-widest text-sm focus:outline-none focus:border-gold">
                 </div>
+
                 <button id="approveEntryBtn" onclick="markTicketUsedAtGate()"
                     class="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition">
                     ✅ APPROVE ENTRY & LOCK TICKET (1st Scan)
                 </button>
             </div>
+
             <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-gray-400">
                 <span>Total Checked-In on this Phone: <strong id="totalScannedCount" class="text-gold">0</strong></span>
                 <button onclick="closeTicketView()" class="text-pink-400 hover:underline">Exit Scanner</button>
@@ -469,130 +448,145 @@
         </div>
     </section>
 
-    <!-- Digital Ticket Section -->
-    <section id="ticketViewSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center mb-5 no-print">
+    <!-- ========================================== -->
+    <!-- DIGITAL TICKET SECTION (SHOWN ON REDIRECT) -->
+    <!-- ========================================== -->
+    <section id="ticketViewSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
+        <div class="text-center mb-5">
             <div class="w-14 h-14 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Booking Confirmed! 🎉</h2>
-            <p class="text-xs sm:text-sm text-gray-300 mt-1">Aapka official E-Ticket taiyar hai (Credit-Card Size • 300 DPI).</p>
+            <p class="text-xs sm:text-sm text-gray-300 mt-1">Aapka Chhoti Ballia Dandiya Nights 2026 ka official E-Ticket taiyar hai (Credit-Card Size).</p>
         </div>
 
-        <!-- Sync Bar -->
+        <!-- Quantity & Payment ID Sync Bar -->
         <div class="mb-5 bg-white/5 border border-gold/40 rounded-2xl p-4 space-y-3 no-print">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
                 <div>
-                    <span class="text-xs font-bold text-gold block"><i class="fa-solid fa-Ticket mr-1"></i> Kya aapne Razorpay par Quantity badhayi thi?</span>
+                    <span class="text-xs font-bold text-gold block">
+                        <i class="fa-solid fa-Ticket mr-1"></i> Kya aapne Razorpay par Quantity badhayi thi?
+                    </span>
                     <p class="text-[11px] text-gray-300">Agar aapne Razorpay page par 1 se zyada pass pay kiya hai, toh yahan apni Paid Quantity select karein:</p>
                 </div>
                 <div class="flex items-center gap-2 self-end sm:self-center">
                     <span class="text-xs text-gray-300">Paid Qty:</span>
                     <select id="postPayQtySelect" onchange="syncTicketQuantityFromDropdown(this.value)"
                         class="px-3 py-1.5 rounded-xl bg-black border border-gold text-gold font-extrabold text-xs focus:outline-none">
-                        <option value="1">1 Pass</option><option value="2">2 Passes</option><option value="3">3 Passes</option>
-                        <option value="4">4 Passes</option><option value="5">5 Passes</option><option value="6">6 Passes</option>
-                        <option value="7">7 Passes</option><option value="8">8 Passes</option><option value="9">9 Passes</option>
+                        <option value="1">1 Pass</option>
+                        <option value="2">2 Passes</option>
+                        <option value="3">3 Passes</option>
+                        <option value="4">4 Passes</option>
+                        <option value="5">5 Passes</option>
+                        <option value="6">6 Passes</option>
+                        <option value="7">7 Passes</option>
+                        <option value="8">8 Passes</option>
+                        <option value="9">9 Passes</option>
                         <option value="10">10 Passes</option>
                     </select>
                 </div>
             </div>
+
             <div class="flex flex-col sm:flex-row items-center justify-between gap-2">
-                <span class="text-[11px] text-gray-300">Apna Razorpay Payment ID (pay_...) ya 12-digit UPI UTR ticket par print karein:</span>
+                <span class="text-[11px] text-gray-300">Apna Razorpay Payment ID (`pay_...`) ya 12-digit UPI UTR ticket par print karein:</span>
                 <div class="flex w-full sm:w-auto gap-2">
                     <input type="text" id="customUtrInput" placeholder="e.g. pay_Pxyz / UTR No."
                         class="flex-1 sm:w-44 px-3 py-1.5 rounded-xl bg-black/50 border border-white/20 text-xs text-white focus:outline-none focus:border-gold">
-                    <button onclick="updateTicketPaymentRef()" class="px-3.5 py-1.5 rounded-xl bg-gold text-black font-bold text-xs hover:brightness-110 transition">Save ID</button>
+                    <button onclick="updateTicketPaymentRef()" class="px-3.5 py-1.5 rounded-xl bg-gold text-black font-bold text-xs hover:brightness-110 transition">
+                        Save ID
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================== -->
-        <!-- CREDIT-CARD TICKETS (FRONT + BACK)              -->
-        <!-- 1011px × 638px @ 300 DPI = 85.6mm × 54mm exact  -->
-        <!-- ============================================== -->
-        <div id="printableTicket" class="cc-viewport">
+        <!-- ==================================================== -->
+        <!-- CREDIT-CARD SIZE TICKET (85.6mm x 54mm) FRONT+BACK    -->
+        <!-- ==================================================== -->
+        <div id="printableTicket">
+            <div class="cc-ticket-wrap">
 
-            <!-- ========== FRONT SIDE ========== -->
-            <div class="cc-scaler">
-                <div class="cc-card" id="ccFront">
+                <!-- ================= FRONT SIDE ================= -->
+                <div class="cc-ticket" id="ccFront">
                     <!-- Header -->
-                    <div class="cc-front-header">
+                    <div class="cc-header">
                         <div>
-                            <div class="cc-brand-studio">DANCE VIBES STUDIO</div>
-                            <div class="cc-brand-main">छोटी बलिया</div>
+                            <div class="cc-brand-tag">DANCE VIBES STUDIO</div>
+                            <div class="cc-brand-title">छोटी बलिया</div>
                             <div class="cc-brand-sub">Dandiya Nights 2026</div>
                         </div>
-                        <div class="cc-header-right">
-                            <div class="cc-paid-badge">✓ PAID & CONFIRMED</div>
-                            <div class="cc-ticket-id-large" id="tktIdDisplay">#CBDN-0000</div>
+                        <div style="text-align:right;">
+                            <div class="cc-status-badge">✓ PAID</div>
+                            <div class="cc-ticket-id" id="tktIdDisplay" style="margin-top:0.7mm;">#CBDN-0000</div>
                         </div>
                     </div>
 
                     <!-- Body -->
-                    <div class="cc-front-body">
-                        <div class="cc-info-col">
+                    <div class="cc-body">
+                        <!-- Left: Guest info -->
+                        <div class="cc-left">
                             <div>
-                                <div class="cc-info-row">
-                                    <div class="cc-info-item" style="flex: 1.4;">
-                                        <div class="cc-info-label">Guest Name</div>
-                                        <div class="cc-info-value" id="tktName">Guest Name Here</div>
+                                <div class="cc-field">
+                                    <span class="cc-field-label">Guest Name</span>
+                                    <span class="cc-field-value" id="tktName">—</span>
+                                </div>
+                                <div class="cc-row-2">
+                                    <div class="cc-field">
+                                        <span class="cc-field-label">Mobile</span>
+                                        <span class="cc-field-value gold" id="tktMobile">—</span>
+                                    </div>
+                                    <div class="cc-field">
+                                        <span class="cc-field-label">Gender</span>
+                                        <span class="cc-field-value" id="tktGender">—</span>
                                     </div>
                                 </div>
-                                <div class="cc-info-row">
-                                    <div class="cc-info-item">
-                                        <div class="cc-info-label">Mobile</div>
-                                        <div class="cc-info-value gold" id="tktMobile">+91 0000000000</div>
+                                <div class="cc-row-2">
+                                    <div class="cc-field">
+                                        <span class="cc-field-label">Pass Type</span>
+                                        <span class="cc-field-value pink" id="tktPassType">—</span>
                                     </div>
-                                    <div class="cc-info-item">
-                                        <div class="cc-info-label">Gender</div>
-                                        <div class="cc-info-value" id="tktGender">Male</div>
-                                    </div>
-                                </div>
-                                <div class="cc-info-row">
-                                    <div class="cc-info-item">
-                                        <div class="cc-info-label">Pass Type</div>
-                                        <div class="cc-info-value pink" id="tktPassType">Single Pass × 1</div>
+                                    <div class="cc-field">
+                                        <span class="cc-field-label">Entry Allowed</span>
+                                        <span class="cc-field-value green" id="tktPersons">—</span>
                                     </div>
                                 </div>
-                                <div class="cc-info-row">
-                                    <div class="cc-info-item">
-                                        <div class="cc-info-label">Entry Allowed</div>
-                                        <div class="cc-info-value green" id="tktPersons">1 Person</div>
+                                <div class="cc-row-2">
+                                    <div class="cc-field">
+                                        <span class="cc-field-label">Amount Paid</span>
+                                        <span class="cc-field-value gold" id="tktPrice">—</span>
                                     </div>
-                                    <div class="cc-info-item">
-                                        <div class="cc-info-label">Amount Paid</div>
-                                        <div class="cc-info-value gold" id="tktPrice">₹149</div>
+                                    <div class="cc-field">
+                                        <span class="cc-field-label">Date</span>
+                                        <span class="cc-field-value">13 Oct 2026</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- QR Column -->
-                        <div class="cc-qr-col">
+                        <!-- Right: QR -->
+                        <div class="cc-right">
                             <div class="cc-qr-box">
                                 <img id="tktQrCode" src="" alt="Ticket QR Code" crossorigin="anonymous">
                             </div>
-                            <div class="cc-qr-label">Scan at<br>Entry Gate</div>
+                            <div class="cc-qr-label">Scan at Entry</div>
                         </div>
                     </div>
 
                     <!-- Footer -->
-                    <div class="cc-front-footer">
-                        <span><strong>Date:</strong> 13 Oct 2026 • 5:00 PM</span>
+                    <div class="cc-footer">
                         <span><strong>Venue:</strong> Shehnai Vivah Bhawan, Lakhminia</span>
+                        <span><strong>Time:</strong> 5:00 PM</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- ========== BACK SIDE ========== -->
-            <div class="cc-scaler">
-                <div class="cc-card" id="ccBack">
-                    <div class="cc-back-topstrip">
-                        <span class="cc-back-topstrip-title">Entry Pass • Terms & Info</span>
-                        <i class="fa-solid fa-circle-info"></i>
+                <!-- ================= BACK SIDE ================= -->
+                <div class="cc-ticket" id="ccBack">
+                    <!-- Top strip -->
+                    <div class="cc-back-header">
+                        <span class="cc-back-header-title">Entry Pass • Terms & Info</span>
+                        <i class="fa-solid fa-circle-info cc-back-header-icon"></i>
                     </div>
 
+                    <!-- Rules -->
                     <div class="cc-back-rules-title">Important Instructions</div>
                     <ul class="cc-back-rules">
                         <li>Ye pass 1-time entry ke liye valid hai. QR scan hote hi lock ho jayega.</li>
@@ -604,27 +598,26 @@
                         <li>Apne personal saman ka khud dhyan rakhein. Organisers loss ke liye zimmedar nahi hain.</li>
                     </ul>
 
-                    <div class="cc-back-footer">
-                        <div class="cc-back-footer-row">
-                            <span><strong>Booked:</strong> <span id="tktDateBooked">—</span></span>
-                            <span><strong>Pay ID:</strong> <span id="tktPayIdDisplay">—</span></span>
-                        </div>
-                        <div class="cc-back-footer-row">
-                            <span><strong>Organiser:</strong> Rahul Raj</span>
-                            <span><strong>MD:</strong> Sahil (Gabbar)</span>
-                            <span><strong>Helpline:</strong> 8987259722</span>
-                        </div>
-                        <div class="cc-back-footer-row">
-                            <span style="font-size: 13px; color: #b0a0c8;"><strong>Sync:</strong> <span id="tktSecHashDisplay">—</span></span>
-                        </div>
+                    <!-- Bottom info -->
+                    <div class="cc-back-bottom">
+                        <span><strong>Booked:</strong> <span id="tktDateBooked">—</span></span>
+                        <span><strong>Pay ID:</strong> <span id="tktPayIdDisplay">—</span></span>
+                    </div>
+                    <div class="cc-back-bottom" style="border-top:none; padding-top:0.5mm; margin-top:0;">
+                        <span><strong>Organiser:</strong> Rahul Raj</span>
+                        <span><strong>MD:</strong> Sahil (Gabbar)</span>
+                        <span><strong>Helpline:</strong> 8987259722</span>
+                    </div>
+                    <div class="cc-back-bottom" style="border-top:none; padding-top:0.5mm; margin-top:0;">
+                        <span style="font-size:1.3mm; color:#9b8ab8;"><strong>Sync:</strong> <span id="tktSecHashDisplay">—</span></span>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center no-print">
+        <!-- Download & Back Buttons -->
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center no-print">
             <button id="downloadTicketBtn" onclick="downloadTicketImage()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-sm shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                 <i class="fa-solid fa-download"></i> Download Ticket (Front + Back)
             </button>
@@ -638,18 +631,27 @@
 
         <p class="text-center text-[11px] text-gray-400 mt-3 no-print">
             <i class="fa-solid fa-ruler-combined mr-1 text-gold"></i>
-            Exact Size: 85.6mm × 54mm (Credit Card) • Saved at 300 DPI • Front & Back both included
+            Ticket Size: 85.6mm × 54mm (Credit Card Size) • Front & Back both saved as one HD image
         </p>
     </section>
 
-    <!-- Main Landing -->
+    <!-- ========================================== -->
+    <!-- MAIN LANDING PAGE CONTENT                  -->
+    <!-- ========================================== -->
     <main id="mainLandingContent">
+        <!-- Hero Section -->
         <section class="relative pt-10 pb-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 text-gold text-xs sm:text-sm font-semibold mb-6">
                 <span>✨ DANCE VIBES STUDIO PRESENTS ✨</span>
             </div>
-            <h2 class="font-hindi text-5xl sm:text-7xl md:text-8xl gold-gradient-text drop-shadow-[0_5px_15px_rgba(255,215,0,0.3)] leading-tight">छोटी बलिया</h2>
-            <h3 class="font-script text-4xl sm:text-6xl md:text-7xl text-white mt-1 mb-4 drop-shadow-[0_4px_20px_rgba(255,0,127,0.8)]">Dandiya Nights</h3>
+
+            <h2 class="font-hindi text-5xl sm:text-7xl md:text-8xl gold-gradient-text drop-shadow-[0_5px_15px_rgba(255,215,0,0.3)] leading-tight">
+                छोटी बलिया
+            </h2>
+            <h3 class="font-script text-4xl sm:text-6xl md:text-7xl text-white mt-1 mb-4 drop-shadow-[0_4px_20px_rgba(255,0,127,0.8)]">
+                Dandiya Nights
+            </h3>
+
             <div class="inline-block bg-gradient-to-r from-yellow-500 via-gold to-yellow-500 text-black font-extrabold text-xs sm:text-base px-6 py-1.5 rounded-full uppercase tracking-wider shadow-md mb-3">
                 ★ Biggest Garba Celebrations • 1st Edition ★
             </div>
@@ -658,25 +660,46 @@
             <div class="flex flex-wrap justify-center gap-3 sm:gap-5 mb-10">
                 <div class="flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl">
                     <i class="fa-regular fa-calendar-check text-gold text-xl"></i>
-                    <div class="text-left"><span class="block text-[10px] uppercase text-gray-300">Date</span><strong class="text-sm sm:text-base text-white">13th October 2026</strong></div>
+                    <div class="text-left">
+                        <span class="block text-[10px] uppercase text-gray-300">Date</span>
+                        <strong class="text-sm sm:text-base text-white">13th October 2026</strong>
+                    </div>
                 </div>
                 <div class="flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl">
                     <i class="fa-regular fa-clock text-pink-400 text-xl"></i>
-                    <div class="text-left"><span class="block text-[10px] uppercase text-gray-300">Timing</span><strong class="text-sm sm:text-base text-white">05:00 PM Onwards</strong></div>
+                    <div class="text-left">
+                        <span class="block text-[10px] uppercase text-gray-300">Timing</span>
+                        <strong class="text-sm sm:text-base text-white">05:00 PM Onwards</strong>
+                    </div>
                 </div>
                 <div class="flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl">
                     <i class="fa-solid fa-location-dot text-orange-400 text-xl"></i>
-                    <div class="text-left"><span class="block text-[10px] uppercase text-gray-300">Venue</span><strong class="text-sm sm:text-base text-white">Shehnai Vivah Bhawan, Lakhminia</strong></div>
+                    <div class="text-left">
+                        <span class="block text-[10px] uppercase text-gray-300">Venue</span>
+                        <strong class="text-sm sm:text-base text-white">Shehnai Vivah Bhawan, Lakhminia Phool Chowk</strong>
+                    </div>
                 </div>
             </div>
 
             <div class="max-w-xl mx-auto mb-10">
                 <p class="text-xs uppercase tracking-widest text-gold mb-3 font-semibold">Event Starts In:</p>
                 <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
-                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3"><span id="days" class="text-2xl sm:text-4xl font-extrabold text-gold block">00</span><span class="text-[10px] sm:text-xs uppercase text-gray-300">Days</span></div>
-                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3"><span id="hours" class="text-2xl sm:text-4xl font-extrabold text-gold block">00</span><span class="text-[10px] sm:text-xs uppercase text-gray-300">Hours</span></div>
-                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3"><span id="minutes" class="text-2xl sm:text-4xl font-extrabold text-gold block">00</span><span class="text-[10px] sm:text-xs uppercase text-gray-300">Minutes</span></div>
-                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3"><span id="seconds" class="text-2xl sm:text-4xl font-extrabold text-pink-400 block">00</span><span class="text-[10px] sm:text-xs uppercase text-gray-300">Seconds</span></div>
+                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3">
+                        <span id="days" class="text-2xl sm:text-4xl font-extrabold text-gold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase text-gray-300">Days</span>
+                    </div>
+                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3">
+                        <span id="hours" class="text-2xl sm:text-4xl font-extrabold text-gold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase text-gray-300">Hours</span>
+                    </div>
+                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3">
+                        <span id="minutes" class="text-2xl sm:text-4xl font-extrabold text-gold block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase text-gray-300">Minutes</span>
+                    </div>
+                    <div class="bg-white/5 border border-gold/30 rounded-xl p-3">
+                        <span id="seconds" class="text-2xl sm:text-4xl font-extrabold text-pink-400 block">00</span>
+                        <span class="text-[10px] sm:text-xs uppercase text-gray-300">Seconds</span>
+                    </div>
                 </div>
             </div>
 
@@ -690,25 +713,38 @@
             </div>
         </section>
 
-        <!-- Tickets -->
+        <!-- Tickets Section -->
         <section id="tickets" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <span class="text-xs uppercase tracking-widest text-pink-400 font-bold">100% Secure Fixed-Price Booking</span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold mt-1 gold-gradient-text">Choose Your Entry Pass</h2>
-                <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl mx-auto">Apna pass chunein, quantity select karein aur payment pura karte hi apna Verified Digital Ticket download karein!</p>
+                <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl mx-auto">
+                    Apna pass chunein, quantity select karein aur payment pura karte hi apna Verified Digital Ticket download karein!
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
                 <div class="rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
                     <div>
                         <div class="flex justify-between items-center mb-4">
-                            <span class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400 text-blue-300 text-xs font-bold uppercase">Stag / Single Entry</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400 text-blue-300 text-xs font-bold uppercase">
+                                Stag / Single Entry
+                            </span>
                             <i class="fa-solid fa-user text-2xl text-blue-400"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Single Pass</h3>
                         <p class="text-xs text-gray-300 mb-6">Valid for 1 Person per Pass</p>
-                        <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹149</span><span class="text-xs text-gray-400">/ pass</span></div>
-                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Akele aao ya dosto ke group ke sath, Dance Vibes Studio ke sabse bade Garba celebration ka hissa bano!</p>
+                        
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹149</span>
+                            <span class="text-xs text-gray-400">/ pass</span>
+                        </div>
+
+                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">
+                            Akele aao ya dosto ke group ke sath, Dance Vibes Studio ke sabse bade Garba celebration ka hissa bano!
+                        </p>
+
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Entry for 1 Person per pass</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Free Dandiya Sticks Included</li>
@@ -717,23 +753,39 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
+
                     <button onclick="openBookingModal('Single Pass', 149, 1, 'https://pages.razorpay.com/my-dandiya-book')" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                        <span>Book Single Pass (₹149)</span><i class="fa-solid fa-arrow-right"></i>
+                        <span>Book Single Pass (₹149)</span>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
                 <div class="rounded-3xl bg-gradient-to-b from-pink-900/50 via-purple-900/40 to-white/5 p-7 flex flex-col justify-between border-2 border-festivePink shadow-[0_0_35px_rgba(255,0,127,0.4)] card-hover relative transform md:-translate-y-3">
-                    <div class="absolute top-0 right-0 bg-gradient-to-r from-festivePink to-orange-500 text-white text-[11px] font-extrabold px-4 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">❤️ Most Popular</div>
+                    <div class="absolute top-0 right-0 bg-gradient-to-r from-festivePink to-orange-500 text-white text-[11px] font-extrabold px-4 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">
+                        ❤️ Most Popular
+                    </div>
+
                     <div>
                         <div class="flex justify-between items-center mb-4 mt-2">
-                            <span class="px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400 text-pink-300 text-xs font-bold uppercase">Couple Entry</span>
+                            <span class="px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400 text-pink-300 text-xs font-bold uppercase">
+                                Couple Entry
+                            </span>
                             <i class="fa-solid fa-user-group text-2xl text-pink-400"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Couple Pass</h3>
                         <p class="text-xs text-gray-300 mb-6">Valid for 2 Persons per Pass</p>
-                        <div class="flex items-baseline gap-2 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹249</span><span class="text-sm text-gray-400 line-through">₹298</span><span class="text-xs text-green-400 font-semibold">Save ₹49!</span></div>
-                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Apne partner ya bestie ke sath banayein is Garba night ko yaadgaar! Dono log enjoy karein dhamakedar music aur vibes.</p>
+                        
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹249</span>
+                            <span class="text-sm text-gray-400 line-through">₹298</span>
+                            <span class="text-xs text-green-400 font-semibold">Save ₹49!</span>
+                        </div>
+
+                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">
+                            Apne partner ya bestie ke sath banayein is Garba night ko yaadgaar! Dono log enjoy karein dhamakedar music aur vibes.
+                        </p>
+
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Entry for 2 Persons per pass</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> 2 Pairs of Free Dandiya Sticks</li>
@@ -742,23 +794,39 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
+
                     <button onclick="openBookingModal('Couple Pass', 249, 2, 'https://pages.razorpay.com/Couple-book')" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink to-orange-500 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                        <span>Book Couple Pass (₹249)</span><i class="fa-solid fa-heart"></i>
+                        <span>Book Couple Pass (₹249)</span>
+                        <i class="fa-solid fa-heart"></i>
                     </button>
                 </div>
 
                 <div class="rounded-3xl bg-gradient-to-b from-amber-900/30 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-gold text-black text-[11px] font-extrabold px-4 py-1 rounded-bl-xl uppercase tracking-wider">🔥 4 + 1 FREE OFFER</div>
+                    <div class="absolute top-0 right-0 bg-gold text-black text-[11px] font-extrabold px-4 py-1 rounded-bl-xl uppercase tracking-wider">
+                        🔥 4 + 1 FREE OFFER
+                    </div>
+
                     <div>
                         <div class="flex justify-between items-center mb-4 mt-2">
-                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 border border-gold text-gold text-xs font-bold uppercase">Family / Group Pack</span>
+                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 border border-gold text-gold text-xs font-bold uppercase">
+                                Family / Group Pack
+                            </span>
                             <i class="fa-solid fa-users text-2xl text-gold"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Family Pass (4+1 Free)</h3>
                         <p class="text-xs text-gray-300 mb-6">Valid for 5 Persons per Pass</p>
-                        <div class="flex items-baseline gap-2 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹499</span><span class="text-sm text-gray-400 line-through">₹745</span><span class="text-xs text-green-400 font-semibold">1 Pass FREE!</span></div>
-                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Puri family aur dosto ke bade group ke liye best offer! ₹499 me 4 ke sath 1 entry bilkul FREE (Total 5 log).</p>
+                        
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹499</span>
+                            <span class="text-sm text-gray-400 line-through">₹745</span>
+                            <span class="text-xs text-green-400 font-semibold">1 Pass FREE!</span>
+                        </div>
+
+                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">
+                            Puri family aur dosto ke bade group ke liye best offer! ₹499 me 4 ke sath 1 entry bilkul FREE (Total 5 log).
+                        </p>
+
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Entry for 5 Persons per pass</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Free Dandiya Sticks for All 5</li>
@@ -767,11 +835,14 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
+
                     <button onclick="openBookingModal('Family Pass (4+1 Free)', 499, 5, 'https://pages.razorpay.com/Family-book')" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                        <span>Book Family Pass (₹499)</span><i class="fa-solid fa-arrow-right"></i>
+                        <span>Book Family Pass (₹499)</span>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
+
             </div>
         </section>
 
@@ -781,44 +852,68 @@
                 <span class="text-xs uppercase tracking-widest text-gold font-bold">Why You Shouldn't Miss Out</span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold mt-1 text-white">Event Attractions & Free Perks</h2>
             </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-blue-500/20 border border-blue-400 flex items-center justify-center text-3xl text-blue-400"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-blue-500/20 border border-blue-400 flex items-center justify-center text-3xl text-blue-400">
+                        <i class="fa-solid fa-headphones-simple"></i>
+                    </div>
                     <h4 class="text-lg font-bold text-white mb-1">Dance & Music</h4>
                     <p class="text-xs text-gold font-semibold uppercase mb-2">Feel the Beats, Live the Vibes</p>
                     <p class="text-sm text-gray-300">High-energy DJ, Garba beats aur electrifying live dance performances.</p>
                 </div>
+
                 <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-yellow-500/20 border border-gold flex items-center justify-center text-3xl text-gold"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-yellow-500/20 border border-gold flex items-center justify-center text-3xl text-gold">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
                     <h4 class="text-lg font-bold text-white mb-1">Creators Meet-Up & Awards</h4>
                     <p class="text-xs text-gold font-semibold uppercase mb-2">Honoring Talent, Inspiring Creators</p>
                     <p class="text-sm text-gray-300">Special Creators Meet-up aur talented creators ke liye grand Award Ceremony.</p>
                 </div>
+
                 <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-pink-500/20 border border-pink-400 flex items-center justify-center text-3xl text-pink-400"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-pink-500/20 border border-pink-400 flex items-center justify-center text-3xl text-pink-400">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
                     <h4 class="text-lg font-bold text-white mb-1">Free Dandiya Stick</h4>
                     <p class="text-xs text-gold font-semibold uppercase mb-2">Dance With More Joy</p>
                     <p class="text-sm text-gray-300">Har ticket holder ko khelne ke liye Dandiya Sticks bilkul FREE di jayengi.</p>
                 </div>
+
                 <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/20 border border-green-400 flex items-center justify-center text-3xl text-green-400"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/20 border border-green-400 flex items-center justify-center text-3xl text-green-400">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
                     <h4 class="text-lg font-bold text-white mb-1">Food Stalls</h4>
                     <p class="text-xs text-gold font-semibold uppercase mb-2">Tasty Food, Great Vibes</p>
                     <p class="text-sm text-gray-300">Mouth-watering snacks, street food aur refreshments ke special stalls.</p>
                 </div>
             </div>
+
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-gradient-to-r from-pink-600/30 to-purple-600/30 border border-pink-400/40 rounded-2xl p-5 flex items-center gap-4">
                     <i class="fa-solid fa-gift text-4xl text-gold"></i>
-                    <div><h5 class="font-bold text-white text-base">LUCKY DRAW!</h5><p class="text-xs text-gray-200">Exciting Gifts Await You! Har pass holder ke paas jeetne ka mauka.</p></div>
+                    <div>
+                        <h5 class="font-bold text-white text-base">LUCKY DRAW!</h5>
+                        <p class="text-xs text-gray-200">Exciting Gifts Await You! Har pass holder ke paas jeetne ka mauka.</p>
+                    </div>
                 </div>
+
                 <div class="bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border border-blue-400/40 rounded-2xl p-5 flex items-center gap-4">
                     <i class="fa-solid fa-bottle-water text-4xl text-cyan-300"></i>
-                    <div><h5 class="font-bold text-white text-base">FREE WATER</h5><p class="text-xs text-gray-200">Sabhi guests ke liye pure event me free drinking water ki suvidha.</p></div>
+                    <div>
+                        <h5 class="font-bold text-white text-base">FREE WATER</h5>
+                        <p class="text-xs text-gray-200">Sabhi guests ke liye pure event me free drinking water ki suvidha.</p>
+                    </div>
                 </div>
+
                 <div class="bg-gradient-to-r from-red-600/30 to-orange-600/30 border border-red-400/40 rounded-2xl p-5 flex items-center gap-4">
                     <i class="fa-solid fa-kit-medical text-4xl text-red-400"></i>
-                    <div><h5 class="font-bold text-white text-base">FREE FIRST AID</h5><p class="text-xs text-gray-200">Aapki safety aur care ke liye dedicated First Aid medical support.</p></div>
+                    <div>
+                        <h5 class="font-bold text-white text-base">FREE FIRST AID</h5>
+                        <p class="text-xs text-gray-200">Aapki safety aur care ke liye dedicated First Aid medical support.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -831,12 +926,21 @@
                         <span class="text-xs uppercase tracking-widest text-gold font-bold">Location Details</span>
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-4">Event Venue</h3>
                         <p class="text-lg font-hindi text-gold mb-2">पता: शहनाई विवाह भवन, लखमिनियाँ फूल चौक</p>
-                        <p class="text-sm text-gray-300 mb-6">Shehnai Vivah Bhawan, Lakhminia Phool Chowk, Chhoti Ballia (Begusarai), Bihar.</p>
+                        <p class="text-sm text-gray-300 mb-6">
+                            Shehnai Vivah Bhawan, Lakhminia Phool Chowk, Chhoti Ballia (Begusarai), Bihar.
+                        </p>
                         <div class="space-y-3 text-sm text-gray-200">
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-calendar-day text-pink-400 w-5"></i><span><strong>Date:</strong> 13th October 2026</span></div>
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-clock text-pink-400 w-5"></i><span><strong>Gate Opens:</strong> 05:00 PM Onwards</span></div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-calendar-day text-pink-400 w-5"></i>
+                                <span><strong>Date:</strong> 13th October 2026</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-clock text-pink-400 w-5"></i>
+                                <span><strong>Gate Opens:</strong> 05:00 PM Onwards</span>
+                            </div>
                         </div>
                     </div>
+
                     <div class="mt-8">
                         <a href="https://www.google.com/maps/search/?api=1&query=Shehnai+Vivah+Bhawan+Lakhminia+Phool+Chowk" target="_blank" 
                            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-gold font-semibold text-sm border border-gold/40 transition">
@@ -844,11 +948,17 @@
                         </a>
                     </div>
                 </div>
+
                 <div id="contact" class="rounded-3xl bg-gradient-to-br from-purple-900/50 to-pink-900/40 border border-pink-400/40 p-8 flex flex-col justify-between">
                     <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold text-black font-extrabold text-xs uppercase mb-3"><i class="fa-solid fa-crown"></i> Promote Your Brand</div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold text-black font-extrabold text-xs uppercase mb-3">
+                            <i class="fa-solid fa-crown"></i> Promote Your Brand
+                        </div>
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Sponsor & Partner With Us</h3>
-                        <p class="text-sm text-gray-200 mb-6">Chhoti Ballia ke sabse bade Garba celebration me apne brand ya business ko promote karne ke liye aaj hi humse sampark karein!</p>
+                        <p class="text-sm text-gray-200 mb-6">
+                            Chhoti Ballia ke sabse bade Garba celebration me apne brand ya business ko promote karne ke liye aaj hi humse sampark karein!
+                        </p>
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                             <div class="bg-black/30 border border-white/10 p-4 rounded-2xl">
                                 <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Organised By</span>
@@ -857,13 +967,20 @@
                             <div class="bg-black/30 border border-white/10 p-4 rounded-2xl">
                                 <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Management Director</span>
                                 <strong class="text-lg text-gold block">Sahil (Gabbar)</strong>
-                                <a href="https://instagram.com/gabbar01__" target="_blank" class="text-xs text-pink-300 hover:underline"><i class="fa-brands fa-instagram"></i> @gabbar01__</a>
+                                <a href="https://instagram.com/gabbar01__" target="_blank" class="text-xs text-pink-300 hover:underline">
+                                    <i class="fa-brands fa-instagram"></i> @gabbar01__
+                                </a>
                             </div>
                         </div>
                     </div>
+
                     <div class="flex flex-wrap gap-3">
-                        <a href="tel:8987259722" class="flex-1 min-w-[180px] py-3 px-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-center text-sm transition flex items-center justify-center gap-2"><i class="fa-solid fa-phone"></i> 8987259722</a>
-                        <a href="tel:9942632301" class="flex-1 min-w-[180px] py-3 px-4 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-center text-sm border border-white/20 transition flex items-center justify-center gap-2"><i class="fa-solid fa-phone"></i> 9942632301</a>
+                        <a href="tel:8987259722" class="flex-1 min-w-[180px] py-3 px-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-center text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone"></i> 8987259722
+                        </a>
+                        <a href="tel:9942632301" class="flex-1 min-w-[180px] py-3 px-4 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-center text-sm border border-white/20 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone"></i> 9942632301
+                        </a>
                     </div>
                 </div>
             </div>
@@ -872,13 +989,20 @@
 
     <!-- Booking Modal -->
     <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#230642] to-[#110221] border-2 border-gold/60 shadow-[0_0_50px_rgba(255,0,127,0.5)] p-6 sm:p-8 my-8">
-            <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#230642] to-[#110221] border-2 border-gold/60 shadow-[0_0_50px_rgba(255,0,127,0.5)] p-6 sm:p-8 my-8 animate-fadeIn">
+            
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
             <div class="text-center mb-5">
-                <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">Step 1 of 2 • Guest & Pass Quantity</span>
+                <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">
+                    Step 1 of 2 • Guest & Pass Quantity
+                </span>
                 <h3 id="modalPassTitle" class="text-2xl font-extrabold text-white mt-2">Single Pass — ₹149</h3>
                 <p class="text-xs text-gray-300 mt-1">Apna E-Ticket generate karne ke liye niche details bharein</p>
             </div>
+
             <form id="customerBookingForm" onsubmit="proceedToRazorpay(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Full Name *</label>
@@ -888,17 +1012,25 @@
                             class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
                     </div>
                 </div>
+
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Mobile Number (10 Digits Only) *</label>
                     <div class="relative">
                         <i class="fa-solid fa-phone absolute left-4 top-3.5 text-gray-400"></i>
-                        <input type="tel" id="custMobile" required inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10"
+                        <input type="tel" id="custMobile" required
+                            inputmode="numeric"
+                            pattern="[0-9]{10}"
+                            minlength="10"
+                            maxlength="10"
                             oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
                             placeholder="Enter 10-digit mobile number"
                             class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
                     </div>
-                    <p id="mobileErrorMsg" class="hidden text-[11px] text-red-400 mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> Kripya pura 10-digit mobile number darj karein.</p>
+                    <p id="mobileErrorMsg" class="hidden text-[11px] text-red-400 mt-1">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i> Kripya pura 10-digit mobile number darj karein.
+                    </p>
                 </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Select Gender *</label>
@@ -917,27 +1049,47 @@
                             </label>
                         </div>
                     </div>
+
                     <div>
                         <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Kitne Pass (Qty) *</label>
                         <div class="flex items-center justify-between bg-white/10 border border-gold/40 rounded-xl px-2.5 py-1">
-                            <button type="button" onclick="changeQuantity(-1)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-lg flex items-center justify-center transition">−</button>
+                            <button type="button" onclick="changeQuantity(-1)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-lg flex items-center justify-center transition">
+                                −
+                            </button>
                             <span id="qtyDisplay" class="text-base font-extrabold text-gold px-3">1</span>
-                            <button type="button" onclick="changeQuantity(1)" class="w-8 h-8 rounded-lg bg-gold text-black hover:brightness-110 font-bold text-lg flex items-center justify-center transition">+</button>
+                            <button type="button" onclick="changeQuantity(1)" class="w-8 h-8 rounded-lg bg-gold text-black hover:brightness-110 font-bold text-lg flex items-center justify-center transition">
+                                +
+                            </button>
                         </div>
                     </div>
                 </div>
+
                 <div class="bg-black/40 border border-gold/30 rounded-xl p-3.5 space-y-1.5 text-xs text-gray-300">
-                    <div class="flex items-center justify-between"><span class="text-gray-400">Selected Pass & Qty:</span><strong id="summaryPassName" class="text-white">Single Pass × 1</strong></div>
-                    <div class="flex items-center justify-between"><span class="text-gray-400">Total Allowed Entry:</span><strong id="summaryTotalPersons" class="text-green-400 font-bold">1 Person</strong></div>
-                    <div class="border-t border-white/10 pt-2 flex items-center justify-between"><span class="text-gray-200 font-semibold text-sm">Total Payable:</span><strong id="summaryPassPrice" class="text-gold text-xl font-extrabold">₹149</strong></div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-400">Selected Pass & Qty:</span>
+                        <strong id="summaryPassName" class="text-white">Single Pass × 1</strong>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-400">Total Allowed Entry:</span>
+                        <strong id="summaryTotalPersons" class="text-green-400 font-bold">1 Person</strong>
+                    </div>
+                    <div class="border-t border-white/10 pt-2 flex items-center justify-between">
+                        <span class="text-gray-200 font-semibold text-sm">Total Payable:</span>
+                        <strong id="summaryPassPrice" class="text-gold text-xl font-extrabold">₹149</strong>
+                    </div>
                 </div>
+
                 <div id="multiQtyReminder" class="hidden bg-amber-500/20 border border-gold rounded-xl p-3 text-xs text-amber-200 text-center leading-relaxed">
                     ⚠️ <strong>Dhyan Dein:</strong> Aapne <strong id="remQty" class="text-white underline">2</strong> Pass chune hain. Agle Razorpay page par bhi Item Quantity <strong id="remQty2" class="text-white underline">2</strong> select karke <strong id="remAmt" class="text-gold font-bold">₹298</strong> pay karein!
                 </div>
+
                 <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink via-pink-600 to-orange-500 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                    <span id="payBtnText">Proceed to Pay ₹149</span><i class="fa-solid fa-lock text-sm"></i>
+                    <span id="payBtnText">Proceed to Pay ₹149</span>
+                    <i class="fa-solid fa-lock text-sm"></i>
                 </button>
-                <p class="text-[11px] text-center text-gray-400"><i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> Fixed-Price Secure Payment via Razorpay • Anti-Scam Verified QR</p>
+                <p class="text-[11px] text-center text-gray-400">
+                    <i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> Fixed-Price Secure Payment via Razorpay • Anti-Scam Verified QR
+                </p>
             </form>
         </div>
     </div>
@@ -949,7 +1101,7 @@
         <p class="mt-3 text-gray-500">© 2026 Chhoti Ballia Dandiya Nights. All Rights Reserved.</p>
     </footer>
 
-    <!-- Floating WhatsApp -->
+    <!-- Floating WhatsApp Button -->
     <div class="fixed bottom-4 right-4 z-40">
         <a href="https://wa.me/918987259722?text=Hi,%20I%20want%20details%20about%20Chhoti%20Ballia%20Dandiya%20Nights%20Passes!" target="_blank"
            class="w-13 h-13 p-3.5 rounded-full bg-green-500 text-white shadow-xl flex items-center justify-center text-2xl hover:scale-110 transition" title="WhatsApp Support">
@@ -965,9 +1117,13 @@
         const SECRET_SALT = "DVS-CBDN-2026-SECURE";
 
         let selectedBooking = {
-            passType: 'Single Pass', unitPrice: 149, personsPerPass: 1, quantity: 1,
+            passType: 'Single Pass',
+            unitPrice: 149,
+            personsPerPass: 1,
+            quantity: 1,
             paymentUrl: 'https://pages.razorpay.com/my-dandiya-book'
         };
+
         let currentScannedTicketId = null;
 
         function generateSecuritySignature(ticketId, mobile, price, persons) {
@@ -986,16 +1142,23 @@
                 const slug = paymentUrl.split('rzp.io/rzp/')[1];
                 finalUrl = `https://pages.razorpay.com/${slug}`;
             }
+
             selectedBooking = {
-                passType: passType, unitPrice: Number(unitPrice),
-                personsPerPass: Number(personsPerPass), quantity: 1, paymentUrl: finalUrl
+                passType: passType,
+                unitPrice: Number(unitPrice),
+                personsPerPass: Number(personsPerPass),
+                quantity: 1,
+                paymentUrl: finalUrl
             };
+
             document.getElementById('modalPassTitle').innerText = `${passType} — ₹${unitPrice}`;
             updateModalCalculation();
             document.getElementById('bookingModal').classList.remove('hidden');
         }
 
-        function closeBookingModal() { document.getElementById('bookingModal').classList.add('hidden'); }
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
 
         function changeQuantity(delta) {
             let newQty = selectedBooking.quantity + delta;
@@ -1022,11 +1185,14 @@
                 document.getElementById('remQty2').innerText = qty;
                 document.getElementById('remAmt').innerText = `₹${totalAmount}`;
                 reminderBox.classList.remove('hidden');
-            } else { reminderBox.classList.add('hidden'); }
+            } else {
+                reminderBox.classList.add('hidden');
+            }
         }
 
         function proceedToRazorpay(event) {
             event.preventDefault();
+
             const name = document.getElementById('custName').value.trim();
             const mobile = document.getElementById('custMobile').value.trim();
             const gender = document.querySelector('input[name="custGender"]:checked').value;
@@ -1036,11 +1202,14 @@
                 mobileErrorMsg.classList.remove('hidden');
                 document.getElementById('custMobile').focus();
                 return;
-            } else { mobileErrorMsg.classList.add('hidden'); }
+            } else {
+                mobileErrorMsg.classList.add('hidden');
+            }
 
             const qty = selectedBooking.quantity;
             const totalAmount = selectedBooking.unitPrice * qty;
             const totalPersons = selectedBooking.personsPerPass * qty;
+
             const randomNum = Math.floor(100000 + Math.random() * 900000);
             const randomId = 'CBDN-' + randomNum;
             const rzpSyncEmail = `${randomId}-QTY${qty}-RS${totalAmount}@dandiya.com`;
@@ -1051,28 +1220,41 @@
             const bookedAt = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
             const ticketData = {
-                ticketId: randomId, paymentRef: payAuthId, rzpSyncEmail: rzpSyncEmail,
-                signature: securitySig, name: name, mobile: mobile, gender: gender,
-                basePassName: selectedBooking.passType, unitPrice: selectedBooking.unitPrice,
-                personsPerPass: selectedBooking.personsPerPass, quantity: qty,
+                ticketId: randomId,
+                paymentRef: payAuthId,
+                rzpSyncEmail: rzpSyncEmail,
+                signature: securitySig,
+                name: name,
+                mobile: mobile,
+                gender: gender,
+                basePassName: selectedBooking.passType,
+                unitPrice: selectedBooking.unitPrice,
+                personsPerPass: selectedBooking.personsPerPass,
+                quantity: qty,
                 passType: `${selectedBooking.passType} (Qty: ${qty})`,
-                price: priceStr, persons: personsStr, bookedAt: bookedAt
+                price: priceStr,
+                persons: personsStr,
+                bookedAt: bookedAt
             };
+
             localStorage.setItem('dandiya_ticket_data', JSON.stringify(ticketData));
 
             const prefillUrl = `${selectedBooking.paymentUrl}?full_name=${encodeURIComponent(name)}&Full%20Name=${encodeURIComponent(name)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(mobile)}&email=${encodeURIComponent(rzpSyncEmail)}&gender=${encodeURIComponent(gender)}&Gender=${encodeURIComponent(gender)}&quantity=${qty}`;
+
             window.location.href = prefillUrl;
         }
 
         function syncTicketQuantityFromDropdown(newQtyVal) {
             const saved = localStorage.getItem('dandiya_ticket_data');
             if (!saved) return;
+
             const data = JSON.parse(saved);
             const qty = Number(newQtyVal) || 1;
 
             let unitPrice = data.unitPrice || 149;
             let personsPerPass = data.personsPerPass || 1;
             let baseName = data.basePassName || 'Single Pass';
+
             if (!data.unitPrice) {
                 if (String(data.passType).includes('Couple')) { unitPrice = 249; personsPerPass = 2; baseName = 'Couple Pass'; }
                 else if (String(data.passType).includes('Family')) { unitPrice = 499; personsPerPass = 5; baseName = 'Family Pass (4+1 Free)'; }
@@ -1080,6 +1262,7 @@
 
             const totalAmount = unitPrice * qty;
             const totalPersons = personsPerPass * qty;
+
             data.quantity = qty;
             data.passType = `${baseName} (Qty: ${qty})`;
             data.price = `₹${totalAmount}`;
@@ -1127,14 +1310,21 @@
 
             const baseSiteUrl = window.location.origin + window.location.pathname;
             const scanParams = new URLSearchParams({
-                scan: '1', tid: data.ticketId, pay: payRef, sync: syncMail,
-                name: data.name, mob: data.mobile, pass: data.passType,
-                per: data.persons, amt: data.price, sig: sig
+                scan: '1',
+                tid: data.ticketId,
+                pay: payRef,
+                sync: syncMail,
+                name: data.name,
+                mob: data.mobile,
+                pass: data.passType,
+                per: data.persons,
+                amt: data.price,
+                sig: sig
             });
-            const qrVerificationUrl = `${baseSiteUrl}?${scanParams.toString()}`;
 
-            // HIGH-RES QR: 500x500 with H error correction for perfect scanning
-            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&margin=0&format=png&data=${encodeURIComponent(qrVerificationUrl)}`;
+            const qrVerificationUrl = `${baseSiteUrl}?${scanParams.toString()}`;
+            // High-res QR (400x400) with high error correction for sharpness even when scaled
+            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&ecc=H&margin=0&data=${encodeURIComponent(qrVerificationUrl)}`;
 
             document.getElementById('mainLandingContent').classList.add('hidden');
             document.getElementById('gateScannerSection').classList.add('hidden');
@@ -1155,6 +1345,7 @@
             const sig = urlParams.get('sig') || '';
 
             currentScannedTicketId = tid;
+
             document.getElementById('scanTktId').innerText = '#' + tid;
             document.getElementById('scanRzpSync').innerText = sync;
             document.getElementById('scanPayRef').innerText = pay + ' (' + sig + ')';
@@ -1226,7 +1417,9 @@
 
         function showSavedTicket() {
             const saved = localStorage.getItem('dandiya_ticket_data');
-            if (saved) renderTicketView(JSON.parse(saved));
+            if (saved) {
+                renderTicketView(JSON.parse(saved));
+            }
         }
 
         function closeTicketView() {
@@ -1237,114 +1430,113 @@
         }
 
         // ============================================================
-        // HIGH-QUALITY TICKET DOWNLOAD
-        // Both cards are captured at their native 1011×638 px (= exact
-        // credit card at 300 DPI). No scaling/distortion, no cut-off.
+        // HIGH-QUALITY CREDIT-CARD SIZE TICKET DOWNLOAD (Front + Back)
         // ============================================================
+        // The canvas uses mm -> px conversion at 300 DPI:
+        //   85.6 mm = 3.370 in  x 300 DPI ≈ 1011 px wide
+        //   54   mm = 2.126 in  x 300 DPI ≈  638 px tall
+        // This guarantees EXACT credit-card size on any device.
+        const DPI = 300;
+        const MM_PER_INCH = 25.4;
+        const CARD_W_PX = Math.round((85.6 / MM_PER_INCH) * DPI); // ≈ 1011
+        const CARD_H_PX = Math.round((54.0 / MM_PER_INCH) * DPI); // ≈ 638
+
+        async function captureElement(element, targetWidthPx, targetHeightPx) {
+            // html2canvas renders at its own device size, then we composite
+            // onto a fixed DPI canvas to guarantee exact card dimensions.
+            const rect = element.getBoundingClientRect();
+
+            const canvas = await html2canvas(element, {
+                scale: 4,                    // Super high-res internal render
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#0d021a',
+                width: rect.width,
+                height: rect.height,
+                windowWidth: rect.width,
+                windowHeight: rect.height,
+                logging: false,
+                imageTimeout: 20000,
+                onclone: function(clonedDoc) {
+                    // Ensure QR is crisp in clone
+                    const qr = clonedDoc.getElementById('tktQrCode');
+                    if (qr) {
+                        qr.style.imageRendering = 'pixelated';
+                        qr.style.imageRendering = 'crisp-edges';
+                        qr.style.imageRendering = '-webkit-optimize-contrast';
+                        qr.style.width = '100%';
+                        qr.style.height = '100%';
+                        qr.style.objectFit = 'contain';
+                    }
+                }
+            });
+
+            // Now composite to exact 85.6mm × 54mm @ 300 DPI
+            const out = document.createElement('canvas');
+            out.width = targetWidthPx;
+            out.height = targetHeightPx;
+            const ctx = out.getContext('2d');
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.fillStyle = '#0d021a';
+            ctx.fillRect(0, 0, out.width, out.height);
+            ctx.drawImage(canvas, 0, 0, out.width, out.height);
+
+            return out;
+        }
+
         async function downloadTicketImage() {
             const frontEl = document.getElementById('ccFront');
             const backEl = document.getElementById('ccBack');
             const downloadBtn = document.getElementById('downloadTicketBtn');
-
-            if (!frontEl || !backEl) { alert('Ticket not found!'); return; }
+            if (!frontEl || !backEl) return;
 
             if (downloadBtn) {
                 downloadBtn.disabled = true;
-                downloadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating HD Image...';
+                downloadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating 300 DPI Image...';
             }
 
-            // Helper: capture a card at its native size with no distortion.
-            const captureCard = async (el) => {
-                // Temporarily disable the scaler transform so we capture at full res
-                const scaler = el.parentElement;
-                const originalTransform = scaler.style.transform;
-                scaler.style.transform = 'none';
-
-                try {
-                    const canvas = await html2canvas(el, {
-                        scale: 1,                 // Card is already at 300 DPI native size
-                        useCORS: true,
-                        allowTaint: true,
-                        backgroundColor: null,
-                        width: 1011,
-                        height: 638,
-                        windowWidth: 1011,
-                        windowHeight: 638,
-                        logging: false,
-                        imageTimeout: 20000,
-                        removeContainer: true,
-                        onclone: function(clonedDoc) {
-                            // Ensure QR code is loaded before capture
-                            const qr = clonedDoc.getElementById('tktQrCode');
-                            if (qr) {
-                                qr.style.imageRendering = 'pixelated';
-                                qr.style.imageRendering = 'crisp-edges';
-                                qr.style.imageRendering = '-webkit-optimize-contrast';
-                                qr.style.width = '100%';
-                                qr.style.height = '100%';
-                                qr.style.objectFit = 'contain';
-                            }
-                            // Disable scaler transform inside clone
-                            const clonedScalers = clonedDoc.querySelectorAll('.cc-scaler');
-                            clonedScalers.forEach(s => { s.style.transform = 'none'; s.style.height = '638px'; s.style.width = '1011px'; });
-                        }
-                    });
-                    return canvas;
-                } finally {
-                    scaler.style.transform = originalTransform;
-                }
-            };
-
             try {
-                // Preload QR image to ensure it's fully rendered
-                const qrImg = document.getElementById('tktQrCode');
-                if (qrImg && qrImg.src && !qrImg.complete) {
-                    await new Promise((res) => {
-                        qrImg.onload = res;
-                        qrImg.onerror = res;
-                        setTimeout(res, 3000);
-                    });
-                }
+                // Capture both sides at exact credit-card size (300 DPI)
+                const [frontCanvas, backCanvas] = await Promise.all([
+                    captureElement(frontEl, CARD_W_PX, CARD_H_PX),
+                    captureElement(backEl, CARD_W_PX, CARD_H_PX)
+                ]);
 
-                // Small delay to let fonts render fully
-                await new Promise(r => setTimeout(r, 400));
+                // Compose final canvas: front + gap + back (stacked vertically)
+                const GAP = Math.round(DPI * 0.10); // 0.10 inch gap (~30px @300DPI)
+                const PADDING = Math.round(DPI * 0.12); // ~36px padding around
 
-                const frontCanvas = await captureCard(frontEl);
-                const backCanvas = await captureCard(backEl);
-
-                // Compose final image: two cards stacked with gap & padding
-                const PADDING = 60;
-                const GAP = 60;
-                const finalW = 1011 + PADDING * 2;
-                const finalH = 638 * 2 + GAP + PADDING * 2;
+                const finalW = CARD_W_PX + PADDING * 2;
+                const finalH = CARD_H_PX * 2 + GAP + PADDING * 2;
 
                 const finalCanvas = document.createElement('canvas');
                 finalCanvas.width = finalW;
                 finalCanvas.height = finalH;
                 const fctx = finalCanvas.getContext('2d');
 
-                // Background
+                // Background matching ticket theme
                 const bgGrad = fctx.createLinearGradient(0, 0, finalW, finalH);
                 bgGrad.addColorStop(0, '#0d021a');
                 bgGrad.addColorStop(1, '#1a0530');
                 fctx.fillStyle = bgGrad;
                 fctx.fillRect(0, 0, finalW, finalH);
 
-                // Outer gold border
-                fctx.strokeStyle = 'rgba(255, 215, 0, 0.45)';
-                fctx.lineWidth = 3;
-                fctx.strokeRect(15, 15, finalW - 30, finalH - 30);
+                // Optional subtle outer gold border
+                fctx.strokeStyle = 'rgba(255, 215, 0, 0.35)';
+                fctx.lineWidth = Math.round(DPI * 0.01);
+                fctx.strokeRect(PADDING * 0.5, PADDING * 0.5, finalW - PADDING, finalH - PADDING);
 
                 // Draw FRONT
-                fctx.drawImage(frontCanvas, PADDING, PADDING, 1011, 638);
+                fctx.drawImage(frontCanvas, PADDING, PADDING, CARD_W_PX, CARD_H_PX);
 
-                // Draw BACK
-                fctx.drawImage(backCanvas, PADDING, PADDING + 638 + GAP, 1011, 638);
+                // Draw BACK below the front
+                fctx.drawImage(backCanvas, PADDING, PADDING + CARD_H_PX + GAP, CARD_W_PX, CARD_H_PX);
 
-                // Download as PNG (lossless)
+                // Convert to Blob & download (works reliably on all OS)
                 const dataUrl = finalCanvas.toDataURL('image/png', 1.0);
                 const a = document.createElement('a');
-                a.download = `Chhoti-Ballia-Ticket-${Date.now()}.png`;
+                a.download = `Chhoti-Ballia-Dandiya-Ticket-85.6x54mm-${Date.now()}.png`;
                 a.href = dataUrl;
                 document.body.appendChild(a);
                 a.click();
@@ -1355,8 +1547,8 @@
                     downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket (Front + Back)';
                 }
             } catch (err) {
-                console.error('Download failed:', err);
-                alert('Image generate karne me error aaya. Kripya dobara try karein ya Print/PDF option use karein.');
+                console.error('Ticket download failed:', err);
+                alert('Image generate karne me error aaya. Kripya dobara koshish karein ya Print/PDF option use karein.');
                 if (downloadBtn) {
                     downloadBtn.disabled = false;
                     downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket (Front + Back)';
@@ -1421,7 +1613,6 @@
         window.addEventListener('pageshow', checkUrlAndRenderInstant);
         window.addEventListener('hashchange', checkUrlAndRenderInstant);
 
-        // Countdown
         const eventDate = new Date("October 13, 2026 17:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
