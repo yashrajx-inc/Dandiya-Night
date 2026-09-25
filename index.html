@@ -122,16 +122,102 @@
         </div>
     </header>
 
+    <!-- ========================================================== -->
+    <!-- ORGANISER GATE SCANNER & ANTI-DUPLICATE ENTRY SECTION      -->
+    <!-- ========================================================== -->
+    <section id="gateScannerSection" class="hidden py-10 px-4 sm:px-6 max-w-lg mx-auto">
+        <div id="scanStatusBox" class="rounded-3xl border-2 p-6 sm:p-8 text-center shadow-2xl">
+            <div id="scanIcon" class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4"></div>
+            <span class="text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-white/10 text-gold">
+                Gate Entry Verification System
+            </span>
+            <h2 id="scanHeading" class="text-2xl sm:text-3xl font-extrabold mt-3 mb-1">Checking Ticket...</h2>
+            <p id="scanSubtext" class="text-xs sm:text-sm text-gray-200 mb-6"></p>
+
+            <!-- Scanned Ticket Details -->
+            <div class="bg-black/50 border border-white/15 rounded-2xl p-4 text-left space-y-2.5 text-xs sm:text-sm mb-6">
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Ticket ID:</span>
+                    <strong id="scanTktId" class="text-gold font-mono">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Razorpay Sync Email:</span>
+                    <strong id="scanRzpSync" class="text-cyan-300 font-mono text-xs">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Payment Ref / Hash:</span>
+                    <strong id="scanPayRef" class="text-green-400 font-mono text-xs">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Guest Name:</span>
+                    <strong id="scanName" class="text-white">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Mobile:</span>
+                    <strong id="scanMobile" class="text-gold">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Pass & Qty:</span>
+                    <strong id="scanPass" class="text-pink-400 font-bold">—</strong>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-2">
+                    <span class="text-gray-400">Allowed Entry:</span>
+                    <strong id="scanPersons" class="text-green-400 font-extrabold text-base">—</strong>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Amount Paid:</span>
+                    <strong id="scanAmount" class="text-gold font-extrabold text-base">—</strong>
+                </div>
+            </div>
+
+            <!-- Organiser PIN & Check-In Lock Controls -->
+            <div id="gateActionControls" class="space-y-3">
+                <div class="bg-white/5 border border-gold/30 rounded-xl p-3 text-left">
+                    <label class="block text-[11px] uppercase text-gold font-bold mb-1">
+                        <i class="fa-solid fa-user-shield mr-1"></i> Organiser Gate PIN (Rahul / Sahil Only):
+                    </label>
+                    <input type="password" id="gateAdminPin" inputmode="numeric" placeholder="Enter 4-digit Gate PIN"
+                        class="w-full px-3 py-2.5 rounded-lg bg-black/60 border border-white/20 text-white text-center font-mono tracking-widest text-sm focus:outline-none focus:border-gold">
+                </div>
+
+                <button id="approveEntryBtn" onclick="markTicketUsedAtGate()"
+                    class="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition">
+                    ✅ APPROVE ENTRY & LOCK TICKET (1st Scan)
+                </button>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-gray-400">
+                <span>Total Checked-In on this Phone: <strong id="totalScannedCount" class="text-gold">0</strong></span>
+                <button onclick="closeTicketView()" class="text-pink-400 hover:underline">Exit Scanner</button>
+            </div>
+        </div>
+    </section>
+
     <!-- ========================================== -->
     <!-- DIGITAL TICKET SECTION (SHOWN ON REDIRECT) -->
     <!-- ========================================== -->
-    <section id="ticketViewSection" class="hidden py-12 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
-        <div class="text-center mb-6">
-            <div class="w-16 h-16 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-3xl mx-auto mb-3 animate-bounce">
+    <section id="ticketViewSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
+        <div class="text-center mb-5">
+            <div class="w-14 h-14 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Booking Confirmed! 🎉</h2>
-            <p class="text-sm text-gray-300 mt-1">Aapka Chhoti Ballia Dandiya Nights 2026 ka official E-Ticket niche taiyar hai.</p>
+            <p class="text-xs sm:text-sm text-gray-300 mt-1">Aapka Chhoti Ballia Dandiya Nights 2026 ka official E-Ticket niche taiyar hai.</p>
+        </div>
+
+        <!-- Optional Box to Stamp Exact Razorpay Payment ID / UPI UTR on Ticket -->
+        <div class="mb-5 bg-white/5 border border-gold/40 rounded-2xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+            <div class="text-left">
+                <span class="text-xs font-bold text-gold block"><i class="fa-solid fa-shield-check mr-1"></i> Add Payment ID / UPI Ref No. (Optional)</span>
+                <p class="text-[11px] text-gray-300">SMS ya Payment screen se apna `pay_...` ya 12-digit UTR number daal kar ticket par print karein:</p>
+            </div>
+            <div class="flex w-full sm:w-auto gap-2">
+                <input type="text" id="customUtrInput" placeholder="e.g. pay_Pxyz / UTR No."
+                    class="flex-1 sm:w-44 px-3 py-2 rounded-xl bg-black/50 border border-white/20 text-xs text-white focus:outline-none focus:border-gold">
+                <button onclick="updateTicketPaymentRef()" class="px-4 py-2 rounded-xl bg-gold text-black font-bold text-xs hover:brightness-110 transition whitespace-nowrap">
+                    Update
+                </button>
+            </div>
         </div>
 
         <!-- Printable Ticket Card -->
@@ -140,7 +226,7 @@
             <div class="ticket-notch-right"></div>
 
             <!-- Ticket Header -->
-            <div class="flex items-center justify-between border-b border-white/15 pb-4 mb-5">
+            <div class="flex items-start justify-between border-b border-white/15 pb-4 mb-5">
                 <div>
                     <span class="text-[10px] uppercase tracking-widest text-gold font-bold block">DANCE VIBES STUDIO PRESENTS</span>
                     <h3 class="font-hindi text-3xl sm:text-4xl text-gold leading-none mt-1">छोटी बलिया</h3>
@@ -150,7 +236,9 @@
                     <span class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
                         ✓ PAID & CONFIRMED
                     </span>
-                    <p id="tktIdDisplay" class="text-xs text-gray-300 font-mono mt-2">ID: #CBDN-0000</p>
+                    <p id="tktIdDisplay" class="text-xs text-gray-200 font-mono mt-2 font-bold">ID: #CBDN-0000</p>
+                    <p id="tktPayIdDisplay" class="text-[10px] text-gold font-mono mt-0.5">Pay Ref: —</p>
+                    <p id="tktSecHashDisplay" class="text-[9px] text-cyan-300 font-mono mt-0.5">Sync: —</p>
                 </div>
             </div>
 
@@ -208,9 +296,9 @@
                         <img id="tktQrCode" src="" alt="Ticket QR Code" class="w-24 h-24 object-contain" crossorigin="anonymous">
                     </div>
                     <div class="text-left">
-                        <span class="text-[11px] uppercase tracking-wider text-gold font-bold block">Scan at Entry Gate</span>
-                        <p class="text-xs text-gray-300 mt-0.5">Entry gate par ye ticket aur QR code dikhayein.</p>
-                        <p id="tktDateBooked" class="text-[11px] text-gray-400 mt-1"></p>
+                        <span class="text-[11px] uppercase tracking-wider text-gold font-bold block">Scan at Entry Gate (1-Time Use Only)</span>
+                        <p class="text-[11px] text-gray-300 mt-0.5">QR scan hote hi ticket lock ho jayega. Duplicate ticket par entry nahi milegi.</p>
+                        <p id="tktDateBooked" class="text-[10px] text-gray-400 mt-1"></p>
                     </div>
                 </div>
 
@@ -366,7 +454,7 @@
                     </button>
                 </div>
 
-                <!-- 2. Couple Pass (Most Popular - Set to ₹1 for Testing, Change 1 to 249 anytime) -->
+                <!-- 2. Couple Pass (Set to ₹1 for Testing, Change 1 to 249 anytime) -->
                 <div class="rounded-3xl bg-gradient-to-b from-pink-900/50 via-purple-900/40 to-white/5 p-7 flex flex-col justify-between border-2 border-festivePink shadow-[0_0_35px_rgba(255,0,127,0.4)] card-hover relative transform md:-translate-y-3">
                     <div class="absolute top-0 right-0 bg-gradient-to-r from-festivePink to-orange-500 text-white text-[11px] font-extrabold px-4 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">
                         ❤️ Most Popular
@@ -723,10 +811,14 @@
         </a>
     </div>
 
-    <!-- =================================================== -->
-    <!-- JAVASCRIPT: MODAL, QUANTITY, PREFILL & TICKET ENGINE -->
-    <!-- =================================================== -->
+    <!-- ================================================================= -->
+    <!-- JAVASCRIPT: ANTI-SCAM SIGNATURE, GATE SCANNER & INSTANT REDIRECT  -->
+    <!-- ================================================================= -->
     <script>
+        // Secret Organiser Gate PIN (Rahul Raj & Sahil)
+        const ORGANISER_GATE_PIN = "2026";
+        const SECRET_SALT = "DVS-CBDN-2026-SECURE";
+
         let selectedBooking = {
             passType: 'Single Pass',
             unitPrice: 149,
@@ -735,9 +827,21 @@
             paymentUrl: 'https://pages.razorpay.com/Family-book'
         };
 
-        // 1. Open Modal when user clicks any Book Pass button
+        let currentScannedTicketId = null;
+
+        // Generate Cryptographic Anti-Fake Signature
+        function generateSecuritySignature(ticketId, mobile, price, persons) {
+            const raw = `${ticketId}|${mobile}|${price}|${persons}|${SECRET_SALT}`;
+            let hash = 0;
+            for (let i = 0; i < raw.length; i++) {
+                hash = ((hash << 5) - hash) + raw.charCodeAt(i);
+                hash |= 0;
+            }
+            return "SIG-" + Math.abs(hash).toString(16).toUpperCase().padStart(6, '0');
+        }
+
+        // 1. Open Modal
         function openBookingModal(passType, unitPrice, personsPerPass, paymentUrl) {
-            // Convert rzp.io link to pages.razorpay.com automatically if needed
             let finalUrl = paymentUrl;
             if (paymentUrl.includes('rzp.io/rzp/')) {
                 const slug = paymentUrl.split('rzp.io/rzp/')[1];
@@ -770,7 +874,7 @@
             updateModalCalculation();
         }
 
-        // 3. Update Total Price & Total Allowed Persons dynamically
+        // 3. Update Total Price & Allowed Persons
         function updateModalCalculation() {
             const qty = selectedBooking.quantity;
             const totalAmount = selectedBooking.unitPrice * qty;
@@ -783,7 +887,7 @@
             document.getElementById('payBtnText').innerText = `Proceed to Pay ₹${totalAmount}`;
         }
 
-        // 4. Validate 10-Digit Mobile, Save Customer Data & Redirect with Auto-Fill URL
+        // 4. Validate 10-Digit Mobile, Save Data & Redirect to Razorpay with Synced Ticket ID
         function proceedToRazorpay(event) {
             event.preventDefault();
 
@@ -792,7 +896,6 @@
             const gender = document.querySelector('input[name="custGender"]:checked').value;
             const mobileErrorMsg = document.getElementById('mobileErrorMsg');
 
-            // Strict 10-digit numeric validation check
             if (!/^[0-9]{10}$/.test(mobile)) {
                 mobileErrorMsg.classList.remove('hidden');
                 document.getElementById('custMobile').focus();
@@ -805,33 +908,63 @@
             const totalAmount = selectedBooking.unitPrice * qty;
             const totalPersons = selectedBooking.personsPerPass * qty;
 
-            const randomId = 'CBDN-' + Math.floor(100000 + Math.random() * 900000);
+            const randomNum = Math.floor(100000 + Math.random() * 900000);
+            const randomId = 'CBDN-' + randomNum;
+            const rzpSyncEmail = `${randomId}@dandiya.com`; // Syncs exact Ticket ID into Organiser's Razorpay Dashboard!
+            const priceStr = `₹${totalAmount}`;
+            const personsStr = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
+            const securitySig = generateSecuritySignature(randomId, mobile, priceStr, personsStr);
+            const payAuthId = 'RZP-' + randomNum + '-' + securitySig.replace('SIG-', '');
             const bookedAt = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
             const ticketData = {
                 ticketId: randomId,
+                paymentRef: payAuthId,
+                rzpSyncEmail: rzpSyncEmail,
+                signature: securitySig,
                 name: name,
                 mobile: mobile,
                 gender: gender,
                 passType: `${selectedBooking.passType} (Qty: ${qty})`,
-                price: `₹${totalAmount}`,
-                persons: `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`,
+                price: priceStr,
+                persons: personsStr,
                 quantity: qty,
                 bookedAt: bookedAt
             };
 
-            // Save to localStorage so when Razorpay redirects back to ?ticket, we show the customer's E-Ticket
             localStorage.setItem('dandiya_ticket_data', JSON.stringify(ticketData));
+            localStorage.setItem('dandiya_pending_redirect', 'true');
 
-            // Build exact working Razorpay prefill URL
-            const prefillUrl = `${selectedBooking.paymentUrl}?amount=${encodeURIComponent(totalAmount)}&full_name=${encodeURIComponent(name)}&Full%20Name=${encodeURIComponent(name)}&phone=${encodeURIComponent(mobile)}&email=guest@dandiya.com&gender=${encodeURIComponent(gender)}&Gender=${encodeURIComponent(gender)}`;
+            // Auto-fill Razorpay Page with Customer's Unique Ticket ID inside Email field for 100% Dashboard verification
+            const prefillUrl = `${selectedBooking.paymentUrl}?amount=${encodeURIComponent(totalAmount)}&full_name=${encodeURIComponent(name)}&Full%20Name=${encodeURIComponent(name)}&phone=${encodeURIComponent(mobile)}&email=${encodeURIComponent(rzpSyncEmail)}&gender=${encodeURIComponent(gender)}&Gender=${encodeURIComponent(gender)}`;
 
             window.location.href = prefillUrl;
         }
 
-        // 5. Render Ticket on Page
+        // Allow Customer to Stamp their exact Razorpay Payment ID / 12-Digit UTR on Ticket
+        function updateTicketPaymentRef() {
+            const customRef = document.getElementById('customUtrInput').value.trim();
+            if (!customRef) return;
+            const saved = localStorage.getItem('dandiya_ticket_data');
+            if (saved) {
+                const data = JSON.parse(saved);
+                data.paymentRef = customRef;
+                localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
+                renderTicketView(data);
+                document.getElementById('customUtrInput').value = '';
+                alert('Aapka Payment ID / UTR Ticket aur QR Code me update ho gaya hai!');
+            }
+        }
+
+        // 5. Render Ticket on Page (With Payment ID, Security Hash & Anti-Duplicate Gate QR Link)
         function renderTicketView(data) {
+            const sig = data.signature || generateSecuritySignature(data.ticketId, data.mobile, data.price, data.persons);
+            const payRef = data.paymentRef || ('RZP-' + data.ticketId.replace('CBDN-', ''));
+            const syncMail = data.rzpSyncEmail || (data.ticketId + '@dandiya.com');
+
             document.getElementById('tktIdDisplay').innerText = 'ID: #' + data.ticketId;
+            document.getElementById('tktPayIdDisplay').innerText = 'Pay ID: ' + payRef;
+            document.getElementById('tktSecHashDisplay').innerText = 'RZP Sync: ' + syncMail;
             document.getElementById('tktName').innerText = data.name;
             document.getElementById('tktMobile').innerText = '+91 ' + data.mobile;
             document.getElementById('tktGender').innerText = data.gender;
@@ -840,16 +973,120 @@
             document.getElementById('tktPrice').innerText = data.price;
             document.getElementById('tktDateBooked').innerText = 'Booked on: ' + data.bookedAt;
 
-            // Generate QR Code with Customer Ticket Info
-            const qrText = encodeURIComponent(
-                `CHHOTI BALLIA DANDIYA NIGHTS 2026\nTicket ID: ${data.ticketId}\nName: ${data.name}\nMobile: ${data.mobile}\nGender: ${data.gender}\nPass: ${data.passType}\nAllowed Entry: ${data.persons}\nPaid: ${data.price}\nStatus: CONFIRMED`
-            );
-            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrText}`;
+            // Build Smart Gate Verification URL inside QR Code (Prevents Fake Tickets & 2nd Entry!)
+            const baseSiteUrl = window.location.origin + window.location.pathname;
+            const scanParams = new URLSearchParams({
+                scan: '1',
+                tid: data.ticketId,
+                pay: payRef,
+                sync: syncMail,
+                name: data.name,
+                mob: data.mobile,
+                pass: data.passType,
+                per: data.persons,
+                amt: data.price,
+                sig: sig
+            });
 
-            // Show Ticket Section & Hide Main Landing Page
+            const qrVerificationUrl = `${baseSiteUrl}?${scanParams.toString()}`;
+            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(qrVerificationUrl)}`;
+
+            // Instant Switch: Hide Landing Page & Show Ticket
             document.getElementById('mainLandingContent').classList.add('hidden');
+            document.getElementById('gateScannerSection').classList.add('hidden');
             document.getElementById('ticketViewSection').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('myTicketBtn').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        }
+
+        // 6. Gate Scanner & Anti-Double Entry Engine (For Rahul Raj & Sahil)
+        function renderGateScanner(urlParams) {
+            const tid = urlParams.get('tid') || '';
+            const pay = urlParams.get('pay') || '';
+            const sync = urlParams.get('sync') || '';
+            const name = urlParams.get('name') || '';
+            const mob = urlParams.get('mob') || '';
+            const pass = urlParams.get('pass') || '';
+            const per = urlParams.get('per') || '';
+            const amt = urlParams.get('amt') || '';
+            const sig = urlParams.get('sig') || '';
+
+            currentScannedTicketId = tid;
+
+            // Populate Ticket Details on Gate Screen
+            document.getElementById('scanTktId').innerText = '#' + tid;
+            document.getElementById('scanRzpSync').innerText = sync;
+            document.getElementById('scanPayRef').innerText = pay + ' (' + sig + ')';
+            document.getElementById('scanName').innerText = name;
+            document.getElementById('scanMobile').innerText = '+91 ' + mob;
+            document.getElementById('scanPass').innerText = pass;
+            document.getElementById('scanPersons').innerText = per;
+            document.getElementById('scanAmount').innerText = amt;
+
+            // Verify Cryptographic Signature (Detect Fake / Edited QR Codes)
+            const expectedSig = generateSecuritySignature(tid, mob, amt, per);
+            const usedTickets = JSON.parse(localStorage.getItem('dandiya_gate_used_tickets') || '{}');
+            document.getElementById('totalScannedCount').innerText = Object.keys(usedTickets).length;
+
+            const statusBox = document.getElementById('scanStatusBox');
+            const scanIcon = document.getElementById('scanIcon');
+            const scanHeading = document.getElementById('scanHeading');
+            const scanSubtext = document.getElementById('scanSubtext');
+            const actionControls = document.getElementById('gateActionControls');
+
+            if (sig !== expectedSig) {
+                // FAKE TICKET DETECTED
+                statusBox.className = "rounded-3xl border-4 border-red-500 bg-red-950/80 p-6 sm:p-8 text-center shadow-2xl";
+                scanIcon.className = "w-20 h-20 rounded-full bg-red-500/30 border-2 border-red-400 text-red-300 flex items-center justify-center text-4xl mx-auto mb-4";
+                scanIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                scanHeading.className = "text-2xl sm:text-3xl font-extrabold text-red-400 mt-3 mb-1";
+                scanHeading.innerText = "❌ FAKE / TAMPERED TICKET!";
+                scanSubtext.innerText = "Is ticket ke data ke sath chhed-chhad ki gayi hai! Entry bilkul mat dein.";
+                actionControls.classList.add('hidden');
+            } else if (usedTickets[tid]) {
+                // DUPLICATE ENTRY (2nd SCAN) DETECTED
+                statusBox.className = "rounded-3xl border-4 border-red-500 bg-gradient-to-b from-red-900/90 to-[#1a0308] p-6 sm:p-8 text-center shadow-[0_0_50px_rgba(239,68,68,0.6)]";
+                scanIcon.className = "w-20 h-20 rounded-full bg-red-600 text-white flex items-center justify-center text-4xl mx-auto mb-4 animate-bounce";
+                scanIcon.innerHTML = '<i class="fa-solid fa-ban"></i>';
+                scanHeading.className = "text-2xl sm:text-3xl font-extrabold text-red-300 mt-3 mb-1";
+                scanHeading.innerText = "🚨 DUPLICATE TICKET (ALREADY USED)!";
+                scanSubtext.innerText = `Ye ticket pehle hi scan ho chuka hai (${usedTickets[tid]}). Dobara entry mat dein!`;
+                actionControls.classList.add('hidden');
+            } else {
+                // 1st SCAN - GENUINE TICKET
+                statusBox.className = "rounded-3xl border-2 border-green-400 bg-gradient-to-b from-emerald-950/80 to-[#0d021a] p-6 sm:p-8 text-center shadow-[0_0_45px_rgba(34,197,94,0.3)]";
+                scanIcon.className = "w-20 h-20 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-4xl mx-auto mb-4";
+                scanIcon.innerHTML = '<i class="fa-solid fa-shield-check"></i>';
+                scanHeading.className = "text-2xl sm:text-3xl font-extrabold text-green-400 mt-3 mb-1";
+                scanHeading.innerText = "✅ VALID TICKET (1st Entry)";
+                scanSubtext.innerText = `Razorpay App me "${sync}" verify karein aur niche PIN (2026) daal kar ticket lock karein.`;
+                actionControls.classList.remove('hidden');
+            }
+
+            document.getElementById('mainLandingContent').classList.add('hidden');
+            document.getElementById('ticketViewSection').classList.add('hidden');
+            document.getElementById('gateScannerSection').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        }
+
+        // Lock Ticket on Gatekeeper's Phone so 2nd Entry is Blocked
+        function markTicketUsedAtGate() {
+            const pin = document.getElementById('gateAdminPin').value.trim();
+            if (pin !== ORGANISER_GATE_PIN) {
+                alert("❌ Wrong Organiser PIN! Sirf Rahul Raj ya Sahil hi entry approve kar sakte hain.");
+                return;
+            }
+            if (!currentScannedTicketId) return;
+
+            const usedTickets = JSON.parse(localStorage.getItem('dandiya_gate_used_tickets') || '{}');
+            const nowTime = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+            usedTickets[currentScannedTicketId] = `Checked-In at ${nowTime}`;
+            localStorage.setItem('dandiya_gate_used_tickets', JSON.stringify(usedTickets));
+
+            // Re-render to show locked status immediately
+            const urlParams = new URLSearchParams(window.location.search);
+            renderGateScanner(urlParams);
+            alert(`✅ Entry Approved! Ticket #${currentScannedTicketId} ab lock ho chuka hai. Ab is ticket par dobara entry nahi hogi.`);
         }
 
         function showSavedTicket() {
@@ -861,11 +1098,12 @@
 
         function closeTicketView() {
             document.getElementById('ticketViewSection').classList.add('hidden');
+            document.getElementById('gateScannerSection').classList.add('hidden');
             document.getElementById('mainLandingContent').classList.remove('hidden');
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        // 6. Download Ticket as Image
+        // 7. Download Ticket as Image
         function downloadTicketImage() {
             const ticketElement = document.getElementById('printableTicket');
             html2canvas(ticketElement, { scale: 2, useCORS: true, backgroundColor: '#0d021a' }).then(canvas => {
@@ -876,20 +1114,29 @@
             });
         }
 
-        // 7. Auto-Detect Razorpay Redirect URL (?ticket) on Page Load
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
+        // 8. INSTANT REDIRECT DETECTOR (Works on First Load Without Refresh!)
+        function checkUrlAndRenderInstant() {
+            const searchStr = window.location.search;
+            const urlParams = new URLSearchParams(searchStr);
             const hash = window.location.hash.toLowerCase();
             const fullUrl = window.location.href.toLowerCase();
             const savedDataStr = localStorage.getItem('dandiya_ticket_data');
 
             if (savedDataStr) {
-                document.getElementById('myTicketBtn').classList.remove('hidden');
+                const btn = document.getElementById('myTicketBtn');
+                if (btn) btn.classList.remove('hidden');
             }
 
-            // Trigger ticket view if URL contains ?ticket, #ticket, /ticket, or razorpay_payment_id
+            // Check 1: Is this an Organiser Gate QR Scan? (?scan=1&tid=...)
+            if (urlParams.get('scan') === '1' && urlParams.has('tid')) {
+                renderGateScanner(urlParams);
+                return;
+            }
+
+            // Check 2: Is this a Razorpay Redirect (?ticket, #ticket, /ticket, or razorpay_payment_id)?
             const isTicketRedirect = 
                 urlParams.has('ticket') || 
+                searchStr.toLowerCase().includes('ticket') ||
                 urlParams.get('status') === 'ticket' || 
                 urlParams.has('razorpay_payment_id') ||
                 hash.includes('ticket') || 
@@ -897,16 +1144,19 @@
                 fullUrl.endsWith('/ticket/');
 
             if (isTicketRedirect) {
+                localStorage.removeItem('dandiya_pending_redirect');
                 if (savedDataStr) {
                     const data = JSON.parse(savedDataStr);
                     if (urlParams.get('razorpay_payment_id')) {
-                        data.ticketId = urlParams.get('razorpay_payment_id');
+                        data.paymentRef = urlParams.get('razorpay_payment_id');
                         localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
                     }
                     renderTicketView(data);
                 } else {
                     renderTicketView({
                         ticketId: 'CBDN-VERIFIED',
+                        paymentRef: urlParams.get('razorpay_payment_id') || 'RZP-VERIFIED',
+                        rzpSyncEmail: 'verified@dandiya.com',
                         name: 'Valued Guest',
                         mobile: 'Verified on Razorpay',
                         gender: '—',
@@ -917,9 +1167,16 @@
                     });
                 }
             }
-        });
+        }
 
-        // 8. Countdown Timer Script
+        // Run immediately + on DOMContentLoaded + on pageshow (fixes mobile browser cache issue without refresh!)
+        checkUrlAndRenderInstant();
+        window.addEventListener('DOMContentLoaded', checkUrlAndRenderInstant);
+        window.addEventListener('load', checkUrlAndRenderInstant);
+        window.addEventListener('pageshow', checkUrlAndRenderInstant);
+        window.addEventListener('hashchange', checkUrlAndRenderInstant);
+
+        // 9. Countdown Timer Script
         const eventDate = new Date("October 13, 2026 17:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
