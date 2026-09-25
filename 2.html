@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Domain Referrer Protection for GitHub Pages -->
-    <meta name="referrer" content="no-referrer">
     <title>Chhoti Ballia Dandiya Nights 2026 | Dance Vibes Studio</title>
-    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -15,8 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- html2canvas for Ticket Download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Official Razorpay Checkout SDK -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <script>
         tailwind.config = {
@@ -127,15 +122,15 @@
         </div>
     </header>
 
-    <!-- ================================================= -->
-    <!-- DIGITAL VIP TICKET SECTION (SHOWN AFTER PAYMENT)  -->
-    <!-- ================================================= -->
+    <!-- ========================================== -->
+    <!-- DIGITAL TICKET SECTION (SHOWN ON REDIRECT) -->
+    <!-- ========================================== -->
     <section id="ticketViewSection" class="hidden py-12 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
         <div class="text-center mb-6">
             <div class="w-16 h-16 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-3xl mx-auto mb-3 animate-bounce">
                 <i class="fa-solid fa-check"></i>
             </div>
-            <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Payment Successful! 🎉</h2>
+            <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Booking Confirmed! 🎉</h2>
             <p class="text-sm text-gray-300 mt-1">Aapka Chhoti Ballia Dandiya Nights 2026 ka official E-Ticket niche taiyar hai.</p>
         </div>
 
@@ -153,10 +148,9 @@
                 </div>
                 <div class="text-right">
                     <span class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                        ✓ VERIFIED PASS
+                        ✓ PAID & CONFIRMED
                     </span>
-                    <p id="tktIdDisplay" class="text-xs text-gold font-mono mt-2">Ticket ID: #CBDN-0000</p>
-                    <p id="tktPaymentIdDisplay" class="text-[11px] text-gray-400 font-mono mt-0.5">Pay ID: —</p>
+                    <p id="tktIdDisplay" class="text-xs text-gray-300 font-mono mt-2">ID: #CBDN-0000</p>
                 </div>
             </div>
 
@@ -175,15 +169,15 @@
                     <strong id="tktGender" class="text-sm sm:text-base text-white">—</strong>
                 </div>
                 <div>
-                    <span class="text-[10px] uppercase text-gray-400 block">Pass & Quantity</span>
+                    <span class="text-[10px] uppercase text-gray-400 block">Pass Category</span>
                     <strong id="tktPassType" class="text-sm sm:text-base text-pink-400 font-extrabold">—</strong>
                 </div>
                 <div>
-                    <span class="text-[10px] uppercase text-gray-400 block">Total Entry Allowed</span>
-                    <strong id="tktPersons" class="text-sm sm:text-base text-green-400 font-bold">—</strong>
+                    <span class="text-[10px] uppercase text-gray-400 block">Allowed Entry</span>
+                    <strong id="tktPersons" class="text-sm sm:text-base text-green-400">—</strong>
                 </div>
                 <div>
-                    <span class="text-[10px] uppercase text-gray-400 block">Total Amount Paid</span>
+                    <span class="text-[10px] uppercase text-gray-400 block">Amount Paid</span>
                     <strong id="tktPrice" class="text-sm sm:text-base text-gold font-extrabold">—</strong>
                 </div>
             </div>
@@ -228,10 +222,10 @@
             </div>
         </div>
 
-        <!-- Download & Action Buttons -->
+        <!-- Download & Back Buttons -->
         <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <button onclick="downloadTicketImage()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-sm shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-download"></i> Download Ticket (Save Image)
+                <i class="fa-solid fa-download"></i> Download Ticket (Save to Gallery)
             </button>
             <button onclick="window.print()" class="px-6 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/20 transition flex items-center justify-center gap-2">
                 <i class="fa-solid fa-print"></i> Print / Save PDF
@@ -329,7 +323,7 @@
                 <span class="text-xs uppercase tracking-widest text-pink-400 font-bold">Instant E-Ticket Generation</span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold mt-1 gold-gradient-text">Choose Your Entry Pass</h2>
                 <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl mx-auto">
-                    Apna pass chunein, quantity select karein aur Razorpay popup se payment pura karte hi turant apna Digital Ticket download karein!
+                    Apna pass chunein, basic details bharein aur payment pura karte hi apna Digital Ticket download karein!
                 </p>
             </div>
 
@@ -345,11 +339,11 @@
                             <i class="fa-solid fa-user text-2xl text-blue-400"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Single Pass</h3>
-                        <p class="text-xs text-gray-300 mb-6">Valid for 1 Person per Pass</p>
+                        <p class="text-xs text-gray-300 mb-6">Valid for 1 Person Entry</p>
                         
                         <div class="flex items-baseline gap-1 mb-6">
                             <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹149</span>
-                            <span class="text-xs text-gray-400">/ pass</span>
+                            <span class="text-xs text-gray-400">/ person</span>
                         </div>
 
                         <p class="text-sm text-gray-200 mb-6 leading-relaxed">
@@ -357,7 +351,7 @@
                         </p>
 
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
-                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Entry for 1 Person per pass</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Entry for 1 Person</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Free Dandiya Sticks Included</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Dance, Music & Creators Award Show</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Lucky Draw Gift Eligibility</li>
@@ -365,7 +359,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="openBookingModal('Single Pass', 149, 1, 'https://rzp.io/rzp/my-dandiya-book')" 
+                    <button onclick="openBookingModal('Single Pass', '₹149', '1 Person', 'https://rzp.io/rzp/my-dandiya-book')" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Single Pass (₹149)</span>
                         <i class="fa-solid fa-arrow-right"></i>
@@ -386,10 +380,10 @@
                             <i class="fa-solid fa-user-group text-2xl text-pink-400"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Couple Pass</h3>
-                        <p class="text-xs text-gray-300 mb-6">Valid for 2 Persons per Pass</p>
+                        <p class="text-xs text-gray-300 mb-6">Valid for 2 Persons (Couple / Besties)</p>
                         
                         <div class="flex items-baseline gap-2 mb-6">
-                            <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹1</span>
+                            <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹249</span>
                             <span class="text-sm text-gray-400 line-through">₹298</span>
                             <span class="text-xs text-green-400 font-semibold">Save ₹49!</span>
                         </div>
@@ -399,7 +393,7 @@
                         </p>
 
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
-                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Entry for 2 Persons per pass</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Entry for 2 Persons</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> 2 Pairs of Free Dandiya Sticks</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Full Access to Dance & Award Show</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Lucky Draw Gift Eligibility</li>
@@ -407,9 +401,9 @@
                         </ul>
                     </div>
 
-                    <button onclick="openBookingModal('Couple Pass', 1, 2, 'https://rzp.io/rzp/Couple-book')" 
+                    <button onclick="openBookingModal('Couple Pass', '₹249', '2 Persons (Couple)', 'https://rzp.io/rzp/Couple-book')" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink to-orange-500 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                        <span>Book Couple Pass (₹1)</span>
+                        <span>Book Couple Pass (₹249)</span>
                         <i class="fa-solid fa-heart"></i>
                     </button>
                 </div>
@@ -428,7 +422,7 @@
                             <i class="fa-solid fa-users text-2xl text-gold"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Family Pass (4+1 Free)</h3>
-                        <p class="text-xs text-gray-300 mb-6">Valid for 5 Persons per Pass</p>
+                        <p class="text-xs text-gray-300 mb-6">Valid for Total 5 Persons</p>
                         
                         <div class="flex items-baseline gap-2 mb-6">
                             <span class="text-4xl sm:text-5xl font-extrabold text-gold">₹499</span>
@@ -441,7 +435,7 @@
                         </p>
 
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
-                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Entry for 5 Persons per pass</li>
+                            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Entry for 5 Persons (4 + 1 Free)</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Free Dandiya Sticks for All 5</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Full Access to Dance, Music & Food Zone</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> 5x Lucky Draw Winning Chances</li>
@@ -449,7 +443,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="openBookingModal('Family Pass (4+1 Free)', 499, 5, 'https://rzp.io/rzp/Family-book')" 
+                    <button onclick="openBookingModal('Family Pass (4+1 Free)', '₹499', '5 Persons (4+1 Free)', 'https://rzp.io/rzp/Family-book')" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Family Pass (₹499)</span>
                         <i class="fa-solid fa-arrow-right"></i>
@@ -601,29 +595,29 @@
         </section>
     </main>
 
-    <!-- ===================================================== -->
-    <!-- CUSTOMER DETAILS & QUANTITY POPUP MODAL               -->
-    <!-- ===================================================== -->
-    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#230642] to-[#110221] border-2 border-gold/60 shadow-[0_0_50px_rgba(255,0,127,0.5)] p-6 sm:p-7 my-8">
+    <!-- ========================================== -->
+    <!-- CUSTOMER DETAILS POPUP MODAL               -->
+    <!-- ========================================== -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#230642] to-[#110221] border-2 border-gold/60 shadow-[0_0_50px_rgba(255,0,127,0.5)] p-6 sm:p-8 animate-fadeIn">
             
             <!-- Close Button -->
             <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <div class="text-center mb-5">
+            <div class="text-center mb-6">
                 <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">
-                    Instant Pass Booking
+                    Step 1 of 2 • Guest Details
                 </span>
-                <h3 id="modalPassTitle" class="text-xl sm:text-2xl font-extrabold text-white mt-2">Single Pass — ₹149</h3>
-                <p class="text-xs text-gray-300 mt-0.5">Details bharein aur exact amount pay karke E-Ticket paayein</p>
+                <h3 id="modalPassTitle" class="text-2xl font-extrabold text-white mt-2">Single Pass — ₹149</h3>
+                <p class="text-xs text-gray-300 mt-1">Apना E-Ticket generate karne ke liye niche details bharein</p>
             </div>
 
-            <form id="customerBookingForm" onsubmit="startRazorpayPayment(event)" class="space-y-4">
+            <form id="customerBookingForm" onsubmit="proceedToRazorpay(event)" class="space-y-4">
                 <!-- Full Name -->
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1">Full Name *</label>
+                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Full Name *</label>
                     <div class="relative">
                         <i class="fa-solid fa-user absolute left-4 top-3.5 text-gray-400"></i>
                         <input type="text" id="custName" required placeholder="Enter your full name"
@@ -633,7 +627,7 @@
 
                 <!-- Mobile Number -->
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1">Mobile Number (WhatsApp) *</label>
+                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Mobile Number (WhatsApp) *</label>
                     <div class="relative">
                         <i class="fa-solid fa-phone absolute left-4 top-3.5 text-gray-400"></i>
                         <input type="tel" id="custMobile" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number"
@@ -641,65 +635,44 @@
                     </div>
                 </div>
 
-                <!-- Gender & Quantity Row -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <!-- Gender Selection -->
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1">Gender *</label>
-                        <div class="grid grid-cols-2 gap-2">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="custGender" value="Male" required class="peer hidden" checked>
-                                <div class="py-2.5 px-2 rounded-xl bg-white/5 border border-white/20 text-center text-xs font-semibold text-gray-300 peer-checked:bg-blue-600/30 peer-checked:border-blue-400 peer-checked:text-white transition">
-                                    <i class="fa-solid fa-mars text-blue-400 mr-1"></i>Male
-                                </div>
-                            </label>
-                            <label class="cursor-pointer">
-                                <input type="radio" name="custGender" value="Female" required class="peer hidden">
-                                <div class="py-2.5 px-2 rounded-xl bg-white/5 border border-white/20 text-center text-xs font-semibold text-gray-300 peer-checked:bg-pink-600/30 peer-checked:border-pink-400 peer-checked:text-white transition">
-                                    <i class="fa-solid fa-venus text-pink-400 mr-1"></i>Female
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Ticket Quantity Selector (+ / -) -->
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1">Number of Passes *</label>
-                        <div class="flex items-center justify-between bg-white/10 border border-gold/40 rounded-xl px-2 py-1">
-                            <button type="button" onclick="changeQuantity(-1)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-lg flex items-center justify-center transition">
-                                −
-                            </button>
-                            <span id="qtyDisplay" class="text-base font-extrabold text-gold px-3">1</span>
-                            <button type="button" onclick="changeQuantity(1)" class="w-8 h-8 rounded-lg bg-gold text-black hover:brightness-110 font-bold text-lg flex items-center justify-center transition">
-                                +
-                            </button>
-                        </div>
+                <!-- Gender Selection -->
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Select Gender *</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="custGender" value="Male" required class="peer hidden" checked>
+                            <div class="py-3 px-4 rounded-xl bg-white/5 border border-white/20 text-center text-sm font-semibold text-gray-300 peer-checked:bg-blue-600/30 peer-checked:border-blue-400 peer-checked:text-white transition">
+                                <i class="fa-solid fa-mars text-blue-400 mr-1.5"></i> Male
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="custGender" value="Female" required class="peer hidden">
+                            <div class="py-3 px-4 rounded-xl bg-white/5 border border-white/20 text-center text-sm font-semibold text-gray-300 peer-checked:bg-pink-600/30 peer-checked:border-pink-400 peer-checked:text-white transition">
+                                <i class="fa-solid fa-venus text-pink-400 mr-1.5"></i> Female
+                            </div>
+                        </label>
                     </div>
                 </div>
 
-                <!-- Dynamic Summary Box -->
-                <div class="bg-black/40 border border-gold/30 rounded-2xl p-3.5 space-y-2 text-xs text-gray-300">
-                    <div class="flex items-center justify-between">
-                        <span>Selected Pass & Qty:</span>
-                        <strong id="summaryPassName" class="text-white">Single Pass × 1</strong>
+                <!-- Summary Box -->
+                <div class="bg-black/40 border border-white/10 rounded-xl p-3.5 flex items-center justify-between text-xs text-gray-300">
+                    <div>
+                        <span class="block text-gray-400">Selected Pass:</span>
+                        <strong id="summaryPassName" class="text-white text-sm">Single Pass (1 Person)</strong>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span>Total Allowed Entry:</span>
-                        <strong id="summaryTotalPersons" class="text-green-400 font-bold">1 Person</strong>
-                    </div>
-                    <div class="border-t border-white/10 pt-2 flex items-center justify-between">
-                        <span class="text-sm text-gray-200 font-semibold">Total Payable Amount:</span>
-                        <strong id="summaryPassPrice" class="text-gold text-xl font-extrabold">₹149</strong>
+                    <div class="text-right">
+                        <span class="block text-gray-400">Payable:</span>
+                        <strong id="summaryPassPrice" class="text-gold text-lg font-extrabold">₹149</strong>
                     </div>
                 </div>
 
-                <!-- Submit & Open Razorpay Popup Button -->
+                <!-- Submit & Redirect Button -->
                 <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink via-pink-600 to-orange-500 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                    <span id="payBtnText">Pay Now ₹149</span>
-                    <i class="fa-solid fa-bolt text-sm"></i>
+                    <span>Proceed to Pay</span>
+                    <i class="fa-solid fa-lock text-sm"></i>
                 </button>
                 <p class="text-[11px] text-center text-gray-400">
-                    <i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> Instant In-Page Payment via Razorpay • Auto Ticket Generation
+                    <i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> 100% Secure Payment via Razorpay. Payment ke turant baad ticket milega.
                 </p>
             </form>
         </div>
@@ -720,13 +693,153 @@
         </a>
     </div>
 
-    <!-- ================================================= -->
-    <!-- LINK TO YOUR CUSTOM CHECKOUT.JS FILE              -->
-    <!-- ================================================= -->
-    <script src="checkout.js"></script>
-
-    <!-- Countdown Timer Script -->
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT: MODAL, STORAGE & TICKET ENGINE -->
+    <!-- ========================================== -->
     <script>
+        let selectedBooking = {
+            passType: 'Single Pass',
+            price: '₹149',
+            persons: '1 Person',
+            paymentUrl: 'https://rzp.io/rzp/my-dandiya-book'
+        };
+
+        // 1. Open Modal when user clicks any Book Pass button
+        function openBookingModal(passType, price, persons, paymentUrl) {
+            selectedBooking = { passType, price, persons, paymentUrl };
+            document.getElementById('modalPassTitle').innerText = `${passType} — ${price}`;
+            document.getElementById('summaryPassName').innerText = `${passType} (${persons})`;
+            document.getElementById('summaryPassPrice').innerText = price;
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // 2. Save Customer Data & Redirect to Razorpay
+        function proceedToRazorpay(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const mobile = document.getElementById('custMobile').value.trim();
+            const gender = document.querySelector('input[name="custGender"]:checked').value;
+            const randomId = 'CBDN-' + Math.floor(100000 + Math.random() * 900000);
+            const bookedAt = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+
+            const ticketData = {
+                ticketId: randomId,
+                name: name,
+                mobile: mobile,
+                gender: gender,
+                passType: selectedBooking.passType,
+                price: selectedBooking.price,
+                persons: selectedBooking.persons,
+                bookedAt: bookedAt
+            };
+
+            // Save to localStorage so when Razorpay redirects back, we have all customer info
+            localStorage.setItem('dandiya_ticket_data', JSON.stringify(ticketData));
+
+            // Redirect to the respective Razorpay Payment Page
+            window.location.href = selectedBooking.paymentUrl;
+        }
+
+        // 3. Render Ticket on Page
+        function renderTicketView(data) {
+            document.getElementById('tktIdDisplay').innerText = 'ID: #' + data.ticketId;
+            document.getElementById('tktName').innerText = data.name;
+            document.getElementById('tktMobile').innerText = '+91 ' + data.mobile;
+            document.getElementById('tktGender').innerText = data.gender;
+            document.getElementById('tktPassType').innerText = data.passType;
+            document.getElementById('tktPersons').innerText = data.persons;
+            document.getElementById('tktPrice').innerText = data.price;
+            document.getElementById('tktDateBooked').innerText = 'Booked on: ' + data.bookedAt;
+
+            // Generate QR Code with Customer Ticket Info
+            const qrText = encodeURIComponent(
+                `CHHOTI BALLIA DANDIYA NIGHTS 2026\nTicket ID: ${data.ticketId}\nName: ${data.name}\nMobile: ${data.mobile}\nGender: ${data.gender}\nPass: ${data.passType} (${data.persons})\nPaid: ${data.price}\nStatus: CONFIRMED`
+            );
+            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrText}`;
+
+            // Show Ticket Section & Hide Main Landing Page
+            document.getElementById('mainLandingContent').classList.add('hidden');
+            document.getElementById('ticketViewSection').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSavedTicket() {
+            const saved = localStorage.getItem('dandiya_ticket_data');
+            if (saved) {
+                renderTicketView(JSON.parse(saved));
+            }
+        }
+
+        function closeTicketView() {
+            document.getElementById('ticketViewSection').classList.add('hidden');
+            document.getElementById('mainLandingContent').classList.remove('hidden');
+            // Clean URL without reloading
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        // 4. Download Ticket as Image
+        function downloadTicketImage() {
+            const ticketElement = document.getElementById('printableTicket');
+            html2canvas(ticketElement, { scale: 2, useCORS: true, backgroundColor: '#0d021a' }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Chhoti-Ballia-Dandiya-Ticket.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        // 5. Auto-Detect Razorpay Redirect URL on Page Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hash = window.location.hash.toLowerCase();
+            const fullUrl = window.location.href.toLowerCase();
+            const savedDataStr = localStorage.getItem('dandiya_ticket_data');
+
+            if (savedDataStr) {
+                // Show "My Ticket" button in navbar if user has a saved ticket
+                document.getElementById('myTicketBtn').classList.remove('hidden');
+            }
+
+            // Trigger ticket view if URL contains ?ticket, #ticket, /ticket, or razorpay_payment_id
+            const isTicketRedirect = 
+                urlParams.has('ticket') || 
+                urlParams.get('status') === 'ticket' || 
+                urlParams.has('razorpay_payment_id') ||
+                hash.includes('ticket') || 
+                fullUrl.endsWith('/ticket') || 
+                fullUrl.endsWith('/ticket/');
+
+            if (isTicketRedirect) {
+                if (savedDataStr) {
+                    const data = JSON.parse(savedDataStr);
+                    // If Razorpay appends razorpay_payment_id in URL, attach it to ticket ID
+                    if (urlParams.get('razorpay_payment_id')) {
+                        data.ticketId = urlParams.get('razorpay_payment_id');
+                        localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
+                    }
+                    renderTicketView(data);
+                } else {
+                    // Fallback if customer opened ?ticket directly without filling form
+                    renderTicketView({
+                        ticketId: 'CBDN-VERIFIED',
+                        name: 'Valued Guest',
+                        mobile: 'Verified on Razorpay',
+                        gender: '—',
+                        passType: 'Entry Pass',
+                        price: 'Paid',
+                        persons: 'As per booking',
+                        bookedAt: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+                    });
+                }
+            }
+        });
+
+        // 6. Countdown Timer Script
         const eventDate = new Date("October 13, 2026 17:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
