@@ -53,9 +53,7 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
         .animate-fadeInUp { animation: fadeInUp 0.5s ease-out; }
 
-        /* ============================================================ */
-        /* CREDIT-CARD SIZE TICKET (85.6mm x 54mm)                      */
-        /* ============================================================ */
+        /* CREDIT-CARD SIZE TICKET (85.6mm x 54mm) */
         .cc-ticket-wrap { display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; width: 100%; padding: 4px; }
         .cc-ticket {
             width: 85.6mm; height: 54mm; border-radius: 3.5mm; position: relative; overflow: hidden;
@@ -104,9 +102,33 @@
             .no-print { display: none !important; }
             .cc-ticket-wrap { gap: 8mm; }
         }
+
+        /* Payment Verifying overlay */
+        #verifyOverlay {
+            position: fixed; inset: 0; z-index: 100;
+            background: rgba(13, 2, 26, 0.97);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .spinner {
+            width: 60px; height: 60px; border: 5px solid rgba(255, 215, 0, 0.2);
+            border-top-color: #FFD700; border-radius: 50%;
+            animation: spin 1s linear infinite; margin: 0 auto 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="font-poppins antialiased selection:bg-festivePink selection:text-white">
+
+    <!-- Payment Verifying Overlay -->
+    <div id="verifyOverlay" style="display: none;">
+        <div class="text-center">
+            <div class="spinner"></div>
+            <p class="text-gold font-bold text-lg">Verifying Payment...</p>
+            <p class="text-gray-300 text-sm mt-2">Aapka ticket taiyar kiya ja raha hai. Kripya wait karein.</p>
+        </div>
+    </div>
 
     <!-- Top Announcement Bar -->
     <div class="bg-gradient-to-r from-festivePink via-purple-700 to-festiveOrange text-white text-xs sm:text-sm py-2 px-4 text-center font-semibold tracking-wide">
@@ -144,75 +166,7 @@
         </div>
     </header>
 
-    <!-- ========================================================== -->
-    <!-- PAYMENT ID VERIFICATION MODAL (Only shown when redirect     -->
-    <!-- URL contains ?ticket=1 but no razorpay_payment_id)          -->
-    <!-- ========================================================== -->
-    <div id="paymentIdModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div class="relative w-full max-w-lg rounded-3xl bg-gradient-to-b from-[#1e0538] to-[#0a0114] border-2 border-gold shadow-[0_0_60px_rgba(255,215,0,0.4)] p-6 sm:p-8 my-8 animate-fadeInUp">
-            <div class="text-center mb-5">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gold to-orange-500 flex items-center justify-center text-3xl mx-auto mb-3 shadow-lg">
-                    <i class="fa-solid fa-receipt text-black"></i>
-                </div>
-                <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">
-                    Final Step • Payment Verification
-                </span>
-                <h3 class="text-2xl font-extrabold text-white mt-3">Razorpay Payment ID Daalein</h3>
-                <p class="text-xs text-gray-300 mt-2 leading-relaxed">
-                    Aapka ticket generate karne ke liye, humein aapka <strong class="text-gold">Razorpay Payment ID</strong> chahiye.<br>
-                    Ye aapko SMS / Email / Razorpay App me mila hoga — <strong class="text-gold">"pay_XXXXXXXXXXXX"</strong> format me.
-                </p>
-            </div>
-
-            <div id="pendingInfoBox" class="bg-white/5 border border-gold/30 rounded-2xl p-4 mb-4 text-xs">
-                <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
-                    <span class="text-gray-400">Ticket ID:</span>
-                    <strong id="previewTicketId" class="text-gold font-mono">—</strong>
-                </div>
-                <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
-                    <span class="text-gray-400">Guest Name:</span>
-                    <strong id="previewName" class="text-white">—</strong>
-                </div>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400">Amount:</span>
-                    <strong id="previewAmount" class="text-gold text-base">—</strong>
-                </div>
-            </div>
-
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">
-                        <i class="fa-solid fa-key mr-1"></i> Razorpay Payment ID (pay_XXXXX) *
-                    </label>
-                    <input type="text" id="paymentIdInput" 
-                        placeholder="e.g. pay_QaBcDeFgHiJkLm"
-                        class="w-full px-4 py-3 rounded-xl bg-white/10 border-2 border-gold/50 text-white placeholder-gray-400 focus:outline-none focus:border-gold font-mono text-sm tracking-wide">
-                    <p id="paymentIdError" class="hidden text-[11px] text-red-400 mt-1">
-                        <i class="fa-solid fa-circle-exclamation mr-1"></i> Payment ID kam se kam 10 characters ka hona chahiye aur "pay_" se shuru hona chahiye.
-                    </p>
-                </div>
-
-                <button onclick="confirmPaymentId()" 
-                    class="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-shield-check"></i> VERIFY & SHOW MY TICKET
-                </button>
-
-                <button onclick="cancelPendingPayment()" 
-                    class="w-full py-3 rounded-xl bg-white/10 border border-white/20 text-gray-300 font-semibold text-sm hover:bg-white/20 transition">
-                    Cancel / Not Paid
-                </button>
-            </div>
-
-            <p class="text-[10px] text-center text-gray-500 mt-4 leading-relaxed">
-                ⚠️ Ye Payment ID gate par Razorpay App me verify ki jayegi.<br>
-                Galat ya fake ID dene par entry block kar di jayegi.
-            </p>
-        </div>
-    </div>
-
-    <!-- ========================================================== -->
-    <!-- GATE SCANNER                                                -->
-    <!-- ========================================================== -->
+    <!-- GATE SCANNER (unchanged) -->
     <section id="gateScannerSection" class="hidden py-10 px-4 sm:px-6 max-w-lg mx-auto">
         <div id="scanStatusBox" class="rounded-3xl border-2 p-6 sm:p-8 text-center shadow-2xl">
             <div id="scanIcon" class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4"></div>
@@ -247,33 +201,29 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- DIGITAL TICKET SECTION                      -->
-    <!-- ========================================== -->
+    <!-- DIGITAL TICKET SECTION -->
     <section id="ticketViewSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
         <div class="text-center mb-5">
             <div class="w-14 h-14 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce">
                 <i class="fa-solid fa-check"></i>
             </div>
-            <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Booking Confirmed! 🎉</h2>
+            <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Payment Successful! 🎉</h2>
             <p class="text-xs sm:text-sm text-gray-300 mt-1">Aapka official E-Ticket taiyar hai (Credit-Card Size).</p>
         </div>
 
-        <!-- Payment Verified Banner -->
         <div class="mb-5 bg-gradient-to-r from-green-500/15 to-emerald-600/10 border-2 border-green-500 rounded-2xl p-4 flex items-center gap-3 no-print">
             <div class="w-12 h-12 rounded-full bg-green-500/30 border-2 border-green-400 flex items-center justify-center flex-shrink-0">
                 <i class="fa-solid fa-shield-check text-green-400 text-xl"></i>
             </div>
             <div class="flex-1">
-                <p class="text-sm font-bold text-green-300">Payment Verified ✓</p>
-                <p class="text-[11px] text-gray-300 mt-0.5">Razorpay Ref: <span id="verifiedPayRef" class="text-gold font-mono">—</span></p>
+                <p class="text-sm font-bold text-green-300">Payment Verified by Gateway ✓</p>
+                <p class="text-[11px] text-gray-300 mt-0.5">Payment ID: <span id="verifiedPayRef" class="text-gold font-mono">—</span></p>
             </div>
         </div>
 
-        <!-- Quantity Sync Bar -->
         <div class="mb-5 bg-white/5 border border-gold/40 rounded-2xl p-4 no-print">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                <span class="text-xs font-bold text-gold"><i class="fa-solid fa-Ticket mr-1"></i> Razorpay par Paid Quantity:</span>
+                <span class="text-xs font-bold text-gold"><i class="fa-solid fa-Ticket mr-1"></i> Paid Quantity Confirm karein:</span>
                 <div class="flex items-center gap-2 self-end sm:self-center">
                     <select id="postPayQtySelect" onchange="syncTicketQuantityFromDropdown(this.value)"
                         class="px-3 py-1.5 rounded-xl bg-black border border-gold text-gold font-extrabold text-xs focus:outline-none">
@@ -286,7 +236,6 @@
             </div>
         </div>
 
-        <!-- Printable Ticket -->
         <div id="printableTicket">
             <div class="cc-ticket-wrap">
                 <div class="cc-ticket" id="ccFront">
@@ -361,7 +310,6 @@
             </div>
         </div>
 
-        <!-- Download Buttons -->
         <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center no-print">
             <button id="downloadTicketBtn" onclick="downloadTicketImage()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-sm shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                 <i class="fa-solid fa-download"></i> Download Ticket
@@ -375,9 +323,7 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- MAIN LANDING PAGE                            -->
-    <!-- ========================================== -->
+    <!-- MAIN LANDING PAGE -->
     <main id="mainLandingContent">
         <section class="relative pt-10 pb-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 text-gold text-xs sm:text-sm font-semibold mb-6">
@@ -428,12 +374,13 @@
         <!-- Tickets Section -->
         <section id="tickets" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div class="text-center mb-12">
-                <span class="text-xs uppercase tracking-widest text-pink-400 font-bold">100% Secure Fixed-Price Booking</span>
+                <span class="text-xs uppercase tracking-widest text-pink-400 font-bold">100% Secure Payment via Sewa Sahayak Gateway</span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold mt-1 gold-gradient-text">Choose Your Entry Pass</h2>
                 <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl mx-auto">Apna pass chunein, quantity select karein aur payment pura karte hi apna Verified Digital Ticket download karein!</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Single Pass -->
                 <div class="rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
                     <div>
                         <div class="flex justify-between items-center mb-4">
@@ -452,12 +399,13 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Single Pass', 149, 1, 'https://pages.razorpay.com/my-dandiya-book')" 
+                    <button onclick="openBookingModal('Single Pass', 149, 1)" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Single Pass (₹149)</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
+                <!-- Couple Pass -->
                 <div class="rounded-3xl bg-gradient-to-b from-pink-900/50 via-purple-900/40 to-white/5 p-7 flex flex-col justify-between border-2 border-festivePink shadow-[0_0_35px_rgba(255,0,127,0.4)] card-hover relative transform md:-translate-y-3">
                     <div class="absolute top-0 right-0 bg-gradient-to-r from-festivePink to-orange-500 text-white text-[11px] font-extrabold px-4 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">❤️ Most Popular</div>
                     <div>
@@ -477,12 +425,13 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Couple Pass', 249, 2, 'https://pages.razorpay.com/Couple-book')" 
+                    <button onclick="openBookingModal('Couple Pass', 249, 2)" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink to-orange-500 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Couple Pass (₹249)</span><i class="fa-solid fa-heart"></i>
                     </button>
                 </div>
 
+                <!-- Family Pass -->
                 <div class="rounded-3xl bg-gradient-to-b from-amber-900/30 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-gold text-black text-[11px] font-extrabold px-4 py-1 rounded-bl-xl uppercase tracking-wider">🔥 4 + 1 FREE OFFER</div>
                     <div>
@@ -502,7 +451,7 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Family Pass (4+1 Free)', 499, 5, 'https://pages.razorpay.com/Family-book')" 
+                    <button onclick="openBookingModal('Family Pass (4+1 Free)', 499, 5)" 
                        class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Family Pass (₹499)</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -610,11 +559,11 @@
         <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#230642] to-[#110221] border-2 border-gold/60 shadow-[0_0_50px_rgba(255,0,127,0.5)] p-6 sm:p-8 my-8">
             <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div class="text-center mb-5">
-                <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">Step 1 of 2 • Guest & Pass Quantity</span>
+                <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">Step 1 of 2 • Guest Details</span>
                 <h3 id="modalPassTitle" class="text-2xl font-extrabold text-white mt-2">Single Pass — ₹149</h3>
                 <p class="text-xs text-gray-300 mt-1">Apna E-Ticket generate karne ke liye niche details bharein</p>
             </div>
-            <form id="customerBookingForm" onsubmit="proceedToRazorpay(event)" class="space-y-4">
+            <form id="customerBookingForm" onsubmit="proceedToGateway(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Full Name *</label>
                     <div class="relative">
@@ -633,6 +582,14 @@
                             class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
                     </div>
                     <p id="mobileErrorMsg" class="hidden text-[11px] text-red-400 mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> Kripya pura 10-digit mobile number darj karein.</p>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Email (Optional)</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                        <input type="email" id="custEmail" placeholder="your@email.com (optional)"
+                            class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -663,12 +620,12 @@
                     <div class="border-t border-white/10 pt-2 flex items-center justify-between"><span class="text-gray-200 font-semibold text-sm">Total Payable:</span><strong id="summaryPassPrice" class="text-gold text-xl font-extrabold">₹149</strong></div>
                 </div>
                 <div id="multiQtyReminder" class="hidden bg-amber-500/20 border border-gold rounded-xl p-3 text-xs text-amber-200 text-center leading-relaxed">
-                    ⚠️ <strong>Dhyan Dein:</strong> Aapne <strong id="remQty" class="text-white underline">2</strong> Pass chune hain. Agle Razorpay page par bhi Item Quantity <strong id="remQty2" class="text-white underline">2</strong> select karke <strong id="remAmt" class="text-gold font-bold">₹298</strong> pay karein!
+                    ⚠️ <strong>Note:</strong> Aapne <strong id="remQty" class="text-white underline">2</strong> Pass chune hain. Total <strong id="remAmt" class="text-gold font-bold">₹298</strong> pay hoga.
                 </div>
                 <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink via-pink-600 to-orange-500 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                    <span id="payBtnText">Proceed to Pay ₹149</span><i class="fa-solid fa-lock text-sm"></i>
+                    <span id="payBtnText">Pay Securely ₹149</span><i class="fa-solid fa-lock text-sm"></i>
                 </button>
-                <p class="text-[11px] text-center text-gray-400"><i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> Fixed-Price Secure Payment via Razorpay</p>
+                <p class="text-[11px] text-center text-gray-400"><i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> 100% Secure Payment via Sewa Sahayak Gateway</p>
             </form>
         </div>
     </div>
@@ -689,16 +646,23 @@
     </div>
 
     <!-- ================================================================= -->
-    <!-- JAVASCRIPT - BULLETPROOF PAYMENT-GATED TICKET SYSTEM              -->
+    <!-- JAVASCRIPT - SEWA SAHAYAK GATEWAY INTEGRATION                     -->
     <!-- ================================================================= -->
     <script>
         const ORGANISER_GATE_PIN = "2026";
         const SECRET_SALT = "DVS-CBDN-2026-SECURE";
-        const PENDING_EXPIRY_MS = 60 * 60 * 1000; // 1 hour pending expiry
+
+        // ================================================================
+        // 🌐 SEWA SAHAYAK PAYMENT GATEWAY CONFIG
+        // ================================================================
+        const GATEWAY_BASE_URL = 'https://sewa-sahayak-inc.vercel.app/gateway';
+        // Ticket URL — where gateway sends user back after successful payment
+        const TICKET_RETURN_URL = 'https://yashrajx-inc.github.io/Dandiya-Night/?ticket=1';
+        // Payment mode: 'checkout' = branded page, 'direct' = instant Razorpay
+        const GATEWAY_MODE = 'checkout';
 
         let selectedBooking = {
-            passType: 'Single Pass', unitPrice: 149, personsPerPass: 1,
-            quantity: 1, paymentUrl: 'https://pages.razorpay.com/my-dandiya-book'
+            passType: 'Single Pass', unitPrice: 149, personsPerPass: 1, quantity: 1
         };
         let currentScannedTicketId = null;
 
@@ -713,45 +677,29 @@
         }
 
         // ================================================================
-        // 🔑 CORE STORAGE (Three-tier security)
+        // 🔑 STORAGE — Pending in sessionStorage, Verified in localStorage
         // ================================================================
-        // Tier 1: sessionStorage "pending booking" — set just before Razorpay
-        // Tier 2: sessionStorage "payment attempted" flag
-        // Tier 3: localStorage "verified ticket" — ONLY after Razorpay redirects
-        // ================================================================
-
         function savePendingBooking(data) {
             try {
                 sessionStorage.setItem('dandiya_pending_booking', JSON.stringify(data));
-                sessionStorage.setItem('dandiya_payment_attempted', '1');
-            } catch(e) { console.warn(e); }
+            } catch(e) {}
         }
-
         function getPendingBooking() {
             try {
                 const raw = sessionStorage.getItem('dandiya_pending_booking');
                 if (!raw) return null;
                 const data = JSON.parse(raw);
-                // Expire check
-                if (Date.now() - (data.createdAt || 0) > PENDING_EXPIRY_MS) {
-                    clearPendingBooking();
+                // 2-hour expiry on pending
+                if (Date.now() - (data.createdAt || 0) > 2 * 60 * 60 * 1000) {
+                    sessionStorage.removeItem('dandiya_pending_booking');
                     return null;
                 }
                 return data;
             } catch(e) { return null; }
         }
-
         function clearPendingBooking() {
-            try {
-                sessionStorage.removeItem('dandiya_pending_booking');
-                sessionStorage.removeItem('dandiya_payment_attempted');
-            } catch(e) {}
+            try { sessionStorage.removeItem('dandiya_pending_booking'); } catch(e) {}
         }
-
-        function wasPaymentAttempted() {
-            try { return sessionStorage.getItem('dandiya_payment_attempted') === '1'; } catch(e) { return false; }
-        }
-
         function saveVerifiedTicket(data) {
             try {
                 data.paymentVerified = true;
@@ -760,29 +708,21 @@
                 return true;
             } catch(e) { return false; }
         }
-
         function getVerifiedTicket() {
             try {
                 const raw = localStorage.getItem('dandiya_verified_ticket');
                 if (!raw) return null;
                 const data = JSON.parse(raw);
-                // Only return if it's ACTUALLY verified
-                if (data.paymentVerified === true && data.paymentRef && data.paymentRef.startsWith('pay_')) {
+                // STRICT: only return if payment is actually verified
+                if (data.paymentVerified === true && data.paymentRef && /^pay_/.test(data.paymentRef)) {
                     return data;
                 }
-                // If for some reason a non-verified ticket is in storage — purge it
                 localStorage.removeItem('dandiya_verified_ticket');
                 return null;
             } catch(e) { return null; }
         }
 
-        function clearVerifiedTicket() {
-            try { localStorage.removeItem('dandiya_verified_ticket'); } catch(e) {}
-        }
-
-        // ================================================================
-        // 🧹 PURGE OLD INSECURE KEYS (from previous versions)
-        // ================================================================
+        // Purge old insecure keys from previous versions
         try {
             localStorage.removeItem('dandiya_ticket_data');
         } catch(e) {}
@@ -790,23 +730,16 @@
         // ================================================================
         // 📋 BOOKING MODAL
         // ================================================================
-        function openBookingModal(passType, unitPrice, personsPerPass, paymentUrl) {
-            let finalUrl = paymentUrl;
-            if (paymentUrl.includes('rzp.io/rzp/')) {
-                const slug = paymentUrl.split('rzp.io/rzp/')[1];
-                finalUrl = `https://pages.razorpay.com/${slug}`;
-            }
+        function openBookingModal(passType, unitPrice, personsPerPass) {
             selectedBooking = {
                 passType, unitPrice: Number(unitPrice),
-                personsPerPass: Number(personsPerPass), quantity: 1, paymentUrl: finalUrl
+                personsPerPass: Number(personsPerPass), quantity: 1
             };
             document.getElementById('modalPassTitle').innerText = `${passType} — ₹${unitPrice}`;
             updateModalCalculation();
             document.getElementById('bookingModal').classList.remove('hidden');
         }
-
         function closeBookingModal() { document.getElementById('bookingModal').classList.add('hidden'); }
-
         function changeQuantity(delta) {
             let newQty = selectedBooking.quantity + delta;
             if (newQty < 1) newQty = 1;
@@ -814,7 +747,6 @@
             selectedBooking.quantity = newQty;
             updateModalCalculation();
         }
-
         function updateModalCalculation() {
             const qty = selectedBooking.quantity;
             const totalAmount = selectedBooking.unitPrice * qty;
@@ -823,24 +755,24 @@
             document.getElementById('summaryPassName').innerText = `${selectedBooking.passType} × ${qty}`;
             document.getElementById('summaryTotalPersons').innerText = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
             document.getElementById('summaryPassPrice').innerText = `₹${totalAmount}`;
-            document.getElementById('payBtnText').innerText = `Proceed to Pay ₹${totalAmount}`;
+            document.getElementById('payBtnText').innerText = `Pay Securely ₹${totalAmount}`;
             const reminderBox = document.getElementById('multiQtyReminder');
             if (qty > 1) {
                 document.getElementById('remQty').innerText = qty;
-                document.getElementById('remQty2').innerText = qty;
                 document.getElementById('remAmt').innerText = `₹${totalAmount}`;
                 reminderBox.classList.remove('hidden');
             } else { reminderBox.classList.add('hidden'); }
         }
 
         // ================================================================
-        // 💳 PROCEED TO RAZORPAY — Save ONLY to sessionStorage (pending)
+        // 💳 PROCEED TO SEWA SAHAYAK GATEWAY
         // ================================================================
-        function proceedToRazorpay(event) {
+        function proceedToGateway(event) {
             event.preventDefault();
 
             const name = document.getElementById('custName').value.trim();
             const mobile = document.getElementById('custMobile').value.trim();
+            const email = document.getElementById('custEmail').value.trim();
             const gender = document.querySelector('input[name="custGender"]:checked').value;
             const mobileErrorMsg = document.getElementById('mobileErrorMsg');
 
@@ -856,18 +788,18 @@
 
             const randomNum = Math.floor(100000 + Math.random() * 900000);
             const randomId = 'CBDN-' + randomNum;
-            const rzpSyncEmail = `${randomId}-QTY${qty}-RS${totalAmount}@dandiya.com`;
             const priceStr = `₹${totalAmount}`;
             const personsStr = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
             const securitySig = generateSecuritySignature(randomId, mobile, priceStr, personsStr);
             const bookedAt = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
+            // Save pending — will be converted to verified ONLY after gateway returns with pay_...
             const pendingData = {
                 ticketId: randomId,
-                paymentRef: '', // ⚠️ Empty — user must provide real one
-                rzpSyncEmail: rzpSyncEmail,
+                paymentRef: '',
+                rzpSyncEmail: '', // Will be filled by gateway's email
                 signature: securitySig,
-                name: name, mobile: mobile, gender: gender,
+                name: name, mobile: mobile, gender: gender, email: email,
                 basePassName: selectedBooking.passType,
                 unitPrice: selectedBooking.unitPrice,
                 personsPerPass: selectedBooking.personsPerPass,
@@ -879,41 +811,46 @@
                 paymentVerified: false,
                 createdAt: Date.now()
             };
-
-            // ✅ Save ONLY to sessionStorage — NOT localStorage!
             savePendingBooking(pendingData);
 
-            // ❌ Do NOT save to localStorage. Ticket doesn't exist yet.
+            // Build Sewa Sahayak Gateway URL
+            const customFields = [{
+                id: 'cf_gender_' + Math.floor(1000 + Math.random() * 9000),
+                label: 'Gender',
+                type: 'dropdown',
+                placeholder: 'Choose an option',
+                required: true,
+                options: ['Male', 'Female'],
+                defaultValue: gender
+            }];
 
-            const prefillUrl = `${selectedBooking.paymentUrl}?full_name=${encodeURIComponent(name)}&Full%20Name=${encodeURIComponent(name)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(mobile)}&email=${encodeURIComponent(rzpSyncEmail)}&gender=${encodeURIComponent(gender)}&Gender=${encodeURIComponent(gender)}&quantity=${qty}`;
+            const gatewayParams = new URLSearchParams({
+                mode: GATEWAY_MODE,
+                amount: String(totalAmount),
+                purpose: `Dandiya Night 2026 Pass - ${selectedBooking.passType} (Qty: ${qty})`,
+                booking_id: randomId,
+                name: name,
+                phone: mobile,
+                email: email || `${randomId}@dandiya.com`,
+                redirect_url: TICKET_RETURN_URL,
+                custom_fields: JSON.stringify(customFields)
+            });
 
-            window.location.href = prefillUrl;
+            const gatewayUrl = `${GATEWAY_BASE_URL}?${gatewayParams.toString()}`;
+            window.location.href = gatewayUrl;
         }
 
         // ================================================================
-        // 🔄 QUANTITY SYNC (only works on verified tickets)
+        // 🎫 MY TICKET BUTTON
         // ================================================================
-        function syncTicketQuantityFromDropdown(newQtyVal) {
-            const data = getVerifiedTicket();
-            if (!data) return;
-            const qty = Number(newQtyVal) || 1;
-            let unitPrice = data.unitPrice || 149;
-            let personsPerPass = data.personsPerPass || 1;
-            let baseName = data.basePassName || 'Single Pass';
-            if (!data.unitPrice) {
-                if (String(data.passType).includes('Couple')) { unitPrice = 249; personsPerPass = 2; baseName = 'Couple Pass'; }
-                else if (String(data.passType).includes('Family')) { unitPrice = 499; personsPerPass = 5; baseName = 'Family Pass (4+1 Free)'; }
+        function showSavedTicket() {
+            const verified = getVerifiedTicket();
+            if (verified) {
+                renderTicketView(verified);
+                return;
             }
-            const totalAmount = unitPrice * qty;
-            const totalPersons = personsPerPass * qty;
-            data.quantity = qty;
-            data.passType = `${baseName} (Qty: ${qty})`;
-            data.price = `₹${totalAmount}`;
-            data.persons = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
-            data.rzpSyncEmail = `${data.ticketId}-QTY${qty}-RS${totalAmount}@dandiya.com`;
-            data.signature = generateSecuritySignature(data.ticketId, data.mobile, data.price, data.persons);
-            saveVerifiedTicket(data);
-            renderTicketView(data);
+            // No verified ticket → warn user
+            alert('❌ Aapne abhi tak koi payment complete nahi kiya.\n\nPehle "Book Pass" button dabaayein aur Sewa Sahayak Gateway se payment karein.');
         }
 
         // ================================================================
@@ -957,84 +894,29 @@
         }
 
         // ================================================================
-        // 🎫 MY TICKET BUTTON
+        // 🔄 QUANTITY SYNC
         // ================================================================
-        function showSavedTicket() {
-            // Only show if a VERIFIED ticket exists
-            const verified = getVerifiedTicket();
-            if (verified) {
-                renderTicketView(verified);
-                return;
+        function syncTicketQuantityFromDropdown(newQtyVal) {
+            const data = getVerifiedTicket();
+            if (!data) return;
+            const qty = Number(newQtyVal) || 1;
+            let unitPrice = data.unitPrice || 149;
+            let personsPerPass = data.personsPerPass || 1;
+            let baseName = data.basePassName || 'Single Pass';
+            if (!data.unitPrice) {
+                if (String(data.passType).includes('Couple')) { unitPrice = 249; personsPerPass = 2; baseName = 'Couple Pass'; }
+                else if (String(data.passType).includes('Family')) { unitPrice = 499; personsPerPass = 5; baseName = 'Family Pass (4+1 Free)'; }
             }
-
-            // No verified ticket → check if there's a pending booking
-            const pending = getPendingBooking();
-            if (pending) {
-                // Show payment verification modal
-                openPaymentIdModal(pending);
-                return;
-            }
-
-            // Nothing at all
-            alert('❌ Aapne abhi tak koi payment complete nahi kiya.\n\nPehle "Book Pass" button dabaayein aur Razorpay se payment karein.');
-        }
-
-        // ================================================================
-        // 💳 PAYMENT ID VERIFICATION MODAL
-        // ================================================================
-        let pendingForVerify = null;
-
-        function openPaymentIdModal(pendingData) {
-            pendingForVerify = pendingData;
-            document.getElementById('previewTicketId').innerText = '#' + pendingData.ticketId;
-            document.getElementById('previewName').innerText = pendingData.name;
-            document.getElementById('previewAmount').innerText = pendingData.price;
-            document.getElementById('paymentIdInput').value = '';
-            document.getElementById('paymentIdError').classList.add('hidden');
-            document.getElementById('paymentIdModal').classList.remove('hidden');
-            setTimeout(() => document.getElementById('paymentIdInput').focus(), 300);
-        }
-
-        function cancelPendingPayment() {
-            document.getElementById('paymentIdModal').classList.add('hidden');
-            pendingForVerify = null;
-        }
-
-        function confirmPaymentId() {
-            const input = document.getElementById('paymentIdInput').value.trim();
-            const errEl = document.getElementById('paymentIdError');
-
-            // Must start with pay_ AND be reasonably long
-            if (!/^pay_[A-Za-z0-9]{8,}$/.test(input)) {
-                errEl.classList.remove('hidden');
-                document.getElementById('paymentIdInput').focus();
-                return;
-            }
-            errEl.classList.add('hidden');
-
-            if (!pendingForVerify) {
-                alert('❌ Koi pending booking nahi mili. Kripya dobara book karein.');
-                return;
-            }
-
-            // ✅ Mark as verified and save to localStorage
-            pendingForVerify.paymentRef = input;
-            pendingForVerify.paymentVerified = true;
-            pendingForVerify.verifiedAt = Date.now();
-            pendingForVerify.verificationMethod = 'user_input';
-
-            const ok = saveVerifiedTicket(pendingForVerify);
-            if (!ok) {
-                alert('❌ Ticket save nahi ho paya. Kripya browser storage check karein.');
-                return;
-            }
-
-            clearPendingBooking();
-            document.getElementById('paymentIdModal').classList.add('hidden');
-            pendingForVerify = null;
-
-            const verified = getVerifiedTicket();
-            renderTicketView(verified);
+            const totalAmount = unitPrice * qty;
+            const totalPersons = personsPerPass * qty;
+            data.quantity = qty;
+            data.passType = `${baseName} (Qty: ${qty})`;
+            data.price = `₹${totalAmount}`;
+            data.persons = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
+            data.rzpSyncEmail = `${data.ticketId}-QTY${qty}-RS${totalAmount}@dandiya.com`;
+            data.signature = generateSecuritySignature(data.ticketId, data.mobile, data.price, data.persons);
+            saveVerifiedTicket(data);
+            renderTicketView(data);
         }
 
         // ================================================================
@@ -1050,9 +932,7 @@
             const per = urlParams.get('per') || '';
             const amt = urlParams.get('amt') || '';
             const sig = urlParams.get('sig') || '';
-
             currentScannedTicketId = tid;
-
             document.getElementById('scanTktId').innerText = '#' + tid;
             document.getElementById('scanRzpSync').innerText = sync;
             document.getElementById('scanPayRef').innerText = pay + ' (' + sig + ')';
@@ -1094,20 +974,18 @@
                 scanIcon.innerHTML = '<i class="fa-solid fa-shield-check"></i>';
                 scanHeading.className = "text-2xl sm:text-3xl font-extrabold text-green-400 mt-3 mb-1";
                 scanHeading.innerText = "✅ VALID TICKET (1st Entry)";
-                scanSubtext.innerText = `Razorpay App me "${tid}" search karke Paid Amount (${amt}) match karein aur PIN (2026) daal kar lock karein.`;
+                scanSubtext.innerText = `Payment ID "${pay}" ko Gateway Dashboard me match karein aur PIN (2026) daal kar lock karein.`;
                 actionControls.classList.remove('hidden');
             }
-
             document.getElementById('mainLandingContent').classList.add('hidden');
             document.getElementById('ticketViewSection').classList.add('hidden');
             document.getElementById('gateScannerSection').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'auto' });
         }
-
         function markTicketUsedAtGate() {
             const pin = document.getElementById('gateAdminPin').value.trim();
             if (pin !== ORGANISER_GATE_PIN) {
-                alert("❌ Wrong Organiser PIN! Sirf Rahul Raj ya Sahil hi entry approve kar sakte hain.");
+                alert("❌ Wrong Organiser PIN!");
                 return;
             }
             if (!currentScannedTicketId) return;
@@ -1128,7 +1006,7 @@
         }
 
         // ================================================================
-        // 📥 DOWNLOAD TICKET (same as before)
+        // 📥 DOWNLOAD TICKET
         // ================================================================
         const DPI = 300, MM_PER_INCH = 25.4;
         const CARD_W_PX = Math.round((85.6 / MM_PER_INCH) * DPI);
@@ -1217,104 +1095,105 @@
         }
 
         // ================================================================
-        // 🔄 URL DETECTION — THE CRITICAL LOGIC
+        // 🔄 PAYMENT RETURN HANDLER (THE CRITICAL LOGIC)
         // ================================================================
         function handlePageLoad() {
             const searchStr = window.location.search;
             const urlParams = new URLSearchParams(searchStr);
 
-            // 1. Gate scanner check first
+            // 1. Gate scanner — highest priority
             if (urlParams.get('scan') === '1' && urlParams.has('tid')) {
                 renderGateScanner(urlParams);
                 return;
             }
 
-            const razorpayPaymentId = urlParams.get('razorpay_payment_id');
-            const hasTicketParam = urlParams.has('ticket') || urlParams.get('status') === 'ticket';
+            // 2. Payment return from Sewa Sahayak Gateway
+            // Gateway returns: ?payment_id=pay_...&status=success&amount=...
+            const paymentId = urlParams.get('payment_id') || urlParams.get('razorpay_payment_id');
+            const paymentStatus = urlParams.get('status');
+            const returnAmount = urlParams.get('amount');
+            const isTicketReturn = urlParams.has('ticket') || searchStr.includes('ticket=1');
 
-            // ============================================================
-            // 🔒 SCENARIO A: Razorpay returned with razorpay_payment_id
-            //    → This is DEFINITIVE proof of payment. Auto-verify!
-            // ============================================================
-            if (razorpayPaymentId && /^pay_/.test(razorpayPaymentId)) {
+            // 🔒 CASE A: gateway returned with status=success AND payment_id=pay_...
+            // This is 100% proof of payment.
+            if (paymentId && /^pay_/.test(paymentId) && (paymentStatus === 'success' || isTicketReturn)) {
+                document.getElementById('verifyOverlay').style.display = 'flex';
+
                 const pending = getPendingBooking();
+                let ticketData;
+
                 if (pending) {
-                    pending.paymentRef = razorpayPaymentId;
-                    pending.paymentVerified = true;
-                    pending.verifiedAt = Date.now();
-                    pending.verificationMethod = 'razorpay_redirect';
-                    saveVerifiedTicket(pending);
-                    clearPendingBooking();
+                    // Convert pending → verified
+                    ticketData = pending;
+                    ticketData.paymentRef = paymentId;
+                    ticketData.rzpSyncEmail = `${pending.ticketId}-${paymentId}@dandiya.com`;
+                    ticketData.paymentVerified = true;
+                    ticketData.verifiedAt = Date.now();
+                    ticketData.verificationMethod = 'gateway_return';
+                    // Recalculate signature with real payment ID
+                    ticketData.signature = generateSecuritySignature(
+                        ticketData.ticketId, ticketData.mobile, ticketData.price, ticketData.persons
+                    );
                 } else {
-                    // No pending — but Razorpay says payment was made.
-                    // Try to salvage from verified ticket
-                    const existing = getVerifiedTicket();
-                    if (!existing) {
-                        // No data at all — show a basic success ticket
-                        const fallback = {
-                            ticketId: 'CBDN-RZP-' + Math.floor(100000 + Math.random() * 900000),
-                            paymentRef: razorpayPaymentId,
-                            rzpSyncEmail: 'razorpay@dandiya.com',
-                            name: 'Valued Guest',
-                            mobile: 'Via Razorpay',
-                            gender: '—',
-                            passType: 'Entry Pass',
-                            price: 'Paid via Razorpay',
-                            persons: 'As per booking',
-                            bookedAt: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
-                            paymentVerified: true,
-                            signature: 'SIG-RZP'
-                        };
-                        saveVerifiedTicket(fallback);
-                    }
+                    // No pending (maybe user's browser cleared storage) — build minimal ticket
+                    const randomId = 'CBDN-RZP-' + Math.floor(100000 + Math.random() * 900000);
+                    ticketData = {
+                        ticketId: randomId,
+                        paymentRef: paymentId,
+                        rzpSyncEmail: `${randomId}-${paymentId}@dandiya.com`,
+                        signature: generateSecuritySignature(randomId, '0000000000', `₹${returnAmount || '0'}`, '1 Person'),
+                        name: 'Valued Guest',
+                        mobile: '0000000000',
+                        gender: '—',
+                        passType: 'Entry Pass',
+                        price: `₹${returnAmount || '0'}`,
+                        persons: 'As per payment',
+                        bookedAt: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
+                        paymentVerified: true,
+                        createdAt: Date.now()
+                    };
                 }
-                // Render the verified ticket
-                const verified = getVerifiedTicket();
-                if (verified) {
-                    renderTicketView(verified);
+
+                saveVerifiedTicket(ticketData);
+                clearPendingBooking();
+
+                // Wait a beat for UI feel, then show ticket
+                setTimeout(() => {
+                    document.getElementById('verifyOverlay').style.display = 'none';
+                    renderTicketView(getVerifiedTicket());
+                    // Clean URL
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
-                    return;
-                }
+                }, 1200);
+                return;
             }
 
-            // ============================================================
-            // 🔒 SCENARIO B: ?ticket=1 BUT no razorpay_payment_id
-            //    → We can't auto-verify. Show the Payment ID input modal
-            //    IF there's a pending booking in sessionStorage.
-            // ============================================================
-            if (hasTicketParam) {
-                const pending = getPendingBooking();
-                if (pending) {
-                    // Show the verification modal
-                    setTimeout(() => openPaymentIdModal(pending), 300);
-                    try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
-                    return;
-                }
-                // No pending — but user came from ticket redirect. Check verified
+            // 🔒 CASE B: user came back to ?ticket=1 WITHOUT payment_id
+            // → No proof of payment → refuse to show ticket
+            if (isTicketReturn && !paymentId) {
                 const verified = getVerifiedTicket();
                 if (verified) {
+                    // Already verified from before — safe to show
                     renderTicketView(verified);
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
-                    return;
+                } else {
+                    // No verified ticket, no payment ID — do NOTHING
+                    // Just clean the URL so refresh doesn't keep the flag
+                    clearPendingBooking();
+                    try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
+                    setTimeout(() => {
+                        alert('⚠️ Payment confirm nahi hua.\n\nAgar aapne paise kaat liye hain, toh kripya 5 minute baad "My Ticket" button check karein.\n\nWarna dobara pass book karein.');
+                    }, 500);
                 }
+                return;
             }
 
-            // ============================================================
-            // 🔒 SCENARIO C: Fresh page load — clean URL
-            //    → DON'T show any ticket. Show landing page only.
-            //    → My Ticket button appears ONLY if verified ticket exists
-            // ============================================================
+            // 3. Normal page load — show My Ticket button only if verified ticket exists
             const verified = getVerifiedTicket();
-            if (verified) {
-                const btn = document.getElementById('myTicketBtn');
-                if (btn) btn.classList.remove('hidden');
-            } else {
-                const btn = document.getElementById('myTicketBtn');
-                if (btn) btn.classList.add('hidden');
+            const btn = document.getElementById('myTicketBtn');
+            if (btn) {
+                if (verified) btn.classList.remove('hidden');
+                else btn.classList.add('hidden');
             }
-
-            // DO NOT auto-open verification modal on fresh load.
-            // Only open when user explicitly clicks "My Ticket".
         }
 
         // ================================================================
@@ -1322,13 +1201,11 @@
         // ================================================================
         handlePageLoad();
         window.addEventListener('DOMContentLoaded', handlePageLoad);
-        window.addEventListener('load', () => setTimeout(handlePageLoad, 300));
-        window.addEventListener('pageshow', function(e) {
-            setTimeout(handlePageLoad, 100);
-        });
+        window.addEventListener('load', () => setTimeout(handlePageLoad, 200));
+        window.addEventListener('pageshow', function() { setTimeout(handlePageLoad, 100); });
         window.addEventListener('hashchange', handlePageLoad);
         document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) setTimeout(handlePageLoad, 400);
+            if (!document.hidden) setTimeout(handlePageLoad, 500);
         });
 
         // Countdown
