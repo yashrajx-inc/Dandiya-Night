@@ -48,12 +48,28 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .pink-gradient-bg { background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%); }
-        .gold-border-glow { border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: 0 0 25px rgba(255, 0, 127, 0.25); }
-        .card-hover { transition: all 0.35s ease; }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25); border-color: #FFD700; }
-        @keyframes pulse-slow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        .animate-pulse-slow { animation: pulse-slow 3s infinite ease-in-out; }
+        .pink-gradient-bg {
+            background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
+        }
+        .gold-border-glow {
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.25);
+        }
+        .card-hover {
+            transition: all 0.35s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25);
+            border-color: #FFD700;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
 
         /* ============================================================ */
         /* CREDIT-CARD SIZE TICKET (85.6mm x 54mm) - ISO/IEC 7810 ID-1  */
@@ -68,6 +84,7 @@
             padding: 4px;
         }
 
+        /* Each ticket face is exactly 85.6mm x 54mm */
         .cc-ticket {
             width: 85.6mm;
             height: 54mm;
@@ -85,6 +102,7 @@
             box-sizing: border-box;
         }
 
+        /* Front: Header row */
         .cc-header {
             display: flex;
             justify-content: space-between;
@@ -126,6 +144,7 @@
             text-transform: uppercase;
         }
 
+        /* Body layout */
         .cc-body {
             display: flex;
             flex: 1;
@@ -185,6 +204,7 @@
             min-width: 0;
         }
 
+        /* QR Box */
         .cc-qr-box {
             width: 21mm;
             height: 21mm;
@@ -226,6 +246,7 @@
             letter-spacing: 0.2px;
         }
 
+        /* FOOTER STRIP */
         .cc-footer {
             border-top: 0.3mm solid rgba(255, 215, 0, 0.4);
             margin-top: 1mm;
@@ -238,6 +259,7 @@
         }
         .cc-footer strong { color: #FFD700; }
 
+        /* ============ BACK SIDE STYLES ============ */
         .cc-back-header {
             background: linear-gradient(90deg, #FF007F 0%, #FF5E00 100%);
             margin: -3mm -3.5mm 1.5mm -3.5mm;
@@ -295,6 +317,7 @@
         }
         .cc-back-bottom strong { color: #FFD700; }
 
+        /* Screen preview scale on small devices */
         @media screen and (max-width: 420px) {
             .cc-ticket {
                 transform: scale(0.92);
@@ -302,6 +325,7 @@
             }
         }
 
+        /* Print styles for exact credit-card output */
         @media print {
             body * { visibility: hidden; }
             #ticketViewSection, #ticketViewSection * { visibility: visible; }
@@ -483,6 +507,7 @@
 
                 <!-- ================= FRONT SIDE ================= -->
                 <div class="cc-ticket" id="ccFront">
+                    <!-- Header -->
                     <div class="cc-header">
                         <div>
                             <div class="cc-brand-tag">DANCE VIBES STUDIO</div>
@@ -495,7 +520,9 @@
                         </div>
                     </div>
 
+                    <!-- Body -->
                     <div class="cc-body">
+                        <!-- Left: Guest info -->
                         <div class="cc-left">
                             <div>
                                 <div class="cc-field">
@@ -535,6 +562,7 @@
                             </div>
                         </div>
 
+                        <!-- Right: QR -->
                         <div class="cc-right">
                             <div class="cc-qr-box">
                                 <img id="tktQrCode" src="" alt="Ticket QR Code" crossorigin="anonymous">
@@ -543,6 +571,7 @@
                         </div>
                     </div>
 
+                    <!-- Footer -->
                     <div class="cc-footer">
                         <span><strong>Venue:</strong> Shehnai Vivah Bhawan, Lakhminia</span>
                         <span><strong>Time:</strong> 5:00 PM</span>
@@ -551,11 +580,13 @@
 
                 <!-- ================= BACK SIDE ================= -->
                 <div class="cc-ticket" id="ccBack">
+                    <!-- Top strip -->
                     <div class="cc-back-header">
                         <span class="cc-back-header-title">Entry Pass • Terms & Info</span>
                         <i class="fa-solid fa-circle-info cc-back-header-icon"></i>
                     </div>
 
+                    <!-- Rules -->
                     <div class="cc-back-rules-title">Important Instructions</div>
                     <ul class="cc-back-rules">
                         <li>Ye pass 1-time entry ke liye valid hai. QR scan hote hi lock ho jayega.</li>
@@ -567,6 +598,7 @@
                         <li>Apne personal saman ka khud dhyan rakhein. Organisers loss ke liye zimmedar nahi hain.</li>
                     </ul>
 
+                    <!-- Bottom info -->
                     <div class="cc-back-bottom">
                         <span><strong>Booked:</strong> <span id="tktDateBooked">—</span></span>
                         <span><strong>Pay ID:</strong> <span id="tktPayIdDisplay">—</span></span>
@@ -607,6 +639,7 @@
     <!-- MAIN LANDING PAGE CONTENT                  -->
     <!-- ========================================== -->
     <main id="mainLandingContent">
+        <!-- Hero Section -->
         <section class="relative pt-10 pb-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 text-gold text-xs sm:text-sm font-semibold mb-6">
                 <span>✨ DANCE VIBES STUDIO PRESENTS ✨</span>
@@ -1082,10 +1115,6 @@
     <script>
         const ORGANISER_GATE_PIN = "2026";
         const SECRET_SALT = "DVS-CBDN-2026-SECURE";
-        // ⏱️ Payment verification window: user ko Razorpay se wapas aane me max kitna time lagega
-        // Agar user 30 minute ke andar Razorpay se wapas nahi aaya (payment complete karke),
-        // to uski pending ticket entry expire ho jayegi — My Ticket button kaam nahi karega.
-        const PAYMENT_EXPIRY_MS = 30 * 60 * 1000; // 30 minutes
 
         let selectedBooking = {
             passType: 'Single Pass',
@@ -1106,67 +1135,6 @@
             }
             return "SIG-" + Math.abs(hash).toString(16).toUpperCase().padStart(6, '0');
         }
-
-        // =============================================================
-        // 🔒 PAYMENT VERIFICATION HELPERS
-        // Ticket sirf tabhi valid hai jab user Razorpay se wapas aaya ho
-        // (yaani URL me razorpay_payment_id / ticket param aaya ho)
-        // ya phir user ne manually Payment ID / UTR daal kar verify kiya ho.
-        // =============================================================
-
-        // Nayi pending ticket save karo (payment abhi hua nahi)
-        function savePendingTicket(ticketData) {
-            ticketData.paymentVerified = false;
-            ticketData.createdAt = Date.now();
-            localStorage.setItem('dandiya_ticket_data', JSON.stringify(ticketData));
-        }
-
-        // Jab user Razorpay se wapas aata hai (payment complete), tab verify karo
-        function markTicketAsVerified(paymentId) {
-            const saved = localStorage.getItem('dandiya_ticket_data');
-            if (!saved) return false;
-
-            const data = JSON.parse(saved);
-            data.paymentVerified = true;
-            data.paymentRef = paymentId || data.paymentRef;
-            data.verifiedAt = Date.now();
-            localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
-            return true;
-        }
-
-        // UTR / Payment ID manually daal kar verify karne ki function
-        function verifyTicketWithUTR() {
-            const customRef = document.getElementById('customUtrInput').value.trim();
-            if (!customRef || customRef.length < 6) {
-                alert('❌ Kripya valid Razorpay Payment ID (pay_...) ya 12-digit UTR number daalein.');
-                return;
-            }
-
-            const saved = localStorage.getItem('dandiya_ticket_data');
-            if (!saved) {
-                alert('❌ Koi pending ticket nahi mila. Pehle pass book karein.');
-                return;
-            }
-
-            const data = JSON.parse(saved);
-            data.paymentVerified = true;
-            data.paymentRef = customRef;
-            data.verifiedAt = Date.now();
-            data.verificationMethod = 'manual_utr';
-            localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
-            renderTicketView(data);
-            document.getElementById('customUtrInput').value = '';
-            alert('✅ Payment ID / UTR verify ho gaya! Aapka ticket ab valid hai. Gate par Razorpay app me is ID se match kiya jayega.');
-        }
-
-        // Check karo ki ticket valid hai ya pending
-        function isTicketPaymentVerified(data) {
-            if (!data) return false;
-            if (data.paymentVerified === true) return true;
-            return false;
-        }
-
-        // =============================================================
 
         function openBookingModal(passType, unitPrice, personsPerPass, paymentUrl) {
             let finalUrl = paymentUrl;
@@ -1266,13 +1234,10 @@
                 passType: `${selectedBooking.passType} (Qty: ${qty})`,
                 price: priceStr,
                 persons: personsStr,
-                bookedAt: bookedAt,
-                paymentVerified: false,
-                createdAt: Date.now()
+                bookedAt: bookedAt
             };
 
-            // ✅ Sirf PENDING ticket save karo — verified flag false
-            savePendingTicket(ticketData);
+            localStorage.setItem('dandiya_ticket_data', JSON.stringify(ticketData));
 
             const prefillUrl = `${selectedBooking.paymentUrl}?full_name=${encodeURIComponent(name)}&Full%20Name=${encodeURIComponent(name)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(mobile)}&email=${encodeURIComponent(rzpSyncEmail)}&gender=${encodeURIComponent(gender)}&Gender=${encodeURIComponent(gender)}&quantity=${qty}`;
 
@@ -1310,8 +1275,17 @@
         }
 
         function updateTicketPaymentRef() {
-            // 🔒 UTR daal kar ticket verify karne ka function
-            verifyTicketWithUTR();
+            const customRef = document.getElementById('customUtrInput').value.trim();
+            if (!customRef) return;
+            const saved = localStorage.getItem('dandiya_ticket_data');
+            if (saved) {
+                const data = JSON.parse(saved);
+                data.paymentRef = customRef;
+                localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
+                renderTicketView(data);
+                document.getElementById('customUtrInput').value = '';
+                alert('Aapka Payment ID / UTR Ticket aur QR Code me update ho gaya hai!');
+            }
         }
 
         function renderTicketView(data) {
@@ -1349,6 +1323,7 @@
             });
 
             const qrVerificationUrl = `${baseSiteUrl}?${scanParams.toString()}`;
+            // High-res QR (400x400) with high error correction for sharpness even when scaled
             document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&ecc=H&margin=0&data=${encodeURIComponent(qrVerificationUrl)}`;
 
             document.getElementById('mainLandingContent').classList.add('hidden');
@@ -1440,73 +1415,11 @@
             alert(`✅ Entry Approved! Ticket #${currentScannedTicketId} ab lock ho chuka hai.`);
         }
 
-        // ============================================================
-        // 🔒 SHOW SAVED TICKET — PAYMENT VERIFICATION CHECK
-        // Ye function tabhi ticket dikhayega jab user ne actually payment
-        // complete kiya ho (Razorpay redirect ya manual UTR verification).
-        // ============================================================
         function showSavedTicket() {
             const saved = localStorage.getItem('dandiya_ticket_data');
-
-            if (!saved) {
-                alert('❌ Aapne abhi tak koi pass book nahi kiya hai.\n\nPehle "Book Pass" button par click karke apna pass book karein aur Razorpay se payment complete karein.');
-                return;
+            if (saved) {
+                renderTicketView(JSON.parse(saved));
             }
-
-            const data = JSON.parse(saved);
-
-            // 🔒 PAYMENT VERIFICATION CHECK
-            if (!isTicketPaymentVerified(data)) {
-                // Pending ticket — check karo kitna time hua
-                const elapsed = Date.now() - (data.createdAt || 0);
-                const elapsedMinutes = Math.floor(elapsed / 60000);
-
-                if (elapsed > PAYMENT_EXPIRY_MS) {
-                    // Bahut purani pending ticket — delete karo
-                    localStorage.removeItem('dandiya_ticket_data');
-                    alert('❌ Aapki pending ticket expire ho gayi hai (30 minute se zyada).\n\nKripya dobara pass book karein aur Razorpay se payment complete karein.');
-                    return;
-                }
-
-                // Show warning: payment complete nahi hua
-                const confirmMsg = `⚠️ PAYMENT PENDING!\n\n` +
-                    `Aapne abhi tak Razorpay par payment complete nahi kiya hai.\n\n` +
-                    `Ticket ID: #${data.ticketId}\n` +
-                    `Guest: ${data.name}\n` +
-                    `Amount: ${data.price}\n` +
-                    `Pending since: ${elapsedMinutes} minute\n\n` +
-                    `Kya aapne Razorpay par payment kar diya hai?\n\n` +
-                    `👉 OK dabayein agar payment ho gaya hai (aapka ticket abhi open hoga).\n` +
-                    `👉 Cancel dabayein agar payment nahi hua (aapko dobara book karna hoga).`;
-
-                if (confirm(confirmMsg)) {
-                    // User confirm karta hai payment hua — par humein actual payment ID chahiye
-                    // UTR / Payment ID maango verify karne ke liye
-                    const paymentId = prompt(
-                        '📝 Kripya apna Razorpay Payment ID (pay_...) ya 12-digit UPI UTR number daalein:\n\n' +
-                        '(Ye aapko Razorpay app / bank SMS me mila hoga)'
-                    );
-
-                    if (paymentId && paymentId.trim().length >= 6) {
-                        // Mark as verified
-                        data.paymentVerified = true;
-                        data.paymentRef = paymentId.trim();
-                        data.verifiedAt = Date.now();
-                        data.verificationMethod = 'user_confirm';
-                        localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
-                        renderTicketView(data);
-                    } else {
-                        alert('❌ Payment ID / UTR valid nahi hai.\n\nAapka ticket pending hai. Jab payment complete karein tab "My Ticket" par click karke apna Payment ID daalein.');
-                    }
-                } else {
-                    // User ne cancel kiya — ticket abhi show nahi karo
-                    alert('ℹ️ Aapka ticket abhi pending hai kyunki payment complete nahi hua.\n\nJab aap Razorpay par payment complete kar lein, tab "My Ticket" button par click karke apna ticket dekhein.');
-                }
-                return;
-            }
-
-            // ✅ Ticket verified hai — ab show karo
-            renderTicketView(data);
         }
 
         function closeTicketView() {
@@ -1519,16 +1432,22 @@
         // ============================================================
         // HIGH-QUALITY CREDIT-CARD SIZE TICKET DOWNLOAD (Front + Back)
         // ============================================================
+        // The canvas uses mm -> px conversion at 300 DPI:
+        //   85.6 mm = 3.370 in  x 300 DPI ≈ 1011 px wide
+        //   54   mm = 2.126 in  x 300 DPI ≈  638 px tall
+        // This guarantees EXACT credit-card size on any device.
         const DPI = 300;
         const MM_PER_INCH = 25.4;
         const CARD_W_PX = Math.round((85.6 / MM_PER_INCH) * DPI); // ≈ 1011
         const CARD_H_PX = Math.round((54.0 / MM_PER_INCH) * DPI); // ≈ 638
 
         async function captureElement(element, targetWidthPx, targetHeightPx) {
+            // html2canvas renders at its own device size, then we composite
+            // onto a fixed DPI canvas to guarantee exact card dimensions.
             const rect = element.getBoundingClientRect();
 
             const canvas = await html2canvas(element, {
-                scale: 4,
+                scale: 4,                    // Super high-res internal render
                 useCORS: true,
                 allowTaint: true,
                 backgroundColor: '#0d021a',
@@ -1539,6 +1458,7 @@
                 logging: false,
                 imageTimeout: 20000,
                 onclone: function(clonedDoc) {
+                    // Ensure QR is crisp in clone
                     const qr = clonedDoc.getElementById('tktQrCode');
                     if (qr) {
                         qr.style.imageRendering = 'pixelated';
@@ -1551,6 +1471,7 @@
                 }
             });
 
+            // Now composite to exact 85.6mm × 54mm @ 300 DPI
             const out = document.createElement('canvas');
             out.width = targetWidthPx;
             out.height = targetHeightPx;
@@ -1565,16 +1486,6 @@
         }
 
         async function downloadTicketImage() {
-            // 🔒 Download bhi sirf verified ticket ke liye
-            const saved = localStorage.getItem('dandiya_ticket_data');
-            if (saved) {
-                const data = JSON.parse(saved);
-                if (!isTicketPaymentVerified(data)) {
-                    alert('❌ Payment pending hai! Pehle payment complete karein, tab download karein.');
-                    return;
-                }
-            }
-
             const frontEl = document.getElementById('ccFront');
             const backEl = document.getElementById('ccBack');
             const downloadBtn = document.getElementById('downloadTicketBtn');
@@ -1586,13 +1497,15 @@
             }
 
             try {
+                // Capture both sides at exact credit-card size (300 DPI)
                 const [frontCanvas, backCanvas] = await Promise.all([
                     captureElement(frontEl, CARD_W_PX, CARD_H_PX),
                     captureElement(backEl, CARD_W_PX, CARD_H_PX)
                 ]);
 
-                const GAP = Math.round(DPI * 0.10);
-                const PADDING = Math.round(DPI * 0.12);
+                // Compose final canvas: front + gap + back (stacked vertically)
+                const GAP = Math.round(DPI * 0.10); // 0.10 inch gap (~30px @300DPI)
+                const PADDING = Math.round(DPI * 0.12); // ~36px padding around
 
                 const finalW = CARD_W_PX + PADDING * 2;
                 const finalH = CARD_H_PX * 2 + GAP + PADDING * 2;
@@ -1602,19 +1515,25 @@
                 finalCanvas.height = finalH;
                 const fctx = finalCanvas.getContext('2d');
 
+                // Background matching ticket theme
                 const bgGrad = fctx.createLinearGradient(0, 0, finalW, finalH);
                 bgGrad.addColorStop(0, '#0d021a');
                 bgGrad.addColorStop(1, '#1a0530');
                 fctx.fillStyle = bgGrad;
                 fctx.fillRect(0, 0, finalW, finalH);
 
+                // Optional subtle outer gold border
                 fctx.strokeStyle = 'rgba(255, 215, 0, 0.35)';
                 fctx.lineWidth = Math.round(DPI * 0.01);
                 fctx.strokeRect(PADDING * 0.5, PADDING * 0.5, finalW - PADDING, finalH - PADDING);
 
+                // Draw FRONT
                 fctx.drawImage(frontCanvas, PADDING, PADDING, CARD_W_PX, CARD_H_PX);
+
+                // Draw BACK below the front
                 fctx.drawImage(backCanvas, PADDING, PADDING + CARD_H_PX + GAP, CARD_W_PX, CARD_H_PX);
 
+                // Convert to Blob & download (works reliably on all OS)
                 const dataUrl = finalCanvas.toDataURL('image/png', 1.0);
                 const a = document.createElement('a');
                 a.download = `Chhoti-Ballia-Dandiya-Ticket-85.6x54mm-${Date.now()}.png`;
@@ -1637,9 +1556,6 @@
             }
         }
 
-        // ============================================================
-        // 🔒 URL CHECK — Sirf Razorpay redirect par ticket verify karo
-        // ============================================================
         function checkUrlAndRenderInstant() {
             const searchStr = window.location.search;
             const urlParams = new URLSearchParams(searchStr);
@@ -1647,68 +1563,46 @@
             const fullUrl = window.location.href.toLowerCase();
             const savedDataStr = localStorage.getItem('dandiya_ticket_data');
 
-            // Gate scanner — alag check (organiser QR scan)
+            if (savedDataStr) {
+                const btn = document.getElementById('myTicketBtn');
+                if (btn) btn.classList.remove('hidden');
+            }
+
             if (urlParams.get('scan') === '1' && urlParams.has('tid')) {
                 renderGateScanner(urlParams);
                 return;
             }
 
-            // Detect Razorpay return redirect — sirf is case me ticket verified hoga
-            const razorpayPaymentId = urlParams.get('razorpay_payment_id');
             const isTicketRedirect = 
-                razorpayPaymentId ||  // ✅ Sabse strong signal: Razorpay ne actual payment ID diya
                 urlParams.has('ticket') || 
-                urlParams.get('status') === 'ticket' ||
+                searchStr.toLowerCase().includes('ticket') ||
+                urlParams.get('status') === 'ticket' || 
+                urlParams.has('razorpay_payment_id') ||
+                hash.includes('ticket') || 
                 fullUrl.endsWith('/ticket') || 
                 fullUrl.endsWith('/ticket/');
 
-            if (isTicketRedirect && savedDataStr) {
-                const data = JSON.parse(savedDataStr);
-
-                // 🔒 Payment verification: sirf tab verify karo jab Razorpay ka
-                // actual razorpay_payment_id mile
-                if (razorpayPaymentId) {
-                    data.paymentVerified = true;
-                    data.paymentRef = razorpayPaymentId;
-                    data.verifiedAt = Date.now();
-                    data.verificationMethod = 'razorpay_redirect';
-                    localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
+            if (isTicketRedirect) {
+                if (savedDataStr) {
+                    const data = JSON.parse(savedDataStr);
+                    if (urlParams.get('razorpay_payment_id')) {
+                        data.paymentRef = urlParams.get('razorpay_payment_id');
+                        localStorage.setItem('dandiya_ticket_data', JSON.stringify(data));
+                    }
                     renderTicketView(data);
-                    // URL clean karo taaki refresh par dobara na chale
-                    window.history.replaceState({}, document.title, window.location.pathname);
-                } else if (urlParams.has('ticket') || urlParams.get('status') === 'ticket') {
-                    // Ticket param hai par payment ID nahi — suspicious
-                    // Sirf tabhi dikhao jab user ne pehle UTR verify kiya ho
-                    if (isTicketPaymentVerified(data)) {
-                        renderTicketView(data);
-                        window.history.replaceState({}, document.title, window.location.pathname);
-                    } else {
-                        // Payment ID nahi mila — pending ticket as it is rakho
-                        // Aur user ko home page par hi rakho
-                        console.warn('Ticket redirect detected but no razorpay_payment_id — keeping ticket pending');
-                    }
-                }
-            }
-
-            // My Ticket button visibility — sirf verified tickets ke liye
-            if (savedDataStr) {
-                const data = JSON.parse(savedDataStr);
-                const btn = document.getElementById('myTicketBtn');
-                if (btn) {
-                    if (isTicketPaymentVerified(data)) {
-                        btn.classList.remove('hidden');
-                    } else {
-                        // Pending ticket — check expiry
-                        const elapsed = Date.now() - (data.createdAt || 0);
-                        if (elapsed > PAYMENT_EXPIRY_MS) {
-                            localStorage.removeItem('dandiya_ticket_data');
-                            btn.classList.add('hidden');
-                        } else {
-                            // Pending but not expired — button dikhao
-                            // (click karne par payment verification check hoga)
-                            btn.classList.remove('hidden');
-                        }
-                    }
+                } else {
+                    renderTicketView({
+                        ticketId: 'CBDN-VERIFIED',
+                        paymentRef: urlParams.get('razorpay_payment_id') || 'RZP-VERIFIED',
+                        rzpSyncEmail: 'verified@dandiya.com',
+                        name: 'Valued Guest',
+                        mobile: 'Verified on Razorpay',
+                        gender: '—',
+                        passType: 'Entry Pass',
+                        price: 'Paid',
+                        persons: 'As per booking',
+                        bookedAt: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+                    });
                 }
             }
         }
@@ -1719,7 +1613,6 @@
         window.addEventListener('pageshow', checkUrlAndRenderInstant);
         window.addEventListener('hashchange', checkUrlAndRenderInstant);
 
-        // Countdown
         const eventDate = new Date("October 13, 2026 17:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
