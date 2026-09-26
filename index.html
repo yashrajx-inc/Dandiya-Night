@@ -324,7 +324,7 @@
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-1">Single Pass</h3>
                         <p class="text-xs text-gray-300 mb-6">Valid for 1 Person per Pass</p>
-                        <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹1</span><span class="text-xs text-gray-400">/ pass</span></div>
+                        <div class="flex items-baseline gap-1 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹149</span><span class="text-xs text-gray-400">/ pass</span></div>
                         <p class="text-sm text-gray-200 mb-6 leading-relaxed">Akele aao ya dosto ke group ke sath, Dance Vibes Studio ke sabse bade Garba celebration ka hissa bano!</p>
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Entry for 1 Person per pass</li>
@@ -334,8 +334,8 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Single Pass', 1, 1)" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                        <span>Book Single Pass (₹1)</span><i class="fa-solid fa-arrow-right"></i>
+                    <button onclick="openBookingModal('Single Pass', 149, 1)" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
+                        <span>Book Single Pass (₹149)</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
@@ -430,7 +430,7 @@
             <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div class="text-center mb-5">
                 <span class="px-3 py-1 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold uppercase">Step 1 of 2 • Guest Details</span>
-                <h3 id="modalPassTitle" class="text-2xl font-extrabold text-white mt-2">Single Pass — ₹1</h3>
+                <h3 id="modalPassTitle" class="text-2xl font-extrabold text-white mt-2">Single Pass — ₹149</h3>
                 <p class="text-xs text-gray-300 mt-1">Apna E-Ticket generate karne ke liye niche details bharein</p>
             </div>
             <form id="customerBookingForm" onsubmit="proceedToGateway(event)" class="space-y-4">
@@ -476,13 +476,13 @@
                 <div class="bg-black/40 border border-gold/30 rounded-xl p-3.5 space-y-1.5 text-xs text-gray-300">
                     <div class="flex items-center justify-between"><span class="text-gray-400">Selected Pass & Qty:</span><strong id="summaryPassName" class="text-white">Single Pass × 1</strong></div>
                     <div class="flex items-center justify-between"><span class="text-gray-400">Total Allowed Entry:</span><strong id="summaryTotalPersons" class="text-green-400 font-bold">1 Person</strong></div>
-                    <div class="border-t border-white/10 pt-2 flex items-center justify-between"><span class="text-gray-200 font-semibold text-sm">Total Payable:</span><strong id="summaryPassPrice" class="text-gold text-xl font-extrabold">₹1</strong></div>
+                    <div class="border-t border-white/10 pt-2 flex items-center justify-between"><span class="text-gray-200 font-semibold text-sm">Total Payable:</span><strong id="summaryPassPrice" class="text-gold text-xl font-extrabold">₹149</strong></div>
                 </div>
                 <div id="multiQtyReminder" class="hidden bg-amber-500/20 border border-gold rounded-xl p-3 text-xs text-amber-200 text-center leading-relaxed">
                     ⚠️ <strong>Note:</strong> Aapne <strong id="remQty" class="text-white underline">2</strong> Pass chune hain. Total <strong id="remAmt" class="text-gold font-bold">₹298</strong> pay hoga.
                 </div>
                 <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink via-pink-600 to-orange-500 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                    <span id="payBtnText">Pay Securely ₹1</span><i class="fa-solid fa-lock text-sm"></i>
+                    <span id="payBtnText">Pay Securely ₹149</span><i class="fa-solid fa-lock text-sm"></i>
                 </button>
                 <p class="text-[11px] text-center text-gray-400"><i class="fa-solid fa-shield-halved text-green-400 mr-1"></i> 100% Secure Payment via Sewa Sahayak Gateway</p>
             </form>
@@ -506,7 +506,7 @@
         const TICKET_RETURN_URL = 'https://yashrajx-inc.github.io/Dandiya-Night/?ticket=1';
         const GATEWAY_MODE = 'checkout';
 
-        let selectedBooking = { passType: 'Single Pass', unitPrice: 1, personsPerPass: 1, quantity: 1 };
+        let selectedBooking = { passType: 'Single Pass', unitPrice: 149, personsPerPass: 1, quantity: 1 };
         let currentScannedTicketId = null;
 
         function generateSecuritySignature(ticketId, mobile, price, persons) {
@@ -665,7 +665,7 @@
         function syncTicketQuantityFromDropdown(newQtyVal) {
             const data = getVerifiedTicket(); if (!data) return;
             const qty = Number(newQtyVal) || 1;
-            let unitPrice = data.unitPrice || 1, personsPerPass = data.personsPerPass || 1, baseName = data.basePassName || 'Single Pass';
+            let unitPrice = data.unitPrice || 149, personsPerPass = data.personsPerPass || 1, baseName = data.basePassName || 'Single Pass';
             if (!data.unitPrice) {
                 if (String(data.passType).includes('Couple')) { unitPrice = 249; personsPerPass = 2; baseName = 'Couple Pass'; }
                 else if (String(data.passType).includes('Family')) { unitPrice = 499; personsPerPass = 5; baseName = 'Family Pass (4+1 Free)'; }
@@ -903,7 +903,7 @@
                         quantity: parsedQty,
                         personsPerPass: 1,
                         basePassName: parsedPassType || 'Single Pass',
-                        unitPrice: returnAmount ? Number(returnAmount) : 1,
+                        unitPrice: returnAmount ? Number(returnAmount) : 149,
                         bookedAt: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
                         paymentVerified: true,
                         createdAt: Date.now()
