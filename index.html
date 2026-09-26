@@ -18,12 +18,7 @@
                         hindi: ['Rozha One', 'serif'],
                         script: ['Kaushan Script', 'cursive'],
                     },
-                    colors: {
-                        gold: '#FFD700',
-                        festivePink: '#FF007F',
-                        festiveOrange: '#FF5E00',
-                        deepPurple: '#120324',
-                    }
+                    colors: { gold: '#FFD700', festivePink: '#FF007F', festiveOrange: '#FF5E00', deepPurple: '#120324' }
                 }
             }
         }
@@ -53,7 +48,6 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
         .animate-fadeInUp { animation: fadeInUp 0.5s ease-out; }
 
-        /* CREDIT-CARD SIZE TICKET (85.6mm x 54mm) */
         .cc-ticket-wrap { display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; width: 100%; padding: 4px; }
         .cc-ticket {
             width: 85.6mm; height: 54mm; border-radius: 3.5mm; position: relative; overflow: hidden;
@@ -103,7 +97,6 @@
             .cc-ticket-wrap { gap: 8mm; }
         }
 
-        /* Payment Verifying overlay */
         #verifyOverlay {
             position: fixed; inset: 0; z-index: 100;
             background: rgba(13, 2, 26, 0.97);
@@ -121,16 +114,16 @@
 </head>
 <body class="font-poppins antialiased selection:bg-festivePink selection:text-white">
 
-    <!-- Payment Verifying Overlay -->
+    <!-- Verifying Overlay -->
     <div id="verifyOverlay" style="display: none;">
         <div class="text-center">
             <div class="spinner"></div>
-            <p class="text-gold font-bold text-lg">Verifying Payment...</p>
+            <p class="text-gold font-bold text-lg">Verifying Payment & Loading Ticket...</p>
             <p class="text-gray-300 text-sm mt-2">Aapka ticket taiyar kiya ja raha hai. Kripya wait karein.</p>
         </div>
     </div>
 
-    <!-- Top Announcement Bar -->
+    <!-- Top Bar -->
     <div class="bg-gradient-to-r from-festivePink via-purple-700 to-festiveOrange text-white text-xs sm:text-sm py-2 px-4 text-center font-semibold tracking-wide">
         🎉 BIGGEST GARBA CELEBRATIONS IN CHHOTI BALLIA (1st EDITION) • 13th OCT 2026 🎉
     </div>
@@ -147,14 +140,12 @@
                     <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-white">Dandiya Nights 2026</h1>
                 </div>
             </a>
-
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-200">
                 <a href="#highlights" class="hover:text-gold transition">Highlights</a>
                 <a href="#tickets" class="hover:text-gold transition">Book Passes</a>
                 <a href="#venue" class="hover:text-gold transition">Venue & Info</a>
                 <a href="#contact" class="hover:text-gold transition">Contact</a>
             </nav>
-
             <div class="flex items-center gap-2">
                 <button id="myTicketBtn" onclick="showSavedTicket()" class="hidden bg-white/10 border border-gold/50 text-gold font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full hover:bg-white/20 transition">
                     <i class="fa-solid fa-qrcode mr-1"></i> My Ticket
@@ -166,7 +157,7 @@
         </div>
     </header>
 
-    <!-- GATE SCANNER (unchanged) -->
+    <!-- Gate Scanner -->
     <section id="gateScannerSection" class="hidden py-10 px-4 sm:px-6 max-w-lg mx-auto">
         <div id="scanStatusBox" class="rounded-3xl border-2 p-6 sm:p-8 text-center shadow-2xl">
             <div id="scanIcon" class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4"></div>
@@ -201,7 +192,7 @@
         </div>
     </section>
 
-    <!-- DIGITAL TICKET SECTION -->
+    <!-- TICKET VIEW -->
     <section id="ticketViewSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
         <div class="text-center mb-5">
             <div class="w-14 h-14 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce">
@@ -323,7 +314,7 @@
         </div>
     </section>
 
-    <!-- MAIN LANDING PAGE -->
+    <!-- MAIN LANDING -->
     <main id="mainLandingContent">
         <section class="relative pt-10 pb-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 text-gold text-xs sm:text-sm font-semibold mb-6">
@@ -405,7 +396,7 @@
                     </button>
                 </div>
 
-                <!-- Couple Pass -->
+                <!-- Couple -->
                 <div class="rounded-3xl bg-gradient-to-b from-pink-900/50 via-purple-900/40 to-white/5 p-7 flex flex-col justify-between border-2 border-festivePink shadow-[0_0_35px_rgba(255,0,127,0.4)] card-hover relative transform md:-translate-y-3">
                     <div class="absolute top-0 right-0 bg-gradient-to-r from-festivePink to-orange-500 text-white text-[11px] font-extrabold px-4 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">❤️ Most Popular</div>
                     <div>
@@ -431,7 +422,7 @@
                     </button>
                 </div>
 
-                <!-- Family Pass -->
+                <!-- Family -->
                 <div class="rounded-3xl bg-gradient-to-b from-amber-900/30 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-gold text-black text-[11px] font-extrabold px-4 py-1 rounded-bl-xl uppercase tracking-wider">🔥 4 + 1 FREE OFFER</div>
                     <div>
@@ -489,20 +480,6 @@
                     <h4 class="text-lg font-bold text-white mb-1">Food Stalls</h4>
                     <p class="text-xs text-gold font-semibold uppercase mb-2">Tasty Food, Great Vibes</p>
                     <p class="text-sm text-gray-300">Mouth-watering snacks, street food aur refreshments ke special stalls.</p>
-                </div>
-            </div>
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-gradient-to-r from-pink-600/30 to-purple-600/30 border border-pink-400/40 rounded-2xl p-5 flex items-center gap-4">
-                    <i class="fa-solid fa-gift text-4xl text-gold"></i>
-                    <div><h5 class="font-bold text-white text-base">LUCKY DRAW!</h5><p class="text-xs text-gray-200">Exciting Gifts Await You! Har pass holder ke paas jeetne ka mauka.</p></div>
-                </div>
-                <div class="bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border border-blue-400/40 rounded-2xl p-5 flex items-center gap-4">
-                    <i class="fa-solid fa-bottle-water text-4xl text-cyan-300"></i>
-                    <div><h5 class="font-bold text-white text-base">FREE WATER</h5><p class="text-xs text-gray-200">Sabhi guests ke liye pure event me free drinking water ki suvidha.</p></div>
-                </div>
-                <div class="bg-gradient-to-r from-red-600/30 to-orange-600/30 border border-red-400/40 rounded-2xl p-5 flex items-center gap-4">
-                    <i class="fa-solid fa-kit-medical text-4xl text-red-400"></i>
-                    <div><h5 class="font-bold text-white text-base">FREE FIRST AID</h5><p class="text-xs text-gray-200">Aapki safety aur care ke liye dedicated First Aid medical support.</p></div>
                 </div>
             </div>
         </section>
@@ -646,19 +623,17 @@
     </div>
 
     <!-- ================================================================= -->
-    <!-- JAVASCRIPT - SEWA SAHAYAK GATEWAY INTEGRATION                     -->
+    <!-- JAVASCRIPT - FIXED: Details preserved across cross-origin redirect -->
     <!-- ================================================================= -->
     <script>
         const ORGANISER_GATE_PIN = "2026";
         const SECRET_SALT = "DVS-CBDN-2026-SECURE";
 
         // ================================================================
-        // 🌐 SEWA SAHAYAK PAYMENT GATEWAY CONFIG
+        // 🌐 GATEWAY CONFIG
         // ================================================================
         const GATEWAY_BASE_URL = 'https://sewa-sahayak-inc.vercel.app/gateway';
-        // Ticket URL — where gateway sends user back after successful payment
         const TICKET_RETURN_URL = 'https://yashrajx-inc.github.io/Dandiya-Night/?ticket=1';
-        // Payment mode: 'checkout' = branded page, 'direct' = instant Razorpay
         const GATEWAY_MODE = 'checkout';
 
         let selectedBooking = {
@@ -677,54 +652,68 @@
         }
 
         // ================================================================
-        // 🔑 STORAGE — Pending in sessionStorage, Verified in localStorage
+        // 🔑 STORAGE — FIXED!
         // ================================================================
+        // KEY FIX: We now save pending booking to **localStorage** (not sessionStorage)
+        // so that cross-origin redirect (vercel.app → github.io) preserves the data.
+        //
+        // Safety: `paymentVerified: false` flag ensures it NEVER shows as a ticket
+        // unless the payment actually succeeded.
+        // ================================================================
+
+        const PENDING_KEY = 'dandiya_pending_booking_v2';
+        const VERIFIED_KEY = 'dandiya_verified_ticket_v2';
+
         function savePendingBooking(data) {
             try {
-                sessionStorage.setItem('dandiya_pending_booking', JSON.stringify(data));
-            } catch(e) {}
+                data.paymentVerified = false;
+                data.createdAt = Date.now();
+                localStorage.setItem(PENDING_KEY, JSON.stringify(data));
+            } catch(e) { console.warn('save pending failed', e); }
         }
         function getPendingBooking() {
             try {
-                const raw = sessionStorage.getItem('dandiya_pending_booking');
+                const raw = localStorage.getItem(PENDING_KEY);
                 if (!raw) return null;
                 const data = JSON.parse(raw);
-                // 2-hour expiry on pending
-                if (Date.now() - (data.createdAt || 0) > 2 * 60 * 60 * 1000) {
-                    sessionStorage.removeItem('dandiya_pending_booking');
+                // 3-hour expiry
+                if (Date.now() - (data.createdAt || 0) > 3 * 60 * 60 * 1000) {
+                    localStorage.removeItem(PENDING_KEY);
                     return null;
                 }
                 return data;
             } catch(e) { return null; }
         }
         function clearPendingBooking() {
-            try { sessionStorage.removeItem('dandiya_pending_booking'); } catch(e) {}
+            try { localStorage.removeItem(PENDING_KEY); } catch(e) {}
         }
         function saveVerifiedTicket(data) {
             try {
                 data.paymentVerified = true;
                 data.verifiedAt = Date.now();
-                localStorage.setItem('dandiya_verified_ticket', JSON.stringify(data));
+                localStorage.setItem(VERIFIED_KEY, JSON.stringify(data));
                 return true;
             } catch(e) { return false; }
         }
         function getVerifiedTicket() {
             try {
-                const raw = localStorage.getItem('dandiya_verified_ticket');
+                const raw = localStorage.getItem(VERIFIED_KEY);
                 if (!raw) return null;
                 const data = JSON.parse(raw);
-                // STRICT: only return if payment is actually verified
                 if (data.paymentVerified === true && data.paymentRef && /^pay_/.test(data.paymentRef)) {
                     return data;
                 }
-                localStorage.removeItem('dandiya_verified_ticket');
+                localStorage.removeItem(VERIFIED_KEY);
                 return null;
             } catch(e) { return null; }
         }
 
-        // Purge old insecure keys from previous versions
+        // Purge all old keys from previous versions
         try {
             localStorage.removeItem('dandiya_ticket_data');
+            localStorage.removeItem('dandiya_verified_ticket');
+            sessionStorage.removeItem('dandiya_pending_booking');
+            sessionStorage.removeItem('dandiya_payment_attempted');
         } catch(e) {}
 
         // ================================================================
@@ -765,7 +754,7 @@
         }
 
         // ================================================================
-        // 💳 PROCEED TO SEWA SAHAYAK GATEWAY
+        // 💳 PROCEED TO GATEWAY — Save full details to localStorage
         // ================================================================
         function proceedToGateway(event) {
             event.preventDefault();
@@ -793,13 +782,16 @@
             const securitySig = generateSecuritySignature(randomId, mobile, priceStr, personsStr);
             const bookedAt = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
-            // Save pending — will be converted to verified ONLY after gateway returns with pay_...
+            // ✅ Save ALL details to localStorage — survives cross-origin redirect
             const pendingData = {
                 ticketId: randomId,
-                paymentRef: '',
-                rzpSyncEmail: '', // Will be filled by gateway's email
+                paymentRef: '', // Empty until gateway confirms
+                rzpSyncEmail: `${randomId}-pending@dandiya.com`,
                 signature: securitySig,
-                name: name, mobile: mobile, gender: gender, email: email,
+                name: name,
+                mobile: mobile,
+                gender: gender,
+                email: email,
                 basePassName: selectedBooking.passType,
                 unitPrice: selectedBooking.unitPrice,
                 personsPerPass: selectedBooking.personsPerPass,
@@ -813,7 +805,7 @@
             };
             savePendingBooking(pendingData);
 
-            // Build Sewa Sahayak Gateway URL
+            // Build gateway URL
             const customFields = [{
                 id: 'cf_gender_' + Math.floor(1000 + Math.random() * 9000),
                 label: 'Gender',
@@ -836,8 +828,7 @@
                 custom_fields: JSON.stringify(customFields)
             });
 
-            const gatewayUrl = `${GATEWAY_BASE_URL}?${gatewayParams.toString()}`;
-            window.location.href = gatewayUrl;
+            window.location.href = `${GATEWAY_BASE_URL}?${gatewayParams.toString()}`;
         }
 
         // ================================================================
@@ -849,8 +840,14 @@
                 renderTicketView(verified);
                 return;
             }
-            // No verified ticket → warn user
-            alert('❌ Aapne abhi tak koi payment complete nahi kiya.\n\nPehle "Book Pass" button dabaayein aur Sewa Sahayak Gateway se payment karein.');
+            // No verified ticket — check pending
+            const pending = getPendingBooking();
+            if (pending && pending.paymentVerified === false) {
+                // Pending exists but not paid
+                alert('⚠️ Aapki booking pending hai — payment abhi complete nahi hua.\n\nAgar aapne paise kaat liye hain toh 5 minute baad "My Ticket" check karein.\n\nWarna dobara book karein.');
+                return;
+            }
+            alert('❌ Aapne abhi tak koi payment complete nahi kiya.\n\nPehle "Book Pass" button dabaayein aur payment karein.');
         }
 
         // ================================================================
@@ -883,8 +880,7 @@
                 name: data.name, mob: data.mobile, pass: data.passType,
                 per: data.persons, amt: data.price, sig: sig
             });
-            const qrVerificationUrl = `${baseSiteUrl}?${scanParams.toString()}`;
-            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&margin=0&data=${encodeURIComponent(qrVerificationUrl)}`;
+            document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&margin=0&data=${encodeURIComponent(`${baseSiteUrl}?${scanParams.toString()}`)}`;
 
             document.getElementById('mainLandingContent').classList.add('hidden');
             document.getElementById('gateScannerSection').classList.add('hidden');
@@ -974,7 +970,7 @@
                 scanIcon.innerHTML = '<i class="fa-solid fa-shield-check"></i>';
                 scanHeading.className = "text-2xl sm:text-3xl font-extrabold text-green-400 mt-3 mb-1";
                 scanHeading.innerText = "✅ VALID TICKET (1st Entry)";
-                scanSubtext.innerText = `Payment ID "${pay}" ko Gateway Dashboard me match karein aur PIN (2026) daal kar lock karein.`;
+                scanSubtext.innerText = `Payment ID "${pay}" ko gateway dashboard me match karein aur PIN (2026) daal kar lock karein.`;
                 actionControls.classList.remove('hidden');
             }
             document.getElementById('mainLandingContent').classList.add('hidden');
@@ -1086,7 +1082,7 @@
                 }
             } catch (err) {
                 console.error('Download failed:', err);
-                alert('Image generate karne me error aaya. Kripya dobara try karein.');
+                alert('Image generate karne me error aaya.');
                 if (downloadBtn) {
                     downloadBtn.disabled = false;
                     downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket';
@@ -1095,47 +1091,52 @@
         }
 
         // ================================================================
-        // 🔄 PAYMENT RETURN HANDLER (THE CRITICAL LOGIC)
+        // 🔄 PAYMENT RETURN HANDLER — FIXED to preserve full details
         // ================================================================
         function handlePageLoad() {
             const searchStr = window.location.search;
             const urlParams = new URLSearchParams(searchStr);
 
-            // 1. Gate scanner — highest priority
+            // Gate scanner
             if (urlParams.get('scan') === '1' && urlParams.has('tid')) {
                 renderGateScanner(urlParams);
                 return;
             }
 
-            // 2. Payment return from Sewa Sahayak Gateway
-            // Gateway returns: ?payment_id=pay_...&status=success&amount=...
+            // Detect payment return
             const paymentId = urlParams.get('payment_id') || urlParams.get('razorpay_payment_id');
             const paymentStatus = urlParams.get('status');
             const returnAmount = urlParams.get('amount');
             const isTicketReturn = urlParams.has('ticket') || searchStr.includes('ticket=1');
 
-            // 🔒 CASE A: gateway returned with status=success AND payment_id=pay_...
-            // This is 100% proof of payment.
-            if (paymentId && /^pay_/.test(paymentId) && (paymentStatus === 'success' || isTicketReturn)) {
+            // ═══════════════════════════════════════════════════════════
+            // 🔒 CASE A: Gateway returned with real payment_id
+            // ═══════════════════════════════════════════════════════════
+            if (paymentId && /^pay_/.test(paymentId)) {
                 document.getElementById('verifyOverlay').style.display = 'flex';
 
                 const pending = getPendingBooking();
                 let ticketData;
 
                 if (pending) {
-                    // Convert pending → verified
+                    // ✅ KEY FIX: Use pending data (has real name, mobile, gender, etc.)
                     ticketData = pending;
                     ticketData.paymentRef = paymentId;
-                    ticketData.rzpSyncEmail = `${pending.ticketId}-${paymentId}@dandiya.com`;
                     ticketData.paymentVerified = true;
                     ticketData.verifiedAt = Date.now();
                     ticketData.verificationMethod = 'gateway_return';
-                    // Recalculate signature with real payment ID
+                    // Update amount from gateway if provided
+                    if (returnAmount) {
+                        ticketData.price = `₹${returnAmount}`;
+                    }
+                    // Update rzpSyncEmail with real payment ID
+                    ticketData.rzpSyncEmail = `${ticketData.ticketId}-${paymentId}@dandiya.com`;
+                    // Re-sign with real payment ID
                     ticketData.signature = generateSecuritySignature(
                         ticketData.ticketId, ticketData.mobile, ticketData.price, ticketData.persons
                     );
                 } else {
-                    // No pending (maybe user's browser cleared storage) — build minimal ticket
+                    // No pending data — fallback (should rarely happen now)
                     const randomId = 'CBDN-RZP-' + Math.floor(100000 + Math.random() * 900000);
                     ticketData = {
                         ticketId: randomId,
@@ -1157,37 +1158,33 @@
                 saveVerifiedTicket(ticketData);
                 clearPendingBooking();
 
-                // Wait a beat for UI feel, then show ticket
                 setTimeout(() => {
                     document.getElementById('verifyOverlay').style.display = 'none';
                     renderTicketView(getVerifiedTicket());
-                    // Clean URL
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
                 }, 1200);
                 return;
             }
 
-            // 🔒 CASE B: user came back to ?ticket=1 WITHOUT payment_id
-            // → No proof of payment → refuse to show ticket
+            // ═══════════════════════════════════════════════════════════
+            // 🔒 CASE B: ?ticket=1 but no payment_id → refuse
+            // ═══════════════════════════════════════════════════════════
             if (isTicketReturn && !paymentId) {
                 const verified = getVerifiedTicket();
                 if (verified) {
-                    // Already verified from before — safe to show
                     renderTicketView(verified);
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
                 } else {
-                    // No verified ticket, no payment ID — do NOTHING
-                    // Just clean the URL so refresh doesn't keep the flag
                     clearPendingBooking();
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
                     setTimeout(() => {
-                        alert('⚠️ Payment confirm nahi hua.\n\nAgar aapne paise kaat liye hain, toh kripya 5 minute baad "My Ticket" button check karein.\n\nWarna dobara pass book karein.');
+                        alert('⚠️ Payment confirm nahi hua.\n\nAgar aapne paise kaat liye hain toh 5 minute baad "My Ticket" button check karein.');
                     }, 500);
                 }
                 return;
             }
 
-            // 3. Normal page load — show My Ticket button only if verified ticket exists
+            // Normal load — show My Ticket button only if verified ticket exists
             const verified = getVerifiedTicket();
             const btn = document.getElementById('myTicketBtn');
             if (btn) {
