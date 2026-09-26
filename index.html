@@ -11,16 +11,10 @@
 
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        hindi: ['Rozha One', 'serif'],
-                        script: ['Kaushan Script', 'cursive'],
-                    },
-                    colors: { gold: '#FFD700', festivePink: '#FF007F', festiveOrange: '#FF5E00', deepPurple: '#120324' }
-                }
-            }
+            theme: { extend: {
+                fontFamily: { poppins: ['Poppins', 'sans-serif'], hindi: ['Rozha One', 'serif'], script: ['Kaushan Script', 'cursive'] },
+                colors: { gold: '#FFD700', festivePink: '#FF007F', festiveOrange: '#FF5E00', deepPurple: '#120324' }
+            } }
         }
     </script>
 
@@ -31,14 +25,9 @@
                 radial-gradient(circle at 15% 20%, rgba(255, 0, 127, 0.18) 0%, transparent 40%),
                 radial-gradient(circle at 85% 60%, rgba(255, 140, 0, 0.15) 0%, transparent 45%),
                 radial-gradient(circle at 50% 90%, rgba(138, 43, 226, 0.2) 0%, transparent 50%);
-            color: #ffffff;
-            overflow-x: hidden;
+            color: #ffffff; overflow-x: hidden;
         }
-        .gold-gradient-text {
-            background: linear-gradient(to right, #FFF275, #FFD700, #FFA500, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .gold-gradient-text { background: linear-gradient(to right, #FFF275, #FFD700, #FFA500, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .pink-gradient-bg { background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%); }
         .gold-border-glow { border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: 0 0 25px rgba(255, 0, 127, 0.25); }
         .card-hover { transition: all 0.35s ease; }
@@ -57,7 +46,7 @@
             display: flex; flex-direction: column; box-sizing: border-box;
         }
         .cc-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 0.3mm solid rgba(255, 215, 0, 0.45); padding-bottom: 1mm; margin-bottom: 1.2mm; }
-        .cc-brand-title { font-family: 'Rozha One', serif; font-size: 5.2mm; line-height: 1; color: #FFD700; letter-spacing: 0.2px; }
+        .cc-brand-title { font-family: 'Rozha One', serif; font-size: 5.2mm; line-height: 1; color: #FFD700; }
         .cc-brand-sub { font-family: 'Kaushan Script', cursive; font-size: 2.6mm; color: #FF6EC7; line-height: 1; margin-top: 0.3mm; }
         .cc-brand-tag { font-size: 1.5mm; letter-spacing: 0.4px; color: #FFD700; font-weight: 700; text-transform: uppercase; line-height: 1; }
         .cc-status-badge { background: linear-gradient(90deg, #10b981, #059669); color: #fff; font-size: 1.7mm; font-weight: 800; padding: 0.6mm 1.5mm; border-radius: 1mm; letter-spacing: 0.3px; text-transform: uppercase; }
@@ -74,8 +63,8 @@
         .cc-row-2 > .cc-field { flex: 1; min-width: 0; }
         .cc-qr-box { width: 21mm; height: 21mm; background: #ffffff; border-radius: 1.2mm; padding: 0.8mm; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 3mm rgba(255, 215, 0, 0.35); }
         .cc-qr-box img { width: 100%; height: 100%; display: block; object-fit: contain; image-rendering: pixelated; image-rendering: crisp-edges; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor; }
-        .cc-qr-label { font-size: 1.4mm; color: #FFD700; text-align: center; margin-top: 0.7mm; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.1; }
-        .cc-ticket-id { font-size: 1.7mm; color: #ffffff; font-family: monospace; font-weight: 700; text-align: center; margin-top: 0.5mm; letter-spacing: 0.2px; }
+        .cc-qr-label { font-size: 1.4mm; color: #FFD700; text-align: center; margin-top: 0.7mm; font-weight: 700; text-transform: uppercase; line-height: 1.1; }
+        .cc-ticket-id { font-size: 1.7mm; color: #ffffff; font-family: monospace; font-weight: 700; text-align: center; margin-top: 0.5mm; }
         .cc-footer { border-top: 0.3mm solid rgba(255, 215, 0, 0.4); margin-top: 1mm; padding-top: 0.8mm; display: flex; justify-content: space-between; font-size: 1.4mm; color: #cfc0e0; line-height: 1; }
         .cc-footer strong { color: #FFD700; }
         .cc-back-header { background: linear-gradient(90deg, #FF007F 0%, #FF5E00 100%); margin: -3mm -3.5mm 1.5mm -3.5mm; padding: 1.2mm 3.5mm; display: flex; justify-content: space-between; align-items: center; }
@@ -87,7 +76,6 @@
         .cc-back-rules li::before { content: "•"; position: absolute; left: -2mm; color: #FF007F; font-weight: 900; }
         .cc-back-bottom { margin-top: auto; border-top: 0.3mm dashed rgba(255, 215, 0, 0.5); padding-top: 1mm; display: flex; justify-content: space-between; font-size: 1.45mm; color: #cfc0e0; }
         .cc-back-bottom strong { color: #FFD700; }
-
         @media screen and (max-width: 420px) { .cc-ticket { transform: scale(0.92); transform-origin: top center; } }
         @media print {
             body * { visibility: hidden; }
@@ -96,48 +84,32 @@
             .no-print { display: none !important; }
             .cc-ticket-wrap { gap: 8mm; }
         }
-
-        #verifyOverlay {
-            position: fixed; inset: 0; z-index: 100;
-            background: rgba(13, 2, 26, 0.97);
-            backdrop-filter: blur(8px);
-            display: flex; align-items: center; justify-content: center;
-            padding: 20px;
-        }
-        .spinner {
-            width: 60px; height: 60px; border: 5px solid rgba(255, 215, 0, 0.2);
-            border-top-color: #FFD700; border-radius: 50%;
-            animation: spin 1s linear infinite; margin: 0 auto 20px;
-        }
+        #verifyOverlay { position: fixed; inset: 0; z-index: 100; background: rgba(13, 2, 26, 0.97); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .spinner { width: 60px; height: 60px; border: 5px solid rgba(255, 215, 0, 0.2); border-top-color: #FFD700; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="font-poppins antialiased selection:bg-festivePink selection:text-white">
+<body class="font-poppins antialiased">
 
-    <!-- Verifying Overlay -->
     <div id="verifyOverlay" style="display: none;">
         <div class="text-center">
             <div class="spinner"></div>
             <p class="text-gold font-bold text-lg">Verifying Payment & Loading Ticket...</p>
-            <p class="text-gray-300 text-sm mt-2">Aapka ticket taiyar kiya ja raha hai. Kripya wait karein.</p>
+            <p class="text-gray-300 text-sm mt-2">Aapka ticket taiyar kiya ja raha hai.</p>
         </div>
     </div>
 
-    <!-- Top Bar -->
     <div class="bg-gradient-to-r from-festivePink via-purple-700 to-festiveOrange text-white text-xs sm:text-sm py-2 px-4 text-center font-semibold tracking-wide">
         🎉 BIGGEST GARBA CELEBRATIONS IN CHHOTI BALLIA (1st EDITION) • 13th OCT 2026 🎉
     </div>
 
-    <!-- Navbar -->
     <header class="sticky top-0 z-40 backdrop-blur-md bg-[#0d021a]/85 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
             <a href="https://yashrajx-inc.github.io/Dandiya-Night/" class="flex items-center space-x-2">
-                <div class="w-10 h-10 rounded-full pink-gradient-bg flex items-center justify-center text-gold font-bold text-xl shadow-lg">
-                    <i class="fa-solid fa-music"></i>
-                </div>
+                <div class="w-10 h-10 rounded-full pink-gradient-bg flex items-center justify-center text-gold font-bold text-xl shadow-lg"><i class="fa-solid fa-music"></i></div>
                 <div>
                     <span class="text-xs uppercase tracking-widest text-gold block font-bold">Dance Vibes Studio</span>
-                    <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-white">Dandiya Nights 2026</h1>
+                    <h1 class="text-sm sm:text-base font-extrabold text-white">Dandiya Nights 2026</h1>
                 </div>
             </a>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-200">
@@ -147,17 +119,12 @@
                 <a href="#contact" class="hover:text-gold transition">Contact</a>
             </nav>
             <div class="flex items-center gap-2">
-                <button id="myTicketBtn" onclick="showSavedTicket()" class="hidden bg-white/10 border border-gold/50 text-gold font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full hover:bg-white/20 transition">
-                    <i class="fa-solid fa-qrcode mr-1"></i> My Ticket
-                </button>
-                <a href="#tickets" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-lg hover:brightness-110 transition">
-                    Book Pass <i class="fa-solid fa-ticket ml-1"></i>
-                </a>
+                <button id="myTicketBtn" onclick="showSavedTicket()" class="hidden bg-white/10 border border-gold/50 text-gold font-semibold text-xs sm:text-sm px-3.5 py-2 rounded-full hover:bg-white/20 transition"><i class="fa-solid fa-qrcode mr-1"></i> My Ticket</button>
+                <a href="#tickets" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-lg hover:brightness-110 transition">Book Pass <i class="fa-solid fa-ticket ml-1"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- Gate Scanner -->
     <section id="gateScannerSection" class="hidden py-10 px-4 sm:px-6 max-w-lg mx-auto">
         <div id="scanStatusBox" class="rounded-3xl border-2 p-6 sm:p-8 text-center shadow-2xl">
             <div id="scanIcon" class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4"></div>
@@ -180,10 +147,7 @@
                     <input type="password" id="gateAdminPin" inputmode="numeric" placeholder="Enter 4-digit Gate PIN (2026)"
                         class="w-full px-3 py-2.5 rounded-lg bg-black/60 border border-white/20 text-white text-center font-mono tracking-widest text-sm focus:outline-none focus:border-gold">
                 </div>
-                <button id="approveEntryBtn" onclick="markTicketUsedAtGate()"
-                    class="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition">
-                    ✅ APPROVE ENTRY & LOCK TICKET (1st Scan)
-                </button>
+                <button id="approveEntryBtn" onclick="markTicketUsedAtGate()" class="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-extrabold text-base shadow-lg hover:brightness-110 transition">✅ APPROVE ENTRY & LOCK TICKET (1st Scan)</button>
             </div>
             <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-gray-400">
                 <span>Total Checked-In on this Phone: <strong id="totalScannedCount" class="text-gold">0</strong></span>
@@ -192,12 +156,9 @@
         </div>
     </section>
 
-    <!-- TICKET VIEW -->
     <section id="ticketViewSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
         <div class="text-center mb-5">
-            <div class="w-14 h-14 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce">
-                <i class="fa-solid fa-check"></i>
-            </div>
+            <div class="w-14 h-14 rounded-full bg-green-500/20 border-2 border-green-400 text-green-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce"><i class="fa-solid fa-check"></i></div>
             <h2 class="text-2xl sm:text-4xl font-extrabold gold-gradient-text">Payment Successful! 🎉</h2>
             <p class="text-xs sm:text-sm text-gray-300 mt-1">Aapka official E-Ticket taiyar hai (Credit-Card Size).</p>
         </div>
@@ -207,7 +168,7 @@
                 <i class="fa-solid fa-shield-check text-green-400 text-xl"></i>
             </div>
             <div class="flex-1">
-                <p class="text-sm font-bold text-green-300">Payment Verified by Gateway ✓</p>
+                <p class="text-sm font-bold text-green-300">Payment Verified ✓</p>
                 <p class="text-[11px] text-gray-300 mt-0.5">Payment ID: <span id="verifiedPayRef" class="text-gold font-mono">—</span></p>
             </div>
         </div>
@@ -238,7 +199,7 @@
                         </div>
                         <div style="text-align:right;">
                             <div class="cc-status-badge">✓ PAID</div>
-                            <div class="cc-ticket-id" id="tktIdDisplay" style="margin-top:0.7mm;">#CBDN-0000</div>
+                            <div class="cc-ticket-id" id="tktIdDisplay">#CBDN-0000</div>
                         </div>
                     </div>
                     <div class="cc-body">
@@ -260,7 +221,7 @@
                             </div>
                         </div>
                         <div class="cc-right">
-                            <div class="cc-qr-box"><img id="tktQrCode" src="" alt="Ticket QR Code" crossorigin="anonymous"></div>
+                            <div class="cc-qr-box"><img id="tktQrCode" src="" alt="QR" crossorigin="anonymous"></div>
                             <div class="cc-qr-label">Scan at Entry</div>
                         </div>
                     </div>
@@ -302,29 +263,18 @@
         </div>
 
         <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center no-print">
-            <button id="downloadTicketBtn" onclick="downloadTicketImage()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-sm shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-download"></i> Download Ticket
-            </button>
-            <button onclick="window.print()" class="px-6 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/20 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-print"></i> Print / Save PDF
-            </button>
-            <button onclick="closeTicketView()" class="px-5 py-3.5 rounded-xl bg-pink-600/20 border border-pink-400/40 text-pink-300 font-semibold text-sm hover:bg-pink-600/30 transition">
-                Back to Home
-            </button>
+            <button id="downloadTicketBtn" onclick="downloadTicketImage()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-sm shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Download Ticket</button>
+            <button onclick="window.print()" class="px-6 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/20 transition flex items-center justify-center gap-2"><i class="fa-solid fa-print"></i> Print / Save PDF</button>
+            <button onclick="closeTicketView()" class="px-5 py-3.5 rounded-xl bg-pink-600/20 border border-pink-400/40 text-pink-300 font-semibold text-sm hover:bg-pink-600/30 transition">Back to Home</button>
         </div>
     </section>
 
-    <!-- MAIN LANDING -->
     <main id="mainLandingContent">
         <section class="relative pt-10 pb-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 text-gold text-xs sm:text-sm font-semibold mb-6">
-                <span>✨ DANCE VIBES STUDIO PRESENTS ✨</span>
-            </div>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-gold/40 text-gold text-xs sm:text-sm font-semibold mb-6"><span>✨ DANCE VIBES STUDIO PRESENTS ✨</span></div>
             <h2 class="font-hindi text-5xl sm:text-7xl md:text-8xl gold-gradient-text drop-shadow-[0_5px_15px_rgba(255,215,0,0.3)] leading-tight">छोटी बलिया</h2>
             <h3 class="font-script text-4xl sm:text-6xl md:text-7xl text-white mt-1 mb-4 drop-shadow-[0_4px_20px_rgba(255,0,127,0.8)]">Dandiya Nights</h3>
-            <div class="inline-block bg-gradient-to-r from-yellow-500 via-gold to-yellow-500 text-black font-extrabold text-xs sm:text-base px-6 py-1.5 rounded-full uppercase tracking-wider shadow-md mb-3">
-                ★ Biggest Garba Celebrations • 1st Edition ★
-            </div>
+            <div class="inline-block bg-gradient-to-r from-yellow-500 via-gold to-yellow-500 text-black font-extrabold text-xs sm:text-base px-6 py-1.5 rounded-full uppercase tracking-wider shadow-md mb-3">★ Biggest Garba Celebrations • 1st Edition ★</div>
             <p class="font-script text-xl sm:text-2xl text-pink-300 mb-8">The Legacy Continues... Dance • Music • Tradition • Culture • Community</p>
 
             <div class="flex flex-wrap justify-center gap-3 sm:gap-5 mb-10">
@@ -353,16 +303,11 @@
             </div>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#tickets" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-festivePink via-pink-600 to-orange-500 text-white font-bold text-lg shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:scale-105 transition transform animate-pulse-slow">
-                    🎟️ Book Your Pass Now
-                </a>
-                <a href="tel:8987259722" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white/10 border border-gold/50 text-gold font-semibold text-base hover:bg-white/20 transition">
-                    <i class="fa-solid fa-phone mr-2"></i> Call: 8987259722
-                </a>
+                <a href="#tickets" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-festivePink via-pink-600 to-orange-500 text-white font-bold text-lg shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:scale-105 transition transform animate-pulse-slow">🎟️ Book Your Pass Now</a>
+                <a href="tel:8987259722" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white/10 border border-gold/50 text-gold font-semibold text-base hover:bg-white/20 transition"><i class="fa-solid fa-phone mr-2"></i> Call: 8987259722</a>
             </div>
         </section>
 
-        <!-- Tickets Section -->
         <section id="tickets" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <span class="text-xs uppercase tracking-widest text-pink-400 font-bold">100% Secure Payment via Sewa Sahayak Gateway</span>
@@ -371,7 +316,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                <!-- Single Pass -->
                 <div class="rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
                     <div>
                         <div class="flex justify-between items-center mb-4">
@@ -390,13 +334,11 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-green-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Single Pass', 1, 1)" 
-                       class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
+                    <button onclick="openBookingModal('Single Pass', 1, 1)" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Single Pass (₹1)</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
-                <!-- Couple -->
                 <div class="rounded-3xl bg-gradient-to-b from-pink-900/50 via-purple-900/40 to-white/5 p-7 flex flex-col justify-between border-2 border-festivePink shadow-[0_0_35px_rgba(255,0,127,0.4)] card-hover relative transform md:-translate-y-3">
                     <div class="absolute top-0 right-0 bg-gradient-to-r from-festivePink to-orange-500 text-white text-[11px] font-extrabold px-4 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">❤️ Most Popular</div>
                     <div>
@@ -407,7 +349,7 @@
                         <h3 class="text-2xl font-bold text-white mb-1">Couple Pass</h3>
                         <p class="text-xs text-gray-300 mb-6">Valid for 2 Persons per Pass</p>
                         <div class="flex items-baseline gap-2 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹249</span><span class="text-sm text-gray-400 line-through">₹298</span><span class="text-xs text-green-400 font-semibold">Save ₹49!</span></div>
-                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Apne partner ya bestie ke sath banayein is Garba night ko yaadgaar! Dono log enjoy karein dhamakedar music aur vibes.</p>
+                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Apne partner ya bestie ke sath banayein is Garba night ko yaadgaar!</p>
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Entry for 2 Persons per pass</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> 2 Pairs of Free Dandiya Sticks</li>
@@ -416,13 +358,11 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-pink-400"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Couple Pass', 249, 2)" 
-                       class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink to-orange-500 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
+                    <button onclick="openBookingModal('Couple Pass', 249, 2)" class="w-full py-4 rounded-xl bg-gradient-to-r from-festivePink to-orange-500 text-white font-bold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Couple Pass (₹249)</span><i class="fa-solid fa-heart"></i>
                     </button>
                 </div>
 
-                <!-- Family -->
                 <div class="rounded-3xl bg-gradient-to-b from-amber-900/30 to-white/5 p-7 flex flex-col justify-between gold-border-glow card-hover relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-gold text-black text-[11px] font-extrabold px-4 py-1 rounded-bl-xl uppercase tracking-wider">🔥 4 + 1 FREE OFFER</div>
                     <div>
@@ -433,7 +373,7 @@
                         <h3 class="text-2xl font-bold text-white mb-1">Family Pass (4+1 Free)</h3>
                         <p class="text-xs text-gray-300 mb-6">Valid for 5 Persons per Pass</p>
                         <div class="flex items-baseline gap-2 mb-6"><span class="text-4xl sm:text-5xl font-extrabold text-gold">₹499</span><span class="text-sm text-gray-400 line-through">₹745</span><span class="text-xs text-green-400 font-semibold">1 Pass FREE!</span></div>
-                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Puri family aur dosto ke bade group ke liye best offer! ₹499 me 4 ke sath 1 entry bilkul FREE (Total 5 log).</p>
+                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Puri family aur dosto ke bade group ke liye best offer!</p>
                         <ul class="space-y-3 text-sm text-gray-200 mb-8">
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Entry for 5 Persons per pass</li>
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Free Dandiya Sticks for All 5</li>
@@ -442,84 +382,38 @@
                             <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-gold"></i> Free Drinking Water & First Aid</li>
                         </ul>
                     </div>
-                    <button onclick="openBookingModal('Family Pass (4+1 Free)', 499, 5)" 
-                       class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
+                    <button onclick="openBookingModal('Family Pass (4+1 Free)', 499, 5)" class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-400 via-gold to-orange-500 text-black font-extrabold text-center shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
                         <span>Book Family Pass (₹499)</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Highlights -->
-        <section id="highlights" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-xs uppercase tracking-widest text-gold font-bold">Why You Shouldn't Miss Out</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold mt-1 text-white">Event Attractions & Free Perks</h2>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-blue-500/20 border border-blue-400 flex items-center justify-center text-3xl text-blue-400"><i class="fa-solid fa-headphones-simple"></i></div>
-                    <h4 class="text-lg font-bold text-white mb-1">Dance & Music</h4>
-                    <p class="text-xs text-gold font-semibold uppercase mb-2">Feel the Beats, Live the Vibes</p>
-                    <p class="text-sm text-gray-300">High-energy DJ, Garba beats aur electrifying live dance performances.</p>
-                </div>
-                <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-yellow-500/20 border border-gold flex items-center justify-center text-3xl text-gold"><i class="fa-solid fa-trophy"></i></div>
-                    <h4 class="text-lg font-bold text-white mb-1">Creators Meet-Up & Awards</h4>
-                    <p class="text-xs text-gold font-semibold uppercase mb-2">Honoring Talent, Inspiring Creators</p>
-                    <p class="text-sm text-gray-300">Special Creators Meet-up aur talented creators ke liye grand Award Ceremony.</p>
-                </div>
-                <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-pink-500/20 border border-pink-400 flex items-center justify-center text-3xl text-pink-400"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                    <h4 class="text-lg font-bold text-white mb-1">Free Dandiya Stick</h4>
-                    <p class="text-xs text-gold font-semibold uppercase mb-2">Dance With More Joy</p>
-                    <p class="text-sm text-gray-300">Har ticket holder ko khelne ke liye Dandiya Sticks bilkul FREE di jayengi.</p>
-                </div>
-                <div class="bg-white/5 border border-white/15 rounded-2xl p-6 text-center card-hover">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/20 border border-green-400 flex items-center justify-center text-3xl text-green-400"><i class="fa-solid fa-utensils"></i></div>
-                    <h4 class="text-lg font-bold text-white mb-1">Food Stalls</h4>
-                    <p class="text-xs text-gold font-semibold uppercase mb-2">Tasty Food, Great Vibes</p>
-                    <p class="text-sm text-gray-300">Mouth-watering snacks, street food aur refreshments ke special stalls.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Venue -->
         <section id="venue" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="rounded-3xl bg-white/5 border border-gold/30 p-8 flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gold font-bold">Location Details</span>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-4">Event Venue</h3>
-                        <p class="text-lg font-hindi text-gold mb-2">पता: शहनाई विवाह भवन, लखमिनियाँ फूल चौक</p>
-                        <p class="text-sm text-gray-300 mb-6">Shehnai Vivah Bhawan, Lakhminia Phool Chowk, Chhoti Ballia (Begusarai), Bihar.</p>
-                        <div class="space-y-3 text-sm text-gray-200">
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-calendar-day text-pink-400 w-5"></i><span><strong>Date:</strong> 13th October 2026</span></div>
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-clock text-pink-400 w-5"></i><span><strong>Gate Opens:</strong> 05:00 PM Onwards</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Shehnai+Vivah+Bhawan+Lakhminia+Phool+Chowk" target="_blank" 
-                           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-gold font-semibold text-sm border border-gold/40 transition">
-                            <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
-                        </a>
+                <div class="rounded-3xl bg-white/5 border border-gold/30 p-8">
+                    <span class="text-xs uppercase tracking-widest text-gold font-bold">Location Details</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-4">Event Venue</h3>
+                    <p class="text-lg font-hindi text-gold mb-2">पता: शहनाई विवाह भवन, लखमिनियाँ फूल चौक</p>
+                    <p class="text-sm text-gray-300 mb-6">Shehnai Vivah Bhawan, Lakhminia Phool Chowk, Chhoti Ballia (Begusarai), Bihar.</p>
+                    <div class="space-y-3 text-sm text-gray-200">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-calendar-day text-pink-400 w-5"></i><span><strong>Date:</strong> 13th October 2026</span></div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-clock text-pink-400 w-5"></i><span><strong>Gate Opens:</strong> 05:00 PM Onwards</span></div>
                     </div>
                 </div>
-                <div id="contact" class="rounded-3xl bg-gradient-to-br from-purple-900/50 to-pink-900/40 border border-pink-400/40 p-8 flex flex-col justify-between">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold text-black font-extrabold text-xs uppercase mb-3"><i class="fa-solid fa-crown"></i> Promote Your Brand</div>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Sponsor & Partner With Us</h3>
-                        <p class="text-sm text-gray-200 mb-6">Chhoti Ballia ke sabse bade Garba celebration me apne brand ya business ko promote karne ke liye aaj hi humse sampark karein!</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            <div class="bg-black/30 border border-white/10 p-4 rounded-2xl">
-                                <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Organised By</span>
-                                <strong class="text-lg text-gold">RAHUL RAJ</strong>
-                            </div>
-                            <div class="bg-black/30 border border-white/10 p-4 rounded-2xl">
-                                <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Management Director</span>
-                                <strong class="text-lg text-gold block">Sahil (Gabbar)</strong>
-                                <a href="https://instagram.com/gabbar01__" target="_blank" class="text-xs text-pink-300 hover:underline"><i class="fa-brands fa-instagram"></i> @gabbar01__</a>
-                            </div>
+                <div id="contact" class="rounded-3xl bg-gradient-to-br from-purple-900/50 to-pink-900/40 border border-pink-400/40 p-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold text-black font-extrabold text-xs uppercase mb-3"><i class="fa-solid fa-crown"></i> Promote Your Brand</div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Sponsor & Partner With Us</h3>
+                    <p class="text-sm text-gray-200 mb-6">Chhoti Ballia ke sabse bade Garba celebration me apne brand ko promote karne ke liye sampark karein!</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-black/30 border border-white/10 p-4 rounded-2xl">
+                            <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Organised By</span>
+                            <strong class="text-lg text-gold">RAHUL RAJ</strong>
+                        </div>
+                        <div class="bg-black/30 border border-white/10 p-4 rounded-2xl">
+                            <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Management Director</span>
+                            <strong class="text-lg text-gold block">Sahil (Gabbar)</strong>
+                            <a href="https://instagram.com/gabbar01__" target="_blank" class="text-xs text-pink-300 hover:underline"><i class="fa-brands fa-instagram"></i> @gabbar01__</a>
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3">
@@ -531,7 +425,6 @@
         </section>
     </main>
 
-    <!-- Booking Modal -->
     <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
         <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#230642] to-[#110221] border-2 border-gold/60 shadow-[0_0_50px_rgba(255,0,127,0.5)] p-6 sm:p-8 my-8">
             <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:text-white hover:bg-white/20 flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
@@ -543,30 +436,19 @@
             <form id="customerBookingForm" onsubmit="proceedToGateway(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Full Name *</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-gray-400"></i>
-                        <input type="text" id="custName" required placeholder="Enter your full name"
-                            class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
-                    </div>
+                    <div class="relative"><i class="fa-solid fa-user absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="text" id="custName" required placeholder="Enter your full name" class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm"></div>
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Mobile Number (10 Digits Only) *</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-phone absolute left-4 top-3.5 text-gray-400"></i>
-                        <input type="tel" id="custMobile" required inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
-                            placeholder="Enter 10-digit mobile number"
-                            class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
-                    </div>
+                    <div class="relative"><i class="fa-solid fa-phone absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="tel" id="custMobile" required inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" placeholder="Enter 10-digit mobile" class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm"></div>
                     <p id="mobileErrorMsg" class="hidden text-[11px] text-red-400 mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> Kripya pura 10-digit mobile number darj karein.</p>
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-gold font-semibold mb-1.5">Email (Optional)</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
-                        <input type="email" id="custEmail" placeholder="your@email.com (optional)"
-                            class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm">
-                    </div>
+                    <div class="relative"><i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="email" id="custEmail" placeholder="your@email.com (optional)" class="w-full pl-11 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold text-sm"></div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -607,123 +489,71 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="border-t border-white/10 bg-black/50 py-8 px-4 text-center text-xs sm:text-sm text-gray-400 mt-12">
         <p class="font-bold text-white text-base mb-1">DANCE VIBES STUDIO — Chhoti Ballia Dandiya Nights (1st Edition)</p>
         <p>Organised by Rahul Raj • Management Director: Sahil (Gabbar)</p>
         <p class="mt-3 text-gray-500">© 2026 Chhoti Ballia Dandiya Nights. All Rights Reserved.</p>
     </footer>
 
-    <!-- Floating WhatsApp -->
     <div class="fixed bottom-4 right-4 z-40">
-        <a href="https://wa.me/918987259722?text=Hi,%20I%20want%20details%20about%20Chhoti%20Ballia%20Dandiya%20Nights%20Passes!" target="_blank"
-           class="w-13 h-13 p-3.5 rounded-full bg-green-500 text-white shadow-xl flex items-center justify-center text-2xl hover:scale-110 transition" title="WhatsApp Support">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
+        <a href="https://wa.me/918987259722?text=Hi,%20I%20want%20details%20about%20Chhoti%20Ballia%20Dandiya%20Nights%20Passes!" target="_blank" class="w-13 h-13 p-3.5 rounded-full bg-green-500 text-white shadow-xl flex items-center justify-center text-2xl hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- JAVASCRIPT - FIXED: Details preserved across cross-origin redirect -->
-    <!-- ================================================================= -->
     <script>
         const ORGANISER_GATE_PIN = "2026";
         const SECRET_SALT = "DVS-CBDN-2026-SECURE";
-
-        // ================================================================
-        // 🌐 GATEWAY CONFIG
-        // ================================================================
         const GATEWAY_BASE_URL = 'https://sewa-sahayak-inc.vercel.app/gateway';
         const TICKET_RETURN_URL = 'https://yashrajx-inc.github.io/Dandiya-Night/?ticket=1';
         const GATEWAY_MODE = 'checkout';
 
-        let selectedBooking = {
-            passType: 'Single Pass', unitPrice: 1, personsPerPass: 1, quantity: 1
-        };
+        let selectedBooking = { passType: 'Single Pass', unitPrice: 1, personsPerPass: 1, quantity: 1 };
         let currentScannedTicketId = null;
 
         function generateSecuritySignature(ticketId, mobile, price, persons) {
             const raw = `${ticketId}|${mobile}|${price}|${persons}|${SECRET_SALT}`;
             let hash = 0;
-            for (let i = 0; i < raw.length; i++) {
-                hash = ((hash << 5) - hash) + raw.charCodeAt(i);
-                hash |= 0;
-            }
+            for (let i = 0; i < raw.length; i++) { hash = ((hash << 5) - hash) + raw.charCodeAt(i); hash |= 0; }
             return "SIG-" + Math.abs(hash).toString(16).toUpperCase().padStart(6, '0');
         }
 
-        // ================================================================
-        // 🔑 STORAGE — FIXED!
-        // ================================================================
-        // KEY FIX: We now save pending booking to **localStorage** (not sessionStorage)
-        // so that cross-origin redirect (vercel.app → github.io) preserves the data.
-        //
-        // Safety: `paymentVerified: false` flag ensures it NEVER shows as a ticket
-        // unless the payment actually succeeded.
-        // ================================================================
-
-        const PENDING_KEY = 'dandiya_pending_booking_v2';
-        const VERIFIED_KEY = 'dandiya_verified_ticket_v2';
+        const PENDING_KEY = 'dandiya_pending_booking_v3';
+        const VERIFIED_KEY = 'dandiya_verified_ticket_v3';
 
         function savePendingBooking(data) {
-            try {
-                data.paymentVerified = false;
-                data.createdAt = Date.now();
-                localStorage.setItem(PENDING_KEY, JSON.stringify(data));
-            } catch(e) { console.warn('save pending failed', e); }
+            try { data.paymentVerified = false; data.createdAt = Date.now(); localStorage.setItem(PENDING_KEY, JSON.stringify(data)); } catch(e) {}
         }
         function getPendingBooking() {
             try {
-                const raw = localStorage.getItem(PENDING_KEY);
-                if (!raw) return null;
+                const raw = localStorage.getItem(PENDING_KEY); if (!raw) return null;
                 const data = JSON.parse(raw);
-                // 3-hour expiry
-                if (Date.now() - (data.createdAt || 0) > 3 * 60 * 60 * 1000) {
-                    localStorage.removeItem(PENDING_KEY);
-                    return null;
-                }
+                if (Date.now() - (data.createdAt || 0) > 3 * 60 * 60 * 1000) { localStorage.removeItem(PENDING_KEY); return null; }
                 return data;
             } catch(e) { return null; }
         }
-        function clearPendingBooking() {
-            try { localStorage.removeItem(PENDING_KEY); } catch(e) {}
-        }
+        function clearPendingBooking() { try { localStorage.removeItem(PENDING_KEY); } catch(e) {} }
         function saveVerifiedTicket(data) {
-            try {
-                data.paymentVerified = true;
-                data.verifiedAt = Date.now();
-                localStorage.setItem(VERIFIED_KEY, JSON.stringify(data));
-                return true;
-            } catch(e) { return false; }
+            try { data.paymentVerified = true; data.verifiedAt = Date.now(); localStorage.setItem(VERIFIED_KEY, JSON.stringify(data)); return true; } catch(e) { return false; }
         }
         function getVerifiedTicket() {
             try {
-                const raw = localStorage.getItem(VERIFIED_KEY);
-                if (!raw) return null;
+                const raw = localStorage.getItem(VERIFIED_KEY); if (!raw) return null;
                 const data = JSON.parse(raw);
-                if (data.paymentVerified === true && data.paymentRef && /^pay_/.test(data.paymentRef)) {
-                    return data;
-                }
-                localStorage.removeItem(VERIFIED_KEY);
-                return null;
+                if (data.paymentVerified === true && data.paymentRef && /^pay_/.test(data.paymentRef)) return data;
+                localStorage.removeItem(VERIFIED_KEY); return null;
             } catch(e) { return null; }
         }
 
-        // Purge all old keys from previous versions
+        // Purge old keys
         try {
             localStorage.removeItem('dandiya_ticket_data');
             localStorage.removeItem('dandiya_verified_ticket');
+            localStorage.removeItem('dandiya_pending_booking_v2');
+            localStorage.removeItem('dandiya_verified_ticket_v2');
             sessionStorage.removeItem('dandiya_pending_booking');
-            sessionStorage.removeItem('dandiya_payment_attempted');
         } catch(e) {}
 
-        // ================================================================
-        // 📋 BOOKING MODAL
-        // ================================================================
         function openBookingModal(passType, unitPrice, personsPerPass) {
-            selectedBooking = {
-                passType, unitPrice: Number(unitPrice),
-                personsPerPass: Number(personsPerPass), quantity: 1
-            };
+            selectedBooking = { passType, unitPrice: Number(unitPrice), personsPerPass: Number(personsPerPass), quantity: 1 };
             document.getElementById('modalPassTitle').innerText = `${passType} — ₹${unitPrice}`;
             updateModalCalculation();
             document.getElementById('bookingModal').classList.remove('hidden');
@@ -731,10 +561,8 @@
         function closeBookingModal() { document.getElementById('bookingModal').classList.add('hidden'); }
         function changeQuantity(delta) {
             let newQty = selectedBooking.quantity + delta;
-            if (newQty < 1) newQty = 1;
-            if (newQty > 20) newQty = 20;
-            selectedBooking.quantity = newQty;
-            updateModalCalculation();
+            if (newQty < 1) newQty = 1; if (newQty > 20) newQty = 20;
+            selectedBooking.quantity = newQty; updateModalCalculation();
         }
         function updateModalCalculation() {
             const qty = selectedBooking.quantity;
@@ -746,35 +574,23 @@
             document.getElementById('summaryPassPrice').innerText = `₹${totalAmount}`;
             document.getElementById('payBtnText').innerText = `Pay Securely ₹${totalAmount}`;
             const reminderBox = document.getElementById('multiQtyReminder');
-            if (qty > 1) {
-                document.getElementById('remQty').innerText = qty;
-                document.getElementById('remAmt').innerText = `₹${totalAmount}`;
-                reminderBox.classList.remove('hidden');
-            } else { reminderBox.classList.add('hidden'); }
+            if (qty > 1) { document.getElementById('remQty').innerText = qty; document.getElementById('remAmt').innerText = `₹${totalAmount}`; reminderBox.classList.remove('hidden'); }
+            else { reminderBox.classList.add('hidden'); }
         }
 
-        // ================================================================
-        // 💳 PROCEED TO GATEWAY — Save full details to localStorage
-        // ================================================================
         function proceedToGateway(event) {
             event.preventDefault();
-
             const name = document.getElementById('custName').value.trim();
             const mobile = document.getElementById('custMobile').value.trim();
             const email = document.getElementById('custEmail').value.trim();
             const gender = document.querySelector('input[name="custGender"]:checked').value;
             const mobileErrorMsg = document.getElementById('mobileErrorMsg');
-
-            if (!/^[0-9]{10}$/.test(mobile)) {
-                mobileErrorMsg.classList.remove('hidden');
-                document.getElementById('custMobile').focus();
-                return;
-            } else { mobileErrorMsg.classList.add('hidden'); }
+            if (!/^[0-9]{10}$/.test(mobile)) { mobileErrorMsg.classList.remove('hidden'); document.getElementById('custMobile').focus(); return; }
+            else { mobileErrorMsg.classList.add('hidden'); }
 
             const qty = selectedBooking.quantity;
             const totalAmount = selectedBooking.unitPrice * qty;
             const totalPersons = selectedBooking.personsPerPass * qty;
-
             const randomNum = Math.floor(100000 + Math.random() * 900000);
             const randomId = 'CBDN-' + randomNum;
             const priceStr = `₹${totalAmount}`;
@@ -782,77 +598,40 @@
             const securitySig = generateSecuritySignature(randomId, mobile, priceStr, personsStr);
             const bookedAt = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
-            // ✅ Save ALL details to localStorage — survives cross-origin redirect
             const pendingData = {
-                ticketId: randomId,
-                paymentRef: '', // Empty until gateway confirms
-                rzpSyncEmail: `${randomId}-pending@dandiya.com`,
-                signature: securitySig,
-                name: name,
-                mobile: mobile,
-                gender: gender,
-                email: email,
+                ticketId: randomId, paymentRef: '', rzpSyncEmail: `${randomId}-pending@dandiya.com`, signature: securitySig,
+                name, mobile, gender, email,
                 basePassName: selectedBooking.passType,
-                unitPrice: selectedBooking.unitPrice,
-                personsPerPass: selectedBooking.personsPerPass,
-                quantity: qty,
-                passType: `${selectedBooking.passType} (Qty: ${qty})`,
-                price: priceStr,
-                persons: personsStr,
-                bookedAt: bookedAt,
-                paymentVerified: false,
-                createdAt: Date.now()
+                unitPrice: selectedBooking.unitPrice, personsPerPass: selectedBooking.personsPerPass, quantity: qty,
+                passType: `${selectedBooking.passType} (Qty: ${qty})`, price: priceStr, persons: personsStr,
+                bookedAt, paymentVerified: false, createdAt: Date.now()
             };
             savePendingBooking(pendingData);
 
-            // Build gateway URL
-            const customFields = [{
-                id: 'cf_gender_' + Math.floor(1000 + Math.random() * 9000),
-                label: 'Gender',
-                type: 'dropdown',
-                placeholder: 'Choose an option',
-                required: true,
-                options: ['Male', 'Female'],
-                defaultValue: gender
-            }];
+            const customFields = [{ id: 'cf_gender_' + Math.floor(1000 + Math.random() * 9000), label: 'Gender', type: 'dropdown', placeholder: 'Choose an option', required: true, options: ['Male', 'Female'], defaultValue: gender }];
 
             const gatewayParams = new URLSearchParams({
-                mode: GATEWAY_MODE,
-                amount: String(totalAmount),
+                mode: GATEWAY_MODE, amount: String(totalAmount),
                 purpose: `Dandiya Night 2026 Pass - ${selectedBooking.passType} (Qty: ${qty})`,
-                booking_id: randomId,
-                name: name,
-                phone: mobile,
+                booking_id: randomId, name, phone: mobile,
                 email: email || `${randomId}@dandiya.com`,
                 redirect_url: TICKET_RETURN_URL,
                 custom_fields: JSON.stringify(customFields)
             });
-
             window.location.href = `${GATEWAY_BASE_URL}?${gatewayParams.toString()}`;
         }
 
-        // ================================================================
-        // 🎫 MY TICKET BUTTON
-        // ================================================================
         function showSavedTicket() {
             const verified = getVerifiedTicket();
-            if (verified) {
-                renderTicketView(verified);
-                return;
-            }
-            // No verified ticket — check pending
+            if (verified) { renderTicketView(verified); return; }
             const pending = getPendingBooking();
             if (pending && pending.paymentVerified === false) {
-                // Pending exists but not paid
                 alert('⚠️ Aapki booking pending hai — payment abhi complete nahi hua.\n\nAgar aapne paise kaat liye hain toh 5 minute baad "My Ticket" check karein.\n\nWarna dobara book karein.');
                 return;
             }
             alert('❌ Aapne abhi tak koi payment complete nahi kiya.\n\nPehle "Book Pass" button dabaayein aur payment karein.');
         }
 
-        // ================================================================
-        // 🖼️ RENDER TICKET
-        // ================================================================
         function renderTicketView(data) {
             const sig = data.signature || generateSecuritySignature(data.ticketId, data.mobile, data.price, data.persons);
             const payRef = data.paymentRef || '—';
@@ -870,16 +649,10 @@
             document.getElementById('tktDateBooked').innerText = data.bookedAt;
             document.getElementById('verifiedPayRef').innerText = payRef;
 
-            if (data.quantity && document.getElementById('postPayQtySelect')) {
-                document.getElementById('postPayQtySelect').value = String(data.quantity);
-            }
+            if (data.quantity && document.getElementById('postPayQtySelect')) document.getElementById('postPayQtySelect').value = String(data.quantity);
 
             const baseSiteUrl = window.location.origin + window.location.pathname;
-            const scanParams = new URLSearchParams({
-                scan: '1', tid: data.ticketId, pay: payRef, sync: syncMail,
-                name: data.name, mob: data.mobile, pass: data.passType,
-                per: data.persons, amt: data.price, sig: sig
-            });
+            const scanParams = new URLSearchParams({ scan: '1', tid: data.ticketId, pay: payRef, sync: syncMail, name: data.name, mob: data.mobile, pass: data.passType, per: data.persons, amt: data.price, sig: sig });
             document.getElementById('tktQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&margin=0&data=${encodeURIComponent(`${baseSiteUrl}?${scanParams.toString()}`)}`;
 
             document.getElementById('mainLandingContent').classList.add('hidden');
@@ -889,45 +662,26 @@
             window.scrollTo({ top: 0, behavior: 'auto' });
         }
 
-        // ================================================================
-        // 🔄 QUANTITY SYNC
-        // ================================================================
         function syncTicketQuantityFromDropdown(newQtyVal) {
-            const data = getVerifiedTicket();
-            if (!data) return;
+            const data = getVerifiedTicket(); if (!data) return;
             const qty = Number(newQtyVal) || 1;
-            let unitPrice = data.unitPrice || 1;
-            let personsPerPass = data.personsPerPass || 1;
-            let baseName = data.basePassName || 'Single Pass';
+            let unitPrice = data.unitPrice || 1, personsPerPass = data.personsPerPass || 1, baseName = data.basePassName || 'Single Pass';
             if (!data.unitPrice) {
                 if (String(data.passType).includes('Couple')) { unitPrice = 249; personsPerPass = 2; baseName = 'Couple Pass'; }
                 else if (String(data.passType).includes('Family')) { unitPrice = 499; personsPerPass = 5; baseName = 'Family Pass (4+1 Free)'; }
             }
-            const totalAmount = unitPrice * qty;
-            const totalPersons = personsPerPass * qty;
-            data.quantity = qty;
-            data.passType = `${baseName} (Qty: ${qty})`;
-            data.price = `₹${totalAmount}`;
-            data.persons = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
+            const totalAmount = unitPrice * qty, totalPersons = personsPerPass * qty;
+            data.quantity = qty; data.passType = `${baseName} (Qty: ${qty})`;
+            data.price = `₹${totalAmount}`; data.persons = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
             data.rzpSyncEmail = `${data.ticketId}-QTY${qty}-RS${totalAmount}@dandiya.com`;
             data.signature = generateSecuritySignature(data.ticketId, data.mobile, data.price, data.persons);
-            saveVerifiedTicket(data);
-            renderTicketView(data);
+            saveVerifiedTicket(data); renderTicketView(data);
         }
 
-        // ================================================================
-        // 🚪 GATE SCANNER
-        // ================================================================
         function renderGateScanner(urlParams) {
-            const tid = urlParams.get('tid') || '';
-            const pay = urlParams.get('pay') || '';
-            const sync = urlParams.get('sync') || '';
-            const name = urlParams.get('name') || '';
-            const mob = urlParams.get('mob') || '';
-            const pass = urlParams.get('pass') || '';
-            const per = urlParams.get('per') || '';
-            const amt = urlParams.get('amt') || '';
-            const sig = urlParams.get('sig') || '';
+            const tid = urlParams.get('tid') || '', pay = urlParams.get('pay') || '', sync = urlParams.get('sync') || '';
+            const name = urlParams.get('name') || '', mob = urlParams.get('mob') || '', pass = urlParams.get('pass') || '';
+            const per = urlParams.get('per') || '', amt = urlParams.get('amt') || '', sig = urlParams.get('sig') || '';
             currentScannedTicketId = tid;
             document.getElementById('scanTktId').innerText = '#' + tid;
             document.getElementById('scanRzpSync').innerText = sync;
@@ -937,11 +691,9 @@
             document.getElementById('scanPass').innerText = pass;
             document.getElementById('scanPersons').innerText = per;
             document.getElementById('scanAmount').innerText = amt;
-
             const expectedSig = generateSecuritySignature(tid, mob, amt, per);
             const usedTickets = JSON.parse(localStorage.getItem('dandiya_gate_used_tickets') || '{}');
             document.getElementById('totalScannedCount').innerText = Object.keys(usedTickets).length;
-
             const statusBox = document.getElementById('scanStatusBox');
             const scanIcon = document.getElementById('scanIcon');
             const scanHeading = document.getElementById('scanHeading');
@@ -980,10 +732,7 @@
         }
         function markTicketUsedAtGate() {
             const pin = document.getElementById('gateAdminPin').value.trim();
-            if (pin !== ORGANISER_GATE_PIN) {
-                alert("❌ Wrong Organiser PIN!");
-                return;
-            }
+            if (pin !== ORGANISER_GATE_PIN) { alert("❌ Wrong Organiser PIN!"); return; }
             if (!currentScannedTicketId) return;
             const usedTickets = JSON.parse(localStorage.getItem('dandiya_gate_used_tickets') || '{}');
             const nowTime = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
@@ -993,7 +742,6 @@
             renderGateScanner(urlParams);
             alert(`✅ Entry Approved! Ticket #${currentScannedTicketId} ab lock ho chuka hai.`);
         }
-
         function closeTicketView() {
             document.getElementById('ticketViewSection').classList.add('hidden');
             document.getElementById('gateScannerSection').classList.add('hidden');
@@ -1001,154 +749,161 @@
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        // ================================================================
-        // 📥 DOWNLOAD TICKET
-        // ================================================================
         const DPI = 300, MM_PER_INCH = 25.4;
         const CARD_W_PX = Math.round((85.6 / MM_PER_INCH) * DPI);
         const CARD_H_PX = Math.round((54.0 / MM_PER_INCH) * DPI);
 
         async function captureElement(element, targetWidthPx, targetHeightPx) {
             const rect = element.getBoundingClientRect();
-            const canvas = await html2canvas(element, {
-                scale: 4, useCORS: true, allowTaint: true,
-                backgroundColor: '#0d021a',
-                width: rect.width, height: rect.height,
-                windowWidth: rect.width, windowHeight: rect.height,
-                logging: false, imageTimeout: 20000,
+            const canvas = await html2canvas(element, { scale: 4, useCORS: true, allowTaint: true, backgroundColor: '#0d021a', width: rect.width, height: rect.height, windowWidth: rect.width, windowHeight: rect.height, logging: false, imageTimeout: 20000,
                 onclone: function(clonedDoc) {
                     const qr = clonedDoc.getElementById('tktQrCode');
-                    if (qr) {
-                        qr.style.imageRendering = 'pixelated';
-                        qr.style.imageRendering = 'crisp-edges';
-                        qr.style.imageRendering = '-webkit-optimize-contrast';
-                        qr.style.width = '100%';
-                        qr.style.height = '100%';
-                        qr.style.objectFit = 'contain';
-                    }
+                    if (qr) { qr.style.imageRendering = 'pixelated'; qr.style.imageRendering = 'crisp-edges'; qr.style.imageRendering = '-webkit-optimize-contrast'; qr.style.width = '100%'; qr.style.height = '100%'; qr.style.objectFit = 'contain'; }
                 }
             });
             const out = document.createElement('canvas');
             out.width = targetWidthPx; out.height = targetHeightPx;
             const ctx = out.getContext('2d');
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            ctx.fillStyle = '#0d021a';
-            ctx.fillRect(0, 0, out.width, out.height);
+            ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+            ctx.fillStyle = '#0d021a'; ctx.fillRect(0, 0, out.width, out.height);
             ctx.drawImage(canvas, 0, 0, out.width, out.height);
             return out;
         }
 
         async function downloadTicketImage() {
-            const frontEl = document.getElementById('ccFront');
-            const backEl = document.getElementById('ccBack');
+            const frontEl = document.getElementById('ccFront'), backEl = document.getElementById('ccBack');
             const downloadBtn = document.getElementById('downloadTicketBtn');
             if (!frontEl || !backEl) return;
-            if (downloadBtn) {
-                downloadBtn.disabled = true;
-                downloadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating 300 DPI Image...';
-            }
+            if (downloadBtn) { downloadBtn.disabled = true; downloadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating 300 DPI Image...'; }
             try {
-                const [frontCanvas, backCanvas] = await Promise.all([
-                    captureElement(frontEl, CARD_W_PX, CARD_H_PX),
-                    captureElement(backEl, CARD_W_PX, CARD_H_PX)
-                ]);
-                const GAP = Math.round(DPI * 0.10);
-                const PADDING = Math.round(DPI * 0.12);
-                const finalW = CARD_W_PX + PADDING * 2;
-                const finalH = CARD_H_PX * 2 + GAP + PADDING * 2;
+                const [frontCanvas, backCanvas] = await Promise.all([captureElement(frontEl, CARD_W_PX, CARD_H_PX), captureElement(backEl, CARD_W_PX, CARD_H_PX)]);
+                const GAP = Math.round(DPI * 0.10), PADDING = Math.round(DPI * 0.12);
+                const finalW = CARD_W_PX + PADDING * 2, finalH = CARD_H_PX * 2 + GAP + PADDING * 2;
                 const finalCanvas = document.createElement('canvas');
                 finalCanvas.width = finalW; finalCanvas.height = finalH;
                 const fctx = finalCanvas.getContext('2d');
                 const bgGrad = fctx.createLinearGradient(0, 0, finalW, finalH);
                 bgGrad.addColorStop(0, '#0d021a'); bgGrad.addColorStop(1, '#1a0530');
-                fctx.fillStyle = bgGrad;
-                fctx.fillRect(0, 0, finalW, finalH);
-                fctx.strokeStyle = 'rgba(255, 215, 0, 0.35)';
-                fctx.lineWidth = Math.round(DPI * 0.01);
+                fctx.fillStyle = bgGrad; fctx.fillRect(0, 0, finalW, finalH);
+                fctx.strokeStyle = 'rgba(255, 215, 0, 0.35)'; fctx.lineWidth = Math.round(DPI * 0.01);
                 fctx.strokeRect(PADDING * 0.5, PADDING * 0.5, finalW - PADDING, finalH - PADDING);
                 fctx.drawImage(frontCanvas, PADDING, PADDING, CARD_W_PX, CARD_H_PX);
                 fctx.drawImage(backCanvas, PADDING, PADDING + CARD_H_PX + GAP, CARD_W_PX, CARD_H_PX);
                 const dataUrl = finalCanvas.toDataURL('image/png', 1.0);
                 const a = document.createElement('a');
                 a.download = `Chhoti-Ballia-Dandiya-Ticket-${Date.now()}.png`;
-                a.href = dataUrl;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                if (downloadBtn) {
-                    downloadBtn.disabled = false;
-                    downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket';
-                }
+                a.href = dataUrl; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                if (downloadBtn) { downloadBtn.disabled = false; downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket'; }
             } catch (err) {
                 console.error('Download failed:', err);
                 alert('Image generate karne me error aaya.');
-                if (downloadBtn) {
-                    downloadBtn.disabled = false;
-                    downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket';
-                }
+                if (downloadBtn) { downloadBtn.disabled = false; downloadBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Ticket'; }
             }
         }
 
         // ================================================================
-        // 🔄 PAYMENT RETURN HANDLER — FIXED to preserve full details
+        // 🎯 MAIN FUNCTION — Parse URL params & build verified ticket
         // ================================================================
         function handlePageLoad() {
             const searchStr = window.location.search;
             const urlParams = new URLSearchParams(searchStr);
 
-            // Gate scanner
-            if (urlParams.get('scan') === '1' && urlParams.has('tid')) {
-                renderGateScanner(urlParams);
-                return;
-            }
+            // Gate scanner — first priority
+            if (urlParams.get('scan') === '1' && urlParams.has('tid')) { renderGateScanner(urlParams); return; }
 
-            // Detect payment return
             const paymentId = urlParams.get('payment_id') || urlParams.get('razorpay_payment_id');
             const paymentStatus = urlParams.get('status');
             const returnAmount = urlParams.get('amount');
             const isTicketReturn = urlParams.has('ticket') || searchStr.includes('ticket=1');
 
-            // ═══════════════════════════════════════════════════════════
-            // 🔒 CASE A: Gateway returned with real payment_id
-            // ═══════════════════════════════════════════════════════════
+            // ═════════════════════════════════════════════════════════
+            // 🎯 CASE A: Gateway returned with payment_id
+            // Extract EVERYTHING from URL params
+            // ═════════════════════════════════════════════════════════
             if (paymentId && /^pay_/.test(paymentId)) {
                 document.getElementById('verifyOverlay').style.display = 'flex';
+
+                // ✅ URL se saari details nikaalo
+                const urlBookingId = urlParams.get('booking_id') || '';
+                const urlCustomerName = urlParams.get('customer_name') || urlParams.get('name') || '';
+                const urlCustomerPhone = urlParams.get('customer_phone') || urlParams.get('phone') || '';
+                const urlCustomerEmail = urlParams.get('customer_email') || urlParams.get('email') || '';
+                const urlPurpose = urlParams.get('purpose') || '';
+
+                // Gender from cf_gender_XXXX or custom_fields JSON
+                let urlGender = '';
+                urlParams.forEach((value, key) => {
+                    if (key.startsWith('cf_gender_') && value) urlGender = value;
+                });
+                if (!urlGender) {
+                    const cfRaw = urlParams.get('custom_fields');
+                    if (cfRaw) {
+                        try {
+                            const cf = JSON.parse(cfRaw);
+                            for (const k in cf) {
+                                if (k.toLowerCase().includes('gender') && cf[k]) { urlGender = cf[k]; break; }
+                            }
+                        } catch(e) {}
+                    }
+                }
+
+                // Parse purpose: "Dandiya Night 2026 Pass - Single Pass (Qty: 1)"
+                let parsedPassType = '';
+                let parsedQty = 1;
+                if (urlPurpose) {
+                    const qtyMatch = urlPurpose.match(/Qty:\s*(\d+)/i);
+                    if (qtyMatch) parsedQty = parseInt(qtyMatch[1]) || 1;
+                    const parts = urlPurpose.split(' - ');
+                    if (parts[1]) parsedPassType = parts[1].replace(/\s*\(Qty:\s*\d+\)/i, '').trim();
+                }
 
                 const pending = getPendingBooking();
                 let ticketData;
 
                 if (pending) {
-                    // ✅ KEY FIX: Use pending data (has real name, mobile, gender, etc.)
+                    // Merge: URL params take priority, fallback to pending
                     ticketData = pending;
+                    ticketData.ticketId = urlBookingId || pending.ticketId;
                     ticketData.paymentRef = paymentId;
                     ticketData.paymentVerified = true;
                     ticketData.verifiedAt = Date.now();
                     ticketData.verificationMethod = 'gateway_return';
-                    // Update amount from gateway if provided
-                    if (returnAmount) {
-                        ticketData.price = `₹${returnAmount}`;
+                    ticketData.name = urlCustomerName || pending.name;
+                    ticketData.mobile = urlCustomerPhone || pending.mobile;
+                    ticketData.email = urlCustomerEmail || pending.email || '';
+                    ticketData.gender = urlGender || pending.gender;
+                    if (returnAmount) ticketData.price = `₹${returnAmount}`;
+                    if (parsedQty && parsedQty >= 1) {
+                        ticketData.quantity = parsedQty;
+                        const personsPerPass = pending.personsPerPass || 1;
+                        const totalPersons = personsPerPass * parsedQty;
+                        ticketData.persons = `${totalPersons} ${totalPersons > 1 ? 'Persons' : 'Person'}`;
+                        if (parsedPassType) ticketData.passType = `${parsedPassType} (Qty: ${parsedQty})`;
                     }
-                    // Update rzpSyncEmail with real payment ID
                     ticketData.rzpSyncEmail = `${ticketData.ticketId}-${paymentId}@dandiya.com`;
-                    // Re-sign with real payment ID
-                    ticketData.signature = generateSecuritySignature(
-                        ticketData.ticketId, ticketData.mobile, ticketData.price, ticketData.persons
-                    );
+                    ticketData.signature = generateSecuritySignature(ticketData.ticketId, ticketData.mobile, ticketData.price, ticketData.persons);
                 } else {
-                    // No pending data — fallback (should rarely happen now)
-                    const randomId = 'CBDN-RZP-' + Math.floor(100000 + Math.random() * 900000);
+                    // No pending — build 100% from URL params
+                    const finalBookingId = urlBookingId || ('CBDN-RZP-' + Math.floor(100000 + Math.random() * 900000));
+                    const finalPassType = parsedPassType ? `${parsedPassType} (Qty: ${parsedQty})` : `Entry Pass (Qty: ${parsedQty})`;
+                    const finalPersons = `${parsedQty} ${parsedQty > 1 ? 'Persons' : 'Person'}`;
+                    const finalPrice = `₹${returnAmount || '0'}`;
                     ticketData = {
-                        ticketId: randomId,
+                        ticketId: finalBookingId,
                         paymentRef: paymentId,
-                        rzpSyncEmail: `${randomId}-${paymentId}@dandiya.com`,
-                        signature: generateSecuritySignature(randomId, '0000000000', `₹${returnAmount || '0'}`, '1 Person'),
-                        name: 'Valued Guest',
-                        mobile: '0000000000',
-                        gender: '—',
-                        passType: 'Entry Pass',
-                        price: `₹${returnAmount || '0'}`,
-                        persons: 'As per payment',
+                        rzpSyncEmail: `${finalBookingId}-${paymentId}@dandiya.com`,
+                        signature: generateSecuritySignature(finalBookingId, urlCustomerPhone || '0000000000', finalPrice, finalPersons),
+                        name: urlCustomerName || 'Valued Guest',
+                        mobile: urlCustomerPhone || '0000000000',
+                        gender: urlGender || '—',
+                        email: urlCustomerEmail || '',
+                        passType: finalPassType,
+                        price: finalPrice,
+                        persons: finalPersons,
+                        quantity: parsedQty,
+                        personsPerPass: 1,
+                        basePassName: parsedPassType || 'Single Pass',
+                        unitPrice: returnAmount ? Number(returnAmount) : 1,
                         bookedAt: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
                         paymentVerified: true,
                         createdAt: Date.now()
@@ -1162,13 +917,11 @@
                     document.getElementById('verifyOverlay').style.display = 'none';
                     renderTicketView(getVerifiedTicket());
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
-                }, 1200);
+                }, 900);
                 return;
             }
 
-            // ═══════════════════════════════════════════════════════════
-            // 🔒 CASE B: ?ticket=1 but no payment_id → refuse
-            // ═══════════════════════════════════════════════════════════
+            // CASE B: ?ticket=1 without payment_id — refuse
             if (isTicketReturn && !paymentId) {
                 const verified = getVerifiedTicket();
                 if (verified) {
@@ -1177,14 +930,12 @@
                 } else {
                     clearPendingBooking();
                     try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {}
-                    setTimeout(() => {
-                        alert('⚠️ Payment confirm nahi hua.\n\nAgar aapne paise kaat liye hain toh 5 minute baad "My Ticket" button check karein.');
-                    }, 500);
+                    setTimeout(() => { alert('⚠️ Payment confirm nahi hua.\n\nAgar paise kaat liye hain toh 5 minute baad "My Ticket" check karein.'); }, 500);
                 }
                 return;
             }
 
-            // Normal load — show My Ticket button only if verified ticket exists
+            // Normal load
             const verified = getVerifiedTicket();
             const btn = document.getElementById('myTicketBtn');
             if (btn) {
@@ -1193,19 +944,13 @@
             }
         }
 
-        // ================================================================
-        // 🚀 INIT
-        // ================================================================
         handlePageLoad();
         window.addEventListener('DOMContentLoaded', handlePageLoad);
         window.addEventListener('load', () => setTimeout(handlePageLoad, 200));
         window.addEventListener('pageshow', function() { setTimeout(handlePageLoad, 100); });
         window.addEventListener('hashchange', handlePageLoad);
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) setTimeout(handlePageLoad, 500);
-        });
+        document.addEventListener('visibilitychange', function() { if (!document.hidden) setTimeout(handlePageLoad, 500); });
 
-        // Countdown
         const eventDate = new Date("October 13, 2026 17:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
